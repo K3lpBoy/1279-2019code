@@ -159,7 +159,7 @@ public class Robot extends TimedRobot
   @Override
   public void testPeriodic() {
 
-    // Potential solution (ERROR: max couldn't be resolved. double max = testTalon.maxIntegralAccumulator;
+    // Potential solution (ERROR: max couldn't be resolved.) double max = testTalon.maxIntegralAccumulator;
     if(testJoystick.getRawButton(1))
     {
       testTalon.setSpeed(0.5);
