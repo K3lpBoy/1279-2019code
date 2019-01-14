@@ -8,12 +8,18 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Talon;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +29,10 @@ import frc.robot.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
+
+  private Joystick testJoystick;
+  private Talon testTalon;
+
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
@@ -39,6 +49,14 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    //below this is my code
+    testJoystick = new Joystick(0);
+    testTalon = new Talon(1);
+    //testTalon.set(ControlMode.PercentOutput, 0);
+    //testTalon.setInverted(false);
+    //testTalon.setSafetyEnabled(false);
+    
   }
 
   /**
@@ -127,5 +145,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+
+    if(testJoystick.getRawButton(1)){
+      testTalon.setSpeed(0.5);
+    }
+    else{
+      testTalon.setRaw(30);
+    }
   }
 }
