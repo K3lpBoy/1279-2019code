@@ -150,10 +150,11 @@ public class Robot extends TimedRobot {
       testTalon.setSpeed(0.5);
     }
     else{
-      testTalon.setRaw(30);
+      testTalon.setRaw(30); 
     }
 
-    //test comment to see if the commit goes through
-    // im just testing this
+    // so this probably isn't working because the API says that I need to set a max/min value for something? but those methods don't exist
+    // so that's pretty nice, i'm just gonna look at example code to see if that fixes it
+    // TODO: just make this work and drive a motor
   }
 }
