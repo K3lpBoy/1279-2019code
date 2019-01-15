@@ -178,5 +178,8 @@ public class Robot extends TimedRobot
     // Potential max/min methods for talons
 
     // Looked up Talon API, found maxIntegralAccumulator. However, it says that it cannot be resolved, or is not in a field.
+
+    // so the main problem now is that we have what we need to do but we can't figure out how to make the talon drive
+    // we can find the IDs but the setRaw command doesn't work, I'll look into setSpeed later tonight or something
   }
 }
