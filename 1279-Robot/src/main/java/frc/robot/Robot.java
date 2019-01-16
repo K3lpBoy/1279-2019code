@@ -173,6 +173,8 @@ public class Robot extends TimedRobot
       m_autonomousCommand.cancel();
     }
 
+    drive.setSafetyEnabled(true); //enables safety on the drivetrain
+
     frontLeftTalon.configFactoryDefault();
     frontRightTalon.configFactoryDefault();
     rearLeftTalon.configFactoryDefault();
