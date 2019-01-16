@@ -40,7 +40,7 @@ public class Robot extends TimedRobot
   private final int DRIVER_JOYSTICK = 0;
   private final int A_BUTTON = 1;
   private final int LEFT_X_AXIS = 1;
-  private final int RIGHT_Y_AXIS = 1;
+  private final int RIGHT_Y_AXIS = 4;
 
   //talon IDs (NOT FINAL)
   private final int FRONT_LEFT_ID = 1;
