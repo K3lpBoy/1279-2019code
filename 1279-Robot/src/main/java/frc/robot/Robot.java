@@ -17,8 +17,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 
+//import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.*;
+import edu.wpi.first.wpilibj.drive.*;  // these are necessary for the drivetrain builder
+import edu.wpi.first.wpilibj.*; // see https://phoenix-documentation.readthedocs.io/en/latest/ch15_WPIDrive.html
+
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Talon;
+// import edu.wpi.first.wpilibj.Talon; this isn't the right one
 
 
 /**
@@ -31,8 +37,17 @@ import edu.wpi.first.wpilibj.Talon;
 public class Robot extends TimedRobot 
 {
 
-  private Joystick testJoystick;
-  private Talon testTalon;
+  //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
+  WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(1);
+  WPI_TalonSRX rearLeftTalon = new WPI_TalonSRX(2);
+  SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeftTalon, rearLeftTalon);
+  WPI_TalonSRX frontRightTalon = new WPI_TalonSRX(3);
+  WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(4);
+  SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon);
+  
+  Joystick driverStick = new Joystick(0);
+
+  DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
@@ -52,9 +67,10 @@ public class Robot extends TimedRobot
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    //below this is my code
-    testJoystick = new Joystick(0);
-    testTalon = new Talon(1);
+    //below this is my code, most of this was test stuff
+    //leftTalon.set(ControlMode.PercentOutput, 0);
+    //testJoystick = new Joystick(0);
+    //testTalon = new Talon(1);
     //testTalon.set(ControlMode.PercentOutput, 0);
     //testTalon.setInverted(false);
     //testTalon.setSafetyEnabled(false);
@@ -142,6 +158,21 @@ public class Robot extends TimedRobot
     {
       m_autonomousCommand.cancel();
     }
+
+    frontLeftTalon.configFactoryDefault();
+    frontRightTalon.configFactoryDefault();
+    rearLeftTalon.configFactoryDefault();
+    rearRightTalon.configFactoryDefault();
+
+    // adjust these so that when the stick is forward both of these are green
+    frontLeftTalon.setInverted(false);
+    rearLeftTalon.setInverted(false);
+    frontRightTalon.setInverted(true); 
+    rearRightTalon.setInverted(true);
+    // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
+
+    // dont change this
+    drive.setRightSideInverted(false);
   }
 
   /**
@@ -151,6 +182,15 @@ public class Robot extends TimedRobot
   public void teleopPeriodic() 
   {
     Scheduler.getInstance().run();
+
+    double xSpeed = driverStick.getRawAxis(1) * -1; // makes forward stick positive
+    double zRotation =  driverStick.getRawAxis(0); // WPI Drivetrain uses positive=> right
+
+    drive.arcadeDrive(xSpeed, zRotation);
+
+    if (driverStick.getRawButton(1)){
+      System.out.println("xSpeed:" + xSpeed + "    zRotation:" + zRotation);
+    }
   }
 
   /**
@@ -160,26 +200,14 @@ public class Robot extends TimedRobot
   public void testPeriodic() {
 
     // Potential solution (ERROR: max couldn't be resolved.) double max = testTalon.maxIntegralAccumulator;
-    if(testJoystick.getRawButton(1))
+    /*if(testJoystick.getRawButton(1))
     {
       testTalon.setSpeed(0.5);
     }
     else
     {
       testTalon.setRaw(30); 
-    }
+    }*/
 
-    // so this probably isn't working because the API says that I need to set a max/min value for something? but those methods don't exist
-    // so that's pretty nice, i'm just gonna look at example code to see if that fixes it
-    // TODO: just make this work and drive a motor
-
-    //test comment from daniel's computer
-
-    // Potential max/min methods for talons
-
-    // Looked up Talon API, found maxIntegralAccumulator. However, it says that it cannot be resolved, or is not in a field.
-
-    // so the main problem now is that we have what we need to do but we can't figure out how to make the talon drive
-    // we can find the IDs but the setRaw command doesn't work, I'll look into setSpeed later tonight or something
   }
 }
