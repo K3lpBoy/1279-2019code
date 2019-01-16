@@ -36,20 +36,32 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class Robot extends TimedRobot 
 {
+  //xbox buttons
+  private final int DRIVER_JOYSTICK = 0;
+  private final int A_BUTTON = 1;
+  private final int LEFT_X_AXIS = 1;
+  private final int RIGHT_Y_AXIS = 1;
+
+  //talon IDs (NOT FINAL)
+  private final int FRONT_LEFT_ID = 1;
+  private final int REAR_LEFT_ID = 2;
+  private final int FRONT_RIGHT_ID = 3;
+  private final int REAR_RIGHT_ID = 4;
+  private final int BALL_ARM_LIFTER_ID = 5;
 
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
-  WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(1);
-  WPI_TalonSRX rearLeftTalon = new WPI_TalonSRX(2);
+  WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(FRONT_LEFT_ID);
+  WPI_TalonSRX rearLeftTalon = new WPI_TalonSRX(REAR_LEFT_ID);
   SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeftTalon, rearLeftTalon);
-  WPI_TalonSRX frontRightTalon = new WPI_TalonSRX(3);
-  WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(4);
+  WPI_TalonSRX frontRightTalon = new WPI_TalonSRX(FRONT_RIGHT_ID);
+  WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(REAR_RIGHT_ID);
   SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon);
   
-  Joystick driverStick = new Joystick(0);
+  Joystick driverStick = new Joystick(DRIVER_JOYSTICK);
 
   DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
 
-  WPI_TalonSRX ballArmLifterTalon = new WPI_TalonSRX(5);
+  WPI_TalonSRX ballArmLifterTalon = new WPI_TalonSRX(BALL_ARM_LIFTER_ID);
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
@@ -185,8 +197,8 @@ public class Robot extends TimedRobot
   {
     Scheduler.getInstance().run();
 
-    double xSpeed = driverStick.getRawAxis(1) * -1; // makes forward stick positive
-    double zRotation =  driverStick.getRawAxis(4); // WPI Drivetrain uses positive=> right; right stick for left and right
+    double xSpeed = driverStick.getRawAxis(LEFT_X_AXIS) * -1; // makes forward stick positive
+    double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
     drive.arcadeDrive(xSpeed, zRotation);
 
@@ -195,7 +207,7 @@ public class Robot extends TimedRobot
     }*/
 
     // below this is an example of how I would run a motor
-    if (driverStick.getRawButton(1)){
+    if (driverStick.getRawButton(A_BUTTON)){
       ballArmLifterTalon.set(ControlMode.PercentOutput, 0.5); //theoretically this should run this motor at half speed
     }
     else {
