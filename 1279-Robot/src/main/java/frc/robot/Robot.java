@@ -49,6 +49,8 @@ public class Robot extends TimedRobot
 
   DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
 
+  WPI_TalonSRX ballArmLifterTalon = new WPI_TalonSRX(5);
+
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
@@ -184,7 +186,7 @@ public class Robot extends TimedRobot
     Scheduler.getInstance().run();
 
     double xSpeed = driverStick.getRawAxis(1) * -1; // makes forward stick positive
-    double zRotation =  driverStick.getRawAxis(0); // WPI Drivetrain uses positive=> right
+    double zRotation =  driverStick.getRawAxis(4); // WPI Drivetrain uses positive=> right; right stick for left and right
 
     drive.arcadeDrive(xSpeed, zRotation);
 
