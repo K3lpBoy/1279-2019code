@@ -190,8 +190,16 @@ public class Robot extends TimedRobot
 
     drive.arcadeDrive(xSpeed, zRotation);
 
-    if (driverStick.getRawButton(1)){
+    /*if (driverStick.getRawButton(1)){
       System.out.println("xSpeed:" + xSpeed + "    zRotation:" + zRotation);
+    }*/
+
+    // below this is an example of how I would run a motor
+    if (driverStick.getRawButton(1)){
+      ballArmLifterTalon.set(ControlMode.PercentOutput, 0.5); //theoretically this should run this motor at half speed
+    }
+    else {
+      ballArmLifterTalon.set(ControlMode.PercentOutput, 0); // making sure the motor shuts off when the button isn't pressed
     }
   }
 
