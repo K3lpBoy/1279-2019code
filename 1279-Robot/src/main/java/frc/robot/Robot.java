@@ -43,6 +43,7 @@ public class Robot extends TimedRobot
   private final int RIGHT_Y_AXIS = 4;
 
   //talon IDs (NOT FINAL)
+  //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
   private final int FRONT_LEFT_ID = 1;
   private final int REAR_LEFT_ID = 2;
   private final int FRONT_RIGHT_ID = 3;
@@ -233,6 +234,5 @@ public class Robot extends TimedRobot
       testTalon.setRaw(30); 
     }*/
 
-    //test comment
   }
 }
