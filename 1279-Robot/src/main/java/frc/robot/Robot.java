@@ -44,6 +44,8 @@ public class Robot extends TimedRobot
   private final int LEFT_X_AXIS = 1;
   private final int RIGHT_Y_AXIS = 4;
 
+  // TODO: eventually make these into an interface
+
   //talon IDs (NOT FINAL)
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
   private final int FRONT_LEFT_ID = 1;
@@ -60,6 +62,9 @@ public class Robot extends TimedRobot
   WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(REAR_RIGHT_ID);
   SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon);
   
+  WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing purposes right now
+  HatchMechanism hatchMech = new HatchMechanism(hatchTalon);
+
   Joystick driverStick = new Joystick(DRIVER_JOYSTICK);
 
   DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
@@ -84,7 +89,8 @@ public class Robot extends TimedRobot
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    CameraServer.getInstance().startAutomaticCapture(); // gets the camera feed
+    CameraServer.getInstance().startAutomaticCapture(0); // gets the camera feed
+    CameraServer.getInstance().startAutomaticCapture(1);
 
     //below this is my code, most of this was test stuff
     //leftTalon.set(ControlMode.PercentOutput, 0);
@@ -238,15 +244,12 @@ public class Robot extends TimedRobot
       testTalon.setRaw(30); 
     }*/
 
-    if(driverStick.getRawButton(A_BUTTON)){                   // this is test code for the bosch seat motor
-      ballArmLifterTalon.set(ControlMode.PercentOutput, 0.75);
+    if(driverStick.getRawButton(A_BUTTON)){                      // this is test code for the bosch seat motor
+      hatchMech.toggle();
     }
-    else if(driverStick.getRawButton(2)){ // b button
+    /*else if(driverStick.getRawButton(2)){ // b button
       ballArmLifterTalon.set(ControlMode.PercentOutput, -0.75); // note: this is like the perfect speed
-    }                                                           // make a routine out of this so I don't have to use limit switches
-    else{
-      ballArmLifterTalon.set(ControlMode.PercentOutput, 0);
-    }
+    }  */                                                         // make a routine out of this so I don't have to use limit switches
 
   }
 }
