@@ -37,7 +37,7 @@ public class HatchMechanism {
     } */
 
     // so this currently doesn't work, just try and set a timer and then a while loop checking if the timer is equal or greater and then stop the motor
-    public void toggle(){
+    /*public void toggle(){
         if(raised){
             hatchTalon.set(ControlMode.PercentOutput, 0.8); // raises the claw
             Timer.delay(waitTime); // seconds               
@@ -51,6 +51,14 @@ public class HatchMechanism {
             hatchTalon.set(ControlMode.PercentOutput, 0);
             raised = !raised;
             System.out.println("hatch mech going down");
+        }
+    }*/
+
+    public void toggle(){
+        if(raised){
+            // none of this works aaa
+            hatchTalon.set(ControlMode.PercentOutput, 0.8);
+            
         }
     }
 }
