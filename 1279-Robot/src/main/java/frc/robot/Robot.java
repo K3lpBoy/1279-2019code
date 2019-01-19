@@ -238,5 +238,15 @@ public class Robot extends TimedRobot
       testTalon.setRaw(30); 
     }*/
 
+    if(driverStick.getRawButton(A_BUTTON)){                   // this is test code for the bosch seat motor
+      ballArmLifterTalon.set(ControlMode.PercentOutput, 0.75);
+    }
+    else if(driverStick.getRawButton(2)){ // b button
+      ballArmLifterTalon.set(ControlMode.PercentOutput, -0.75); // note: this is like the perfect speed
+    }                                                           // make a routine out of this so I don't have to use limit switches
+    else{
+      ballArmLifterTalon.set(ControlMode.PercentOutput, 0);
+    }
+
   }
 }
