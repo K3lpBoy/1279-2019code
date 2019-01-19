@@ -219,13 +219,17 @@ public class Robot extends TimedRobot
       System.out.println("xSpeed:" + xSpeed + "    zRotation:" + zRotation);
     }*/
 
-    // below this is an example of how I would run a motor
+    /* below this is an example of how I would run a motor
     if (driverStick.getRawButton(A_BUTTON)){
       ballArmLifterTalon.set(ControlMode.PercentOutput, 0.5); //theoretically this should run this motor at half speed
     }
     else {
       ballArmLifterTalon.set(ControlMode.PercentOutput, 0); // making sure the motor shuts off when the button isn't pressed
-    }
+    } */
+
+    /* if(driverStick.getRawButton(A_BUTTON)){                      // this is test code for the bosch seat motor
+      hatchMech.toggle(); so this stops everything when its running damn
+    } */
   }
 
   /**

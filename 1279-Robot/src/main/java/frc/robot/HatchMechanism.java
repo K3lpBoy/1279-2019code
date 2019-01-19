@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Timer;
 public class HatchMechanism {
     WPI_TalonSRX hatchTalon;
     boolean raised;
-    static final double waitTime = 2;
+    static final double waitTime = 0.8;
     Timer hatchTimer = new Timer();
 
     public HatchMechanism(WPI_TalonSRX hatchTalonInput){
@@ -41,11 +41,15 @@ public class HatchMechanism {
             hatchTalon.set(ControlMode.PercentOutput, 0.8); // raises the claw
             Timer.delay(waitTime); // seconds               
             hatchTalon.set(ControlMode.PercentOutput, 0);
+            raised = !raised;
+            System.out.println("hatch mech going up");
         }
-        if(!raised){
+        else if(!raised){
             hatchTalon.set(ControlMode.PercentOutput, -0.8);
             Timer.delay(waitTime);
             hatchTalon.set(ControlMode.PercentOutput, 0);
+            raised = !raised;
+            System.out.println("hatch mech going down");
         }
     }
 }
