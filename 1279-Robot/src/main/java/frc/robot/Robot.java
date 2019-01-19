@@ -26,6 +26,8 @@ import edu.wpi.first.wpilibj.*; // see https://phoenix-documentation.readthedocs
 import edu.wpi.first.wpilibj.Joystick;
 // import edu.wpi.first.wpilibj.Talon; this isn't the right one
 
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.IterativeRobot; // these allow the camera to work
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -81,6 +83,8 @@ public class Robot extends TimedRobot
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    CameraServer.getInstance().startAutomaticCapture(); // gets the camera feed
 
     //below this is my code, most of this was test stuff
     //leftTalon.set(ControlMode.PercentOutput, 0);
