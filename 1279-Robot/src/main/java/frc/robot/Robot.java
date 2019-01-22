@@ -14,8 +14,12 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.Autonomous;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.AutonomousSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+
+import java.sql.Driver;
 
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -43,6 +47,7 @@ public class Robot extends TimedRobot
   private final int A_BUTTON = 1;
   private final int LEFT_X_AXIS = 1;
   private final int RIGHT_Y_AXIS = 4;
+  private final int AUTONOMOUS_BOTTON = 5;
 
   // TODO: eventually make these into an interface
 
@@ -62,8 +67,9 @@ public class Robot extends TimedRobot
   SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeftTalon, rearLeftTalon);
   WPI_TalonSRX frontRightTalon = new WPI_TalonSRX(FRONT_RIGHT_ID);
   WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(REAR_RIGHT_ID);
-  WPI_TalonSRX hatchSpin = new WPI_TalonSRX(HATCH_TALON_ID);
   SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon);
+
+  WPI_TalonSRX hatchSpin = new WPI_TalonSRX(HATCH_TALON_ID);
   
   //WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing purposes right now
   //HatchMechanism hatchMech = new HatchMechanism(hatchTalon);
@@ -77,7 +83,12 @@ public class Robot extends TimedRobot
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
+  public static AutonomousSubsystem m_autoSubSystem = new AutonomousSubsystem();
+
   Command m_autonomousCommand;
+
+  Command Autonomous;
+
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -217,6 +228,8 @@ public class Robot extends TimedRobot
     double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
     drive.arcadeDrive(xSpeed, zRotation);
+
+
 
     /*if (driverStick.getRawButton(1)){
       System.out.println("xSpeed:" + xSpeed + "    zRotation:" + zRotation);
