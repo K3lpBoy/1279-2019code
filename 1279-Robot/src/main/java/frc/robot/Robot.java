@@ -53,17 +53,20 @@ public class Robot extends TimedRobot
   private final int FRONT_RIGHT_ID = 3;
   private final int REAR_RIGHT_ID = 4;
   private final int BALL_ARM_LIFTER_ID = 5;
-
+  private final int HATCH_SPINNER_BUTTON = 2;
+  private final int HATCH_TALON_ID = 7; // This is just a test ID for hatch talon
+  
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
   WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(FRONT_LEFT_ID);
   WPI_TalonSRX rearLeftTalon = new WPI_TalonSRX(REAR_LEFT_ID);
   SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeftTalon, rearLeftTalon);
   WPI_TalonSRX frontRightTalon = new WPI_TalonSRX(FRONT_RIGHT_ID);
   WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(REAR_RIGHT_ID);
+  WPI_TalonSRX hatchSpin = new WPI_TalonSRX(HATCH_TALON_ID);
   SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon);
   
-  WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing purposes right now
-  HatchMechanism hatchMech = new HatchMechanism(hatchTalon);
+  //WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing purposes right now
+  //HatchMechanism hatchMech = new HatchMechanism(hatchTalon);
 
   Joystick driverStick = new Joystick(DRIVER_JOYSTICK);
 
@@ -249,7 +252,7 @@ public class Robot extends TimedRobot
     }*/
 
     if(driverStick.getRawButton(A_BUTTON)){                      // this is test code for the bosch seat motor
-      hatchMech.toggle();
+      //hatchMech.toggle();
     }
     /*else if(driverStick.getRawButton(2)){ // b button
       ballArmLifterTalon.set(ControlMode.PercentOutput, -0.75); // note: this is like the perfect speed
