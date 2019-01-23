@@ -63,6 +63,8 @@ public class Robot extends TimedRobot
   private final int HATCH_SPINNER_BUTTON = 2;
   private final int HATCH_TALON_ID = 7; // This is just a test ID for hatch talon
   
+  boolean autoDriver = false;
+
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
   WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(FRONT_LEFT_ID);
   WPI_TalonSRX rearLeftTalon = new WPI_TalonSRX(REAR_LEFT_ID);
@@ -163,24 +165,7 @@ public class Robot extends TimedRobot
   @Override
   public void autonomousInit() 
   {
-    m_autonomousCommand = m_chooser.getSelected();
-
-    drive.setSafetyEnabled(true); //enables safety on the drivetrain
-
-    frontLeftTalon.configFactoryDefault();
-    frontRightTalon.configFactoryDefault();
-    rearLeftTalon.configFactoryDefault();
-    rearRightTalon.configFactoryDefault();
-
-    // adjust these so that when the stick is forward both of these are green
-    frontLeftTalon.setInverted(false);
-    rearLeftTalon.setInverted(false);
-    frontRightTalon.setInverted(true); 
-    rearRightTalon.setInverted(true);
-    // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
-
-    // dont change this
-    drive.setRightSideInverted(false); 
+    m_autonomousCommand = m_chooser.getSelected(); 
     
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -204,13 +189,6 @@ public class Robot extends TimedRobot
   {
     Scheduler.getInstance().run();
     
-    double xSpeed = 0.5;
-    double zRotation = 0;
-
-    if(driverStick.getRawButton(AUTONOMOUS_BUTTON))
-    {
-      drive.arcadeDrive(xSpeed, zRotation);
-    }
   }
 
   @Override
@@ -256,7 +234,26 @@ public class Robot extends TimedRobot
 
     drive.arcadeDrive(xSpeed, zRotation);
 
+    //autodriver
+    if(driverStick.getRawButton(AUTONOMOUS_BOTTON))
+    {
+      autoDriver = false;
 
+      while(autoDriver == false)
+      {
+      
+        double autoSpeed = 0.4;
+        double autoRotation = 0;
+
+        drive.arcadeDrive(autoSpeed, autoRotation);
+        //Troublsome part of coding auto
+        if(driverStick.getRawButton(8))
+        {
+          autoDriver = true;
+        }
+      }
+    }
+      
 
     /*if (driverStick.getRawButton(1)){
       System.out.println("xSpeed:" + xSpeed + "    zRotation:" + zRotation);
