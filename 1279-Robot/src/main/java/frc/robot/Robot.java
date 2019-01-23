@@ -142,7 +142,7 @@ public class Robot extends TimedRobot
   @Override
   public void disabledInit() 
   {
-    //autoDriver = true;
+    autoDriver = true;
   }
 
   @Override
@@ -165,6 +165,8 @@ public class Robot extends TimedRobot
   @Override
   public void autonomousInit() 
   {
+    //MAJOR NEWS: SANDSTORM IS IN AUTONOMOUS AND NOT IN TELEOP. TO DRIVE NORMALLY, MUST USE SAME TECHNIQUES AS IN TELEOP
+
     m_autonomousCommand = m_chooser.getSelected(); 
     
     /*
@@ -179,6 +181,23 @@ public class Robot extends TimedRobot
     {
       m_autonomousCommand.start();
     }
+
+    drive.setSafetyEnabled(true); //enables safety on the drivetrain
+
+    frontLeftTalon.configFactoryDefault();
+    frontRightTalon.configFactoryDefault();
+    rearLeftTalon.configFactoryDefault();
+    rearRightTalon.configFactoryDefault();
+
+    // adjust these so that when the stick is forward both of these are green
+    frontLeftTalon.setInverted(false);
+    rearLeftTalon.setInverted(false);
+    frontRightTalon.setInverted(true); 
+    rearRightTalon.setInverted(true);
+    // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
+
+    // dont change this
+    drive.setRightSideInverted(false);
   }
 
   /**
@@ -189,6 +208,30 @@ public class Robot extends TimedRobot
   {
     Scheduler.getInstance().run();
     
+    double xSpeed = driverStick.getRawAxis(LEFT_X_AXIS) * -1; // makes forward stick positive
+    double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
+
+    drive.arcadeDrive(xSpeed, zRotation);
+
+    //autodriver
+    if(driverStick.getRawButton(AUTONOMOUS_BOTTON))
+    {
+      autoDriver = false;
+
+      while(autoDriver == false)
+      {
+      
+        double autoSpeed = 0.4;
+        double autoRotation = 0;
+
+        drive.arcadeDrive(autoSpeed, autoRotation);
+        //Troublsome part of coding auto
+        if(driverStick.getRawButton(8))
+        {
+          autoDriver = true;
+        }
+      }
+    }
   }
 
   @Override
@@ -233,26 +276,6 @@ public class Robot extends TimedRobot
     double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
     drive.arcadeDrive(xSpeed, zRotation);
-
-    //autodriver
-    if(driverStick.getRawButton(AUTONOMOUS_BOTTON))
-    {
-      autoDriver = false;
-
-      while(autoDriver == false)
-      {
-      
-        double autoSpeed = 0.4;
-        double autoRotation = 0;
-
-        drive.arcadeDrive(autoSpeed, autoRotation);
-        //Troublsome part of coding auto
-        if(driverStick.getRawButton(8))
-        {
-          autoDriver = true;
-        }
-      }
-    }
       
 
     /*if (driverStick.getRawButton(1)){
