@@ -49,6 +49,8 @@ public class Robot extends TimedRobot
   private final int RIGHT_Y_AXIS = 4;
   private final int AUTONOMOUS_BOTTON = 5;
 
+  private static final int AUTONOMOUS_BUTTON = 5;
+
   // TODO: eventually make these into an interface
 
   //talon IDs (NOT FINAL)
@@ -163,6 +165,23 @@ public class Robot extends TimedRobot
   {
     m_autonomousCommand = m_chooser.getSelected();
 
+    drive.setSafetyEnabled(true); //enables safety on the drivetrain
+
+    frontLeftTalon.configFactoryDefault();
+    frontRightTalon.configFactoryDefault();
+    rearLeftTalon.configFactoryDefault();
+    rearRightTalon.configFactoryDefault();
+
+    // adjust these so that when the stick is forward both of these are green
+    frontLeftTalon.setInverted(false);
+    rearLeftTalon.setInverted(false);
+    frontRightTalon.setInverted(true); 
+    rearRightTalon.setInverted(true);
+    // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
+
+    // dont change this
+    drive.setRightSideInverted(false); 
+    
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -184,6 +203,14 @@ public class Robot extends TimedRobot
   public void autonomousPeriodic() 
   {
     Scheduler.getInstance().run();
+    
+    double xSpeed = 0.5;
+    double zRotation = 0;
+
+    if(driverStick.getRawButton(AUTONOMOUS_BUTTON))
+    {
+      drive.arcadeDrive(xSpeed, zRotation);
+    }
   }
 
   @Override
