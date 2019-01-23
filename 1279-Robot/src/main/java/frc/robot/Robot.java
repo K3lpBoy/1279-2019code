@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Autonomous;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.HatchMechanismCommand;
 import frc.robot.subsystems.AutonomousSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 
@@ -75,8 +76,9 @@ public class Robot extends TimedRobot
 
   WPI_TalonSRX hatchSpin = new WPI_TalonSRX(HATCH_TALON_ID);
   
-  //WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing purposes right now
-  //HatchMechanism hatchMech = new HatchMechanism(hatchTalon);
+  // WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing
+  // purposes right now
+  //HatchMechanismCommand hatchMech = ;
 
   Joystick driverStick = new Joystick(DRIVER_JOYSTICK);
 
@@ -277,7 +279,7 @@ public class Robot extends TimedRobot
 
     drive.arcadeDrive(xSpeed, zRotation);
       
-
+    //.turnHatch();
     /*if (driverStick.getRawButton(1)){
       System.out.println("xSpeed:" + xSpeed + "    zRotation:" + zRotation);
     }*/

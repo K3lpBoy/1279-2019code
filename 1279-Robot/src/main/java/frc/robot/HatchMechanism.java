@@ -54,6 +54,7 @@ public class HatchMechanism {
         }
     }*/
 
+    /*
     public void toggle(){
         if(raised){
             // none of this works aaa
@@ -61,4 +62,5 @@ public class HatchMechanism {
             
         }
     }
+    */
 }
