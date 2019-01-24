@@ -91,6 +91,9 @@ public class HatchMechanismCommand extends Trigger
 
   }
 
+  //drivingToPickUpHatch
+  //if(getButton) {.driveWithHatch}
+
   /*public void turnHatch()
   {
     

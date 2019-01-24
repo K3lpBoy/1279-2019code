@@ -24,6 +24,7 @@ import java.sql.Driver;
 
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.drive.*;  // these are necessary for the drivetrain builder
 import edu.wpi.first.wpilibj.*; // see https://phoenix-documentation.readthedocs.io/en/latest/ch15_WPIDrive.html
@@ -78,7 +79,7 @@ public class Robot extends TimedRobot
 
   WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
-  
+  Relay stopDriveTrain = new Relay(0);
   
   // WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing
   // purposes right now
@@ -102,6 +103,12 @@ public class Robot extends TimedRobot
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   HatchMechanismCommand hatchSpin = new HatchMechanismCommand(hatchTalon, HATCH_SPINNER_BUTTON, driverStick);
+
+  LimitSwitchNormal limitSwitch = LimitSwitchNormal.NormallyClosed;
+
+  //CREATE A COMMAND FOR DRIVETRAIN! MAY BE ABLE TO GET HATCH WORK WITH DRIVETRAIN
+  //ADD PARRALEL
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -283,14 +290,25 @@ public class Robot extends TimedRobot
     double xSpeed = driverStick.getRawAxis(LEFT_X_AXIS) * -1; // makes forward stick positive
     double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
-    drive.arcadeDrive(xSpeed, zRotation);
-    
+      drive.arcadeDrive(xSpeed, zRotation);
+      
+      if(driverStick.getRawButton(HATCH_SPINNER_BUTTON))
+      {
+        hatchSpin.toggle();
+      }
+      
+      /*if(limitSwitch != null)
+      {
+        drive.arcadeDrive(0, 0);
+      }*/
+
+      //CODE FOR HATCH! STOPS THE DRIVE TRAIN, SO WILL LOOK FOR WAYS TO CHANGE
+      
+      
+    /**/
     boolean hatchSpinning = false;
 
-    if(driverStick.getRawButton(HATCH_SPINNER_BUTTON))
-    {
-      hatchSpin.toggle();
-    }
+    
     //.turnHatch();
     /*if (driverStick.getRawButton(1)){
       System.out.println("xSpeed:" + xSpeed + "    zRotation:" + zRotation);
