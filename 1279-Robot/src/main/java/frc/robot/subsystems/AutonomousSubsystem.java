@@ -43,6 +43,7 @@ public class AutonomousSubsystem extends Subsystem
   
   Joystick driverStick = new Joystick(DRIVER_JOYSTICK);
 
+  boolean autonomousDriving = false;
 
   public void driveForwardInAuto()
   {
@@ -67,7 +68,7 @@ public class AutonomousSubsystem extends Subsystem
     double xSpeed = 0.3;
     double zRotation = 0;
 
-    if(driverStick.getRawButton(AUTONOMOUS_BUTTON))
+    while(autonomousDriving == false)
     {
       drive.arcadeDrive(xSpeed, zRotation);
     }
@@ -75,12 +76,14 @@ public class AutonomousSubsystem extends Subsystem
   
   public void stopAuto()
   {
+    autonomousDriving = false;
     drive.arcadeDrive(0, 0);
   }
 
   @Override
   public void initDefaultCommand() 
   {
+
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }

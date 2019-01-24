@@ -34,22 +34,26 @@ public class RobotMap
 
   //talon IDs (NOT FINAL)
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
-  private final int FRONT_LEFT_ID = 1;
-  private final int REAR_LEFT_ID = 2;
-  private final int FRONT_RIGHT_ID = 3;
-  private final int REAR_RIGHT_ID = 4;
+  private final static int FRONT_LEFT_ID = 1;
+  private final static int REAR_LEFT_ID = 2;
+  private final static int FRONT_RIGHT_ID = 3;
+  private final static int REAR_RIGHT_ID = 4;
   private final int BALL_ARM_LIFTER_ID = 5;
 
-  WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(FRONT_LEFT_ID);
-  WPI_TalonSRX rearLeftTalon = new WPI_TalonSRX(REAR_LEFT_ID);
-  SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeftTalon, rearLeftTalon);
-  WPI_TalonSRX frontRightTalon = new WPI_TalonSRX(FRONT_RIGHT_ID);
-  WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(REAR_RIGHT_ID);
-  SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon);
+  final static WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(FRONT_LEFT_ID);
+  final static WPI_TalonSRX rearLeftTalon = new WPI_TalonSRX(REAR_LEFT_ID);
+  final static SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeftTalon, rearLeftTalon);
+  final static WPI_TalonSRX frontRightTalon = new WPI_TalonSRX(FRONT_RIGHT_ID);
+  final static WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(REAR_RIGHT_ID);
+  static SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon);
 
   static Joystick driverStick = new Joystick(DRIVER_JOYSTICK);
+  
+  static DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
 
-  DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
+  //Autonomous Instance Variables
+  double xSpeed = 0.4;
+  double zRotation = 0;
 
   public static int getHatchTalonID()
   {
@@ -64,6 +68,11 @@ public class RobotMap
   public static Joystick getJoystick()
   {
     return driverStick;
+  }
+
+  public static DifferentialDrive getDifferentialDrive()
+  {
+    return drive;
   }
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.

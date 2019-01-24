@@ -31,15 +31,22 @@ public class HatchMechanismCommand extends Trigger
   final int hatchTalonID = RobotMap.getHatchTalonID();
   WPI_TalonSRX hatchTalon = new WPI_TalonSRX(hatchTalonID);
 
-  final int hatchButton = RobotMap.getHatchButton();
+  int hatchButton = RobotMap.getHatchButton();
   
-  final Joystick driverJoyStick = RobotMap.getJoystick();
+  Joystick driverJoyStick = RobotMap.getJoystick();
   
-  boolean hatchSpinning = false;
+  boolean hatchSpinning = true;
 
   static final double waitTime = 0.8;
   Timer hatchTimer = new Timer();
   
+  public HatchMechanismCommand(WPI_TalonSRX talonForHatch, int ButtonForHatch, Joystick dJoystick)
+  {
+    hatchTalon = talonForHatch;
+    hatchButton = ButtonForHatch;
+    driverJoyStick = dJoystick;
+  }
+
   public void Open()
   {
     if(hatchSpinning){

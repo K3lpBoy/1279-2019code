@@ -7,10 +7,12 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 import java.sql.Driver;
 
@@ -21,9 +23,15 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  */
 public class Autonomous extends Trigger 
 {
-  public Autonomous()
+
+  Joystick driverJoyStick = RobotMap.getJoystick();
+
+  DifferentialDrive driveTrain = RobotMap.getDifferentialDrive();
+
+  public Autonomous(Joystick dJoystick, DifferentialDrive drive)
   {
-    
+    driverJoyStick = dJoystick;
+    driveTrain = drive;
   }
 
   public void driveAuto()

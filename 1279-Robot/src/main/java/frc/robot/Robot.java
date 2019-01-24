@@ -76,7 +76,9 @@ public class Robot extends TimedRobot
   WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(REAR_RIGHT_ID);
   SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon);
 
-  WPI_TalonSRX hatchSpin = new WPI_TalonSRX(HATCH_TALON_ID);
+  WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
+
+  
   
   // WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing
   // purposes right now
@@ -98,6 +100,8 @@ public class Robot extends TimedRobot
   Command Autonomous;
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+
+  HatchMechanismCommand hatchSpin = new HatchMechanismCommand(hatchTalon, HATCH_SPINNER_BUTTON, driverStick);
 
   /**
    * This function is run when the robot is first started up and should be
@@ -285,7 +289,7 @@ public class Robot extends TimedRobot
 
     if(driverStick.getRawButton(HATCH_SPINNER_BUTTON))
     {
-      //hatchSpin.toggle();
+      hatchSpin.toggle();
     }
     //.turnHatch();
     /*if (driverStick.getRawButton(1)){
