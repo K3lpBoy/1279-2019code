@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -27,30 +28,21 @@ public class HatchSubsystem extends Subsystem
   final int hatchButton = RobotMap.getHatchButton();
   
   final Joystick driverJoyStick = RobotMap.getJoystick();
-  
-  HatchMechanism hatchMech = new HatchMechanism(hatchSpin);
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  
+  boolean hatchSpinning = false;
 
   @Override
   public void initDefaultCommand()
   {
     
-    
+    hatchSpinning = false;
     
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
 
   }
 
-  public void turnHatch()
-  {
-
-    if(driverJoyStick.getRawButton(hatchButton))
-    {
-      //hatchMech.toggle();
-    }
-
-  }
 }

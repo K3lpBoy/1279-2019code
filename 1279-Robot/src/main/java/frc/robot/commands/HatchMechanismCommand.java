@@ -17,6 +17,7 @@ import frc.robot.subsystems.HatchSubsystem;
 
 import java.lang.module.ModuleDescriptor.Requires;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.*;
@@ -28,19 +29,79 @@ public class HatchMechanismCommand extends Trigger
 {
   
   final int hatchTalonID = RobotMap.getHatchTalonID();
-  WPI_TalonSRX hatchSpin = new WPI_TalonSRX(hatchTalonID);
+  WPI_TalonSRX hatchTalon = new WPI_TalonSRX(hatchTalonID);
 
   final int hatchButton = RobotMap.getHatchButton();
   
   final Joystick driverJoyStick = RobotMap.getJoystick();
   
-  HatchMechanism hatchMech = new HatchMechanism(hatchSpin);
+  boolean hatchSpinning = false;
+
+  static final double waitTime = 0.8;
+  Timer hatchTimer = new Timer();
   
-  /*public HatchSubsystem turnTheHatch()
+  public void Open()
   {
-    //hatchMech.turnHatch();
+    if(hatchSpinning){
+        hatchTalon.set(ControlMode.PercentOutput, 0.8);
+        Timer.delay(waitTime); // seconds
+        hatchTalon.set(ControlMode.PercentOutput, 0);
+    }
+    else
+    {
+        // find a way to do rumble, if I can't do that just do nothing then
+    }
   }
-  */
+  
+  public void Close()
+  {
+    if(!hatchSpinning)
+    {
+        hatchTalon.set(ControlMode.PercentOutput, -0.8);
+        Timer.delay(waitTime);
+        hatchTalon.set(ControlMode.PercentOutput, 0);
+    }
+}
+
+  public void toggle()
+  {
+    if(hatchSpinning)
+    {
+        hatchTalon.set(ControlMode.PercentOutput, 0.8); // raises the claw
+        Timer.delay(waitTime); // seconds               
+        hatchTalon.set(ControlMode.PercentOutput, 0);
+        hatchSpinning = !hatchSpinning;
+        System.out.println("hatch mech going up");
+    }
+    else if(!hatchSpinning)
+    {
+        hatchTalon.set(ControlMode.PercentOutput, -0.8);
+        Timer.delay(waitTime);
+        hatchTalon.set(ControlMode.PercentOutput, 0);
+        hatchSpinning = !hatchSpinning;
+        System.out.println("hatch mech going down");
+    }
+
+  }
+
+  /*public void turnHatch()
+  {
+    
+    if(driverJoyStick.getRawButton(hatchButton))
+    {
+      while(hatchSpinning == false)
+      {
+        hatchTalon.set(ControlMode.PercentOutput, 0.5);
+
+        if(driverJoyStick.getRawButton(3))
+        {
+          hatchTalon.set(ControlMode.PercentOutput, 0);
+        }
+      }
+
+    }
+  }*/
+  
   @Override
   public boolean get() 
   {

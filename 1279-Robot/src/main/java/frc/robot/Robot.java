@@ -50,6 +50,8 @@ public class Robot extends TimedRobot
   private final int RIGHT_Y_AXIS = 4;
   private final int AUTONOMOUS_BOTTON = 5;
 
+  private final int HATCH_SPINNER_BUTTON = 2;
+
   private static final int AUTONOMOUS_BUTTON = 5;
 
   // TODO: eventually make these into an interface
@@ -61,7 +63,7 @@ public class Robot extends TimedRobot
   private final int FRONT_RIGHT_ID = 3;
   private final int REAR_RIGHT_ID = 4;
   private final int BALL_ARM_LIFTER_ID = 5;
-  private final int HATCH_SPINNER_BUTTON = 2;
+  
   private final int HATCH_TALON_ID = 7; // This is just a test ID for hatch talon
   
   boolean autoDriver = false;
@@ -278,7 +280,13 @@ public class Robot extends TimedRobot
     double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
     drive.arcadeDrive(xSpeed, zRotation);
-      
+    
+    boolean hatchSpinning = false;
+
+    if(driverStick.getRawButton(HATCH_SPINNER_BUTTON))
+    {
+      //hatchSpin.toggle();
+    }
     //.turnHatch();
     /*if (driverStick.getRawButton(1)){
       System.out.println("xSpeed:" + xSpeed + "    zRotation:" + zRotation);
