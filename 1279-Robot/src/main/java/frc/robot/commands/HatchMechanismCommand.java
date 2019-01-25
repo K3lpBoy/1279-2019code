@@ -41,9 +41,10 @@ public class HatchMechanismCommand extends Trigger
   
   public HatchMechanismCommand(WPI_TalonSRX talonForHatch, int ButtonForHatch, Joystick dJoystick)
   {
-    hatchTalon = talonForHatch;
-    hatchButton = ButtonForHatch;
-    driverJoyStick = dJoystick;
+    this.hatchTalon = talonForHatch;
+    this.hatchButton = ButtonForHatch;
+    this.driverJoyStick = dJoystick;
+    
   }
 
   public void Open()

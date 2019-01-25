@@ -24,7 +24,7 @@ public class RobotMap
   private static final int HATCH_SPINNER_BUTTON = 2;
   private static final int HATCH_TALON_ID = 7; // This is just a test ID for hatch talon
 
-  WPI_TalonSRX hatchSpin = new WPI_TalonSRX(HATCH_TALON_ID);
+  static WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
   private static final int DRIVER_JOYSTICK = 0;
   private static final int A_BUTTON = 1;
@@ -73,6 +73,11 @@ public class RobotMap
   public static DifferentialDrive getDifferentialDrive()
   {
     return drive;
+  }
+
+  public static WPI_TalonSRX getHatchTalon()
+  {
+    return hatchTalon;
   }
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
