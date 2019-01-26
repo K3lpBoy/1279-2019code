@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Autonomous;
+import frc.robot.commands.DrivingTheRobot;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.HatchMechanismCommand;
 import frc.robot.subsystems.AutonomousSubsystem;
@@ -77,6 +78,8 @@ public class Robot extends TimedRobot
   WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(REAR_RIGHT_ID);
   SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon); */
 
+
+
   WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
   Relay stopDriveTrain = new Relay(0);
@@ -103,6 +106,8 @@ public class Robot extends TimedRobot
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   HatchMechanismCommand hatchSpin = new HatchMechanismCommand(hatchTalon, HATCH_SPINNER_BUTTON, driverStick);
+
+  DrivingTheRobot driveTrain = new DrivingTheRobot(driverStick);
 
   LimitSwitchNormal limitSwitch = LimitSwitchNormal.NormallyClosed;
 
@@ -332,23 +337,11 @@ public class Robot extends TimedRobot
    */
   @Override
   public void testPeriodic() {
+    driveTrain.drive();
 
-    // Potential solution (ERROR: max couldn't be resolved.) double max = testTalon.maxIntegralAccumulator;
-    /*if(testJoystick.getRawButton(1))
+    if(driverStick.getRawButton(HATCH_SPINNER_BUTTON))
     {
-      testTalon.setSpeed(0.5);
+      hatchSpin.toggle();
     }
-    else
-    {
-      testTalon.setRaw(30); 
-    }*/
-
-    if(driverStick.getRawButton(A_BUTTON)){                      // this is test code for the bosch seat motor
-      //hatchMech.toggle();
-    }
-    /*else if(driverStick.getRawButton(2)){ // b button
-      ballArmLifterTalon.set(ControlMode.PercentOutput, -0.75); // note: this is like the perfect speed
-    }  */                                                         // make a routine out of this so I don't have to use limit switches
-
   }
 }

@@ -16,6 +16,9 @@ public class DrivingTheRobot extends CommandGroup {
   /**
    * Add your docs here.
    */
+
+  DriveTrain drive;
+  
   public DrivingTheRobot(Joystick driverStick) {
     // Add Commands here:
     // e.g. addSequential(new Command1());
@@ -33,8 +36,10 @@ public class DrivingTheRobot extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    DriveTrain drive = new DriveTrain(RobotMap.FRONT_LEFT_ID, RobotMap.REAR_LEFT_ID, RobotMap.FRONT_RIGHT_ID, RobotMap.REAR_LEFT_ID, driverStick);
+    drive = new DriveTrain(RobotMap.FRONT_LEFT_ID, RobotMap.REAR_LEFT_ID, RobotMap.FRONT_RIGHT_ID, RobotMap.REAR_LEFT_ID, driverStick);
+  }
 
+  public void drive(){
     drive.robotDrive();
   }
 }
