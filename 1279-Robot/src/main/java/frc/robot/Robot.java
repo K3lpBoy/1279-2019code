@@ -290,12 +290,12 @@ public class Robot extends TimedRobot
     double xSpeed = driverStick.getRawAxis(LEFT_X_AXIS) * -1; // makes forward stick positive
     double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
-      drive.arcadeDrive(xSpeed, zRotation);
-      
-      if(driverStick.getRawButton(HATCH_SPINNER_BUTTON))
-      {
-        hatchSpin.toggle();
-      }
+    drive.arcadeDrive(xSpeed, zRotation);
+    
+    if(driverStick.getRawButton(HATCH_SPINNER_BUTTON))
+    {
+      hatchSpin.toggle();
+    }
       
       /*if(limitSwitch != null)
       {

@@ -38,6 +38,8 @@ public class HatchMechanismCommand extends Trigger
 
   static final double waitTime = 0.8;
   Timer hatchTimer = new Timer();
+
+  HatchSubsystem hatchSubsystem = new HatchSubsystem(hatchTalonID, hatchTalon);
   
   public HatchMechanismCommand(WPI_TalonSRX talonForHatch, int ButtonForHatch, Joystick dJoystick)
   {
@@ -50,9 +52,8 @@ public class HatchMechanismCommand extends Trigger
   public void Open()
   {
     if(hatchSpinning){
-        hatchTalon.set(ControlMode.PercentOutput, 0.8);
-        Timer.delay(waitTime); // seconds
-        hatchTalon.set(ControlMode.PercentOutput, 0);
+        hatchSubsystem.spinToGetHatch();
+        hatchSubsystem.stopSpin();
     }
     else
     {
@@ -64,9 +65,8 @@ public class HatchMechanismCommand extends Trigger
   {
     if(!hatchSpinning)
     {
-        hatchTalon.set(ControlMode.PercentOutput, -0.8);
-        Timer.delay(waitTime);
-        hatchTalon.set(ControlMode.PercentOutput, 0);
+        hatchSubsystem.spinToReleaseHatch();
+        hatchSubsystem.stopSpin();
     }
 }
 
@@ -74,17 +74,15 @@ public class HatchMechanismCommand extends Trigger
   {
     if(hatchSpinning)
     {
-        hatchTalon.set(ControlMode.PercentOutput, 0.8); // raises the claw
-        Timer.delay(waitTime); // seconds               
-        hatchTalon.set(ControlMode.PercentOutput, 0);
+        hatchSubsystem.spinToGetHatch();
+        hatchSubsystem.stopSpin();
         hatchSpinning = !hatchSpinning;
         System.out.println("hatch mech going up");
     }
     else if(!hatchSpinning)
     {
-        hatchTalon.set(ControlMode.PercentOutput, -0.8);
-        Timer.delay(waitTime);
-        hatchTalon.set(ControlMode.PercentOutput, 0);
+        hatchSubsystem.spinToReleaseHatch();
+        hatchSubsystem.stopSpin();
         hatchSpinning = !hatchSpinning;
         System.out.println("hatch mech going down");
     }
