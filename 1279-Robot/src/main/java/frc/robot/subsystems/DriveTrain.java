@@ -22,8 +22,8 @@ public class DriveTrain extends Subsystem
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  DifferentialDrive drive;
-  Joystick driverStick;
+  DifferentialDrive drive = RobotMap.diffDrive;
+  Joystick driverStick = RobotMap.driverStick;
 
   @Override
   public void initDefaultCommand() 
@@ -32,11 +32,11 @@ public class DriveTrain extends Subsystem
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public DriveTrain(DifferentialDrive diffDrive, Joystick stick){
+  /*public DriveTrain(DifferentialDrive diffDrive, Joystick stick){
     // drive = new DriveTrain(frontLeft, rearLeft, frontRight, rearRight));
     drive = diffDrive;
     driverStick = stick;
-  }
+  }*/
 
   public void robotDrive(){
     double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive

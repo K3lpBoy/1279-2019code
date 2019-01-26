@@ -80,8 +80,6 @@ public class Robot extends TimedRobot
 
   Joystick driverStick = new Joystick(RobotMap.DRIVER_JOYSTICK);
 
-  //DifferentialDrive drive = new DifferentialDrive(m_left, m_right); added to drivetrain constructor
-
   WPI_TalonSRX ballArmLifterTalon = new WPI_TalonSRX(5); // fix magic number
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
@@ -98,15 +96,15 @@ public class Robot extends TimedRobot
   HatchMechanismCommand hatchSpin = new HatchMechanismCommand(hatchTalon, 2, driverStick); // fix magic number
 
   //drivetrain stuff
-  WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
+  /* WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
   WPI_TalonSRX rearLeft = new WPI_TalonSRX(RobotMap.REAR_LEFT_ID);
   SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeft, rearLeft);
   WPI_TalonSRX frontRight = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_ID);
   WPI_TalonSRX rearRight = new WPI_TalonSRX(RobotMap.REAR_RIGHT_ID);
   SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, rearRight);
 
-  DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
-  DrivingTheRobot driveTrain = new DrivingTheRobot(drive, driverStick);
+  DifferentialDrive drive = new DifferentialDrive(m_left, m_right); */
+  //DrivingTheRobot driveTrain = new DrivingTheRobot(drive, driverStick);
   //end of drivetrain definitions
 
   LimitSwitchNormal limitSwitch = LimitSwitchNormal.NormallyClosed;
@@ -207,13 +205,13 @@ public class Robot extends TimedRobot
   {
     Scheduler.getInstance().run();
     
-    double xSpeed = driverStick.getRawAxis(LEFT_X_AXIS) * -1; // makes forward stick positive
-    double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
+    double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive
+    double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
     ////drive.arcadeDrive(xSpeed, zRotation);
 
     //autodriver
-    if(driverStick.getRawButton(AUTONOMOUS_BOTTON))
+    if(driverStick.getRawButton(RobotMap.AUTONOMOUS_BOTTON))
     {
       autoDriver = false;
 
@@ -280,16 +278,7 @@ public class Robot extends TimedRobot
     {
       hatchSpin.toggle();
     }
-      
-      /*if(limitSwitch != null)
-      {
-        drive.arcadeDrive(0, 0);
-      }*/
 
-      //CODE FOR HATCH! STOPS THE DRIVE TRAIN, SO WILL LOOK FOR WAYS TO CHANGE
-      
-      
-    /**/
     boolean hatchSpinning = false;
 
     driveTrain.drive();

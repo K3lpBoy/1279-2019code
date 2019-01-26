@@ -26,6 +26,7 @@ public class RobotMap
 
   static WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
+  public static Joystick driverStick = new Joystick(0);
   public static final int DRIVER_JOYSTICK = 0;
   public static final int A_BUTTON = 1;
   public static final int DRIVER_LEFT_X_AXIS = 1;
@@ -40,16 +41,14 @@ public class RobotMap
   public final static int REAR_RIGHT_ID = 4;
   public final int BALL_ARM_LIFTER_ID = 5;
 
-  /* final static WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(FRONT_LEFT_ID);
-  final static WPI_TalonSRX rearLeftTalon = new WPI_TalonSRX(REAR_LEFT_ID);
-  final static SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeftTalon, rearLeftTalon);
-  final static WPI_TalonSRX frontRightTalon = new WPI_TalonSRX(FRONT_RIGHT_ID);
-  final static WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(REAR_RIGHT_ID);
-  static SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon);
-
-  static Joystick driverStick = new Joystick(DRIVER_JOYSTICK);
-  
-  static DifferentialDrive drive = new DifferentialDrive(m_left, m_right); */
+  // drivetrain stuff
+  public static WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
+  public static WPI_TalonSRX rearLeft = new WPI_TalonSRX(RobotMap.REAR_LEFT_ID);
+  public static SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeft, rearLeft);
+  public static WPI_TalonSRX frontRight = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_ID);
+  public static WPI_TalonSRX rearRight = new WPI_TalonSRX(RobotMap.REAR_RIGHT_ID);
+  public static SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, rearRight);
+  public static DifferentialDrive diffDrive = new DifferentialDrive(m_left, m_right);
 
   //Autonomous Instance Variables
   double xSpeed = 0.4;
