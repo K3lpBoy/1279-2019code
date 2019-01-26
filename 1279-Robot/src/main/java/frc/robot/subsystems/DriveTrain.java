@@ -11,7 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.drive.*;
 import frc.robot.RobotMap;
 
 /**
@@ -22,7 +22,8 @@ public class DriveTrain extends Subsystem
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  DriveTrain drive;
+  DifferentialDrive drive;
+  Joystick driverStick;
 
   @Override
   public void initDefaultCommand() 
@@ -31,9 +32,14 @@ public class DriveTrain extends Subsystem
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public DriveTrain(WPI_TalonSRX frontLeft, WPI_TalonSRX rearLeft, WPI_TalonSRX frontRight, WPI_TalonSRX rearRight){
+  public DriveTrain(int FL, int RL, int FR, int RR, Joystick stick){
     // drive = new DriveTrain(frontLeft, rearLeft, frontRight, rearRight));
 
+    driverStick = stick;
+    WPI_TalonSRX frontLeft = new WPI_TalonSRX(FL);
+    WPI_TalonSRX rearLeft = new WPI_TalonSRX(RL);
+    WPI_TalonSRX frontRight = new WPI_TalonSRX(FR);
+    WPI_TalonSRX rearRight = new WPI_TalonSRX(RR);
     SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeft, rearLeft);
     SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, rearRight);
 
@@ -54,5 +60,12 @@ public class DriveTrain extends Subsystem
     drive.setRightSideInverted(false); // don't change this
 
     drive.setSafetyEnabled(true);
+  }
+
+  public void robotDrive(){
+    double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive
+    double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
+
+    drive.arcadeDrive(xSpeed, zRotation);
   }
 }

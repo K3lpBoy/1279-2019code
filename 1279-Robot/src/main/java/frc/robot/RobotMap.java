@@ -21,26 +21,26 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  */
 public class RobotMap 
 {
-  private static final int HATCH_SPINNER_BUTTON = 2;
-  private static final int HATCH_TALON_ID = 7; // This is just a test ID for hatch talon
+  public static final int HATCH_SPINNER_BUTTON = 2;
+  public static final int HATCH_TALON_ID = 7; // This is just a test ID for hatch talon
 
   static WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
-  private static final int DRIVER_JOYSTICK = 0;
-  private static final int A_BUTTON = 1;
-  private static final int LEFT_X_AXIS = 1;
-  private static final int RIGHT_Y_AXIS = 4;
-  private static final int AUTONOMOUS_BOTTON = 5;
+  public static final int DRIVER_JOYSTICK = 0;
+  public static final int A_BUTTON = 1;
+  public static final int DRIVER_LEFT_X_AXIS = 1;
+  public static final int DRIVER_RIGHT_Y_AXIS = 4;
+  public static final int AUTONOMOUS_BOTTON = 5;
 
   //talon IDs (NOT FINAL)
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
-  private final static int FRONT_LEFT_ID = 1;
-  private final static int REAR_LEFT_ID = 2;
-  private final static int FRONT_RIGHT_ID = 3;
-  private final static int REAR_RIGHT_ID = 4;
-  private final int BALL_ARM_LIFTER_ID = 5;
+  public final static int FRONT_LEFT_ID = 1;
+  public final static int REAR_LEFT_ID = 2;
+  public final static int FRONT_RIGHT_ID = 3;
+  public final static int REAR_RIGHT_ID = 4;
+  public final int BALL_ARM_LIFTER_ID = 5;
 
-  final static WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(FRONT_LEFT_ID);
+  /* final static WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(FRONT_LEFT_ID);
   final static WPI_TalonSRX rearLeftTalon = new WPI_TalonSRX(REAR_LEFT_ID);
   final static SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeftTalon, rearLeftTalon);
   final static WPI_TalonSRX frontRightTalon = new WPI_TalonSRX(FRONT_RIGHT_ID);
@@ -49,7 +49,7 @@ public class RobotMap
 
   static Joystick driverStick = new Joystick(DRIVER_JOYSTICK);
   
-  static DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
+  static DifferentialDrive drive = new DifferentialDrive(m_left, m_right); */
 
   //Autonomous Instance Variables
   double xSpeed = 0.4;
