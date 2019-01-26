@@ -197,7 +197,7 @@ public class Robot extends TimedRobot
       m_autonomousCommand.start();
     }
 
-    // drive.setSafetyEnabled(true); //enables safety on the drivetrain
+    // //drive.setSafetyEnabled(true); //enables safety on the drivetrain
 
     /* frontLeftTalon.configFactoryDefault();
     frontRightTalon.configFactoryDefault();     added this to the drivetrain constructor
@@ -212,7 +212,7 @@ public class Robot extends TimedRobot
     // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
 
     // dont change this
-    //drive.setRightSideInverted(false); added to drivetrain constructor
+    ////drive.setRightSideInverted(false); added to drivetrain constructor
   }
 
   /**
@@ -226,7 +226,7 @@ public class Robot extends TimedRobot
     double xSpeed = driverStick.getRawAxis(LEFT_X_AXIS) * -1; // makes forward stick positive
     double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
-    drive.arcadeDrive(xSpeed, zRotation);
+    ////drive.arcadeDrive(xSpeed, zRotation);
 
     //autodriver
     if(driverStick.getRawButton(AUTONOMOUS_BOTTON))
@@ -239,7 +239,7 @@ public class Robot extends TimedRobot
         double autoSpeed = 0.4;
         double autoRotation = 0;
 
-        drive.arcadeDrive(autoSpeed, autoRotation);
+        ////drive.arcadeDrive(autoSpeed, autoRotation);
         //Troublsome part of coding auto
         if(driverStick.getRawButton(8))
         {
@@ -261,7 +261,7 @@ public class Robot extends TimedRobot
       m_autonomousCommand.cancel();
     }
 
-    /* drive.setSafetyEnabled(true); //enables safety on the drivetrain
+    /* //drive.setSafetyEnabled(true); //enables safety on the drivetrain
 
     frontLeftTalon.configFactoryDefault();
     frontRightTalon.configFactoryDefault();                                 added all of this to the drivetrain subsystem
@@ -276,7 +276,7 @@ public class Robot extends TimedRobot
     // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
 
     // dont change this
-    drive.setRightSideInverted(false); */ 
+    //drive.setRightSideInverted(false); */ 
   }
 
   /**
@@ -290,7 +290,7 @@ public class Robot extends TimedRobot
     double xSpeed = driverStick.getRawAxis(LEFT_X_AXIS) * -1; // makes forward stick positive
     double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
-    drive.arcadeDrive(xSpeed, zRotation);
+    //drive.arcadeDrive(xSpeed, zRotation);
     
     if(driverStick.getRawButton(HATCH_SPINNER_BUTTON))
     {
