@@ -65,15 +65,15 @@ public class RobotMap
     return HATCH_SPINNER_BUTTON;
   }
   
-  public static Joystick getJoystick()
+  /* public static Joystick getJoystick()
   {
-    return driverStick;
+    //return driverStick;
   }
 
   public static DifferentialDrive getDifferentialDrive()
   {
-    return drive;
-  }
+    //return drive;
+  } */
 
   public static WPI_TalonSRX getHatchTalon()
   {

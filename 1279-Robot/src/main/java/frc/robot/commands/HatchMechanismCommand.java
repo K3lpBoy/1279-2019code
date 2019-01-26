@@ -32,7 +32,7 @@ public class HatchMechanismCommand extends Trigger
 
   int hatchButton = RobotMap.getHatchButton();
   
-  Joystick driverJoyStick = RobotMap.getJoystick();
+  Joystick driverJoyStick;
   
   boolean hatchSpinning = true;
 
