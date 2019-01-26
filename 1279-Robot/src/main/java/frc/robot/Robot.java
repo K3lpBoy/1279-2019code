@@ -70,12 +70,12 @@ public class Robot extends TimedRobot
   boolean autoDriver = false;
 
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
-  WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(FRONT_LEFT_ID);
+  /* WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(FRONT_LEFT_ID);
   WPI_TalonSRX rearLeftTalon = new WPI_TalonSRX(REAR_LEFT_ID);
-  SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeftTalon, rearLeftTalon);
+  SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeftTalon, rearLeftTalon);      added to drivetrain constructor
   WPI_TalonSRX frontRightTalon = new WPI_TalonSRX(FRONT_RIGHT_ID);
   WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(REAR_RIGHT_ID);
-  SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon);
+  SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon); */
 
   WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
@@ -87,7 +87,7 @@ public class Robot extends TimedRobot
 
   Joystick driverStick = new Joystick(DRIVER_JOYSTICK);
 
-  DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
+  //DifferentialDrive drive = new DifferentialDrive(m_left, m_right); added to drivetrain constructor
 
   WPI_TalonSRX ballArmLifterTalon = new WPI_TalonSRX(BALL_ARM_LIFTER_ID);
 
@@ -197,22 +197,22 @@ public class Robot extends TimedRobot
       m_autonomousCommand.start();
     }
 
-    drive.setSafetyEnabled(true); //enables safety on the drivetrain
+    // drive.setSafetyEnabled(true); //enables safety on the drivetrain
 
-    frontLeftTalon.configFactoryDefault();
-    frontRightTalon.configFactoryDefault();
+    /* frontLeftTalon.configFactoryDefault();
+    frontRightTalon.configFactoryDefault();     added this to the drivetrain constructor
     rearLeftTalon.configFactoryDefault();
-    rearRightTalon.configFactoryDefault();
+    rearRightTalon.configFactoryDefault(); */
 
     // adjust these so that when the stick is forward both of these are green
-    frontLeftTalon.setInverted(false);
-    rearLeftTalon.setInverted(false);
+    /* frontLeftTalon.setInverted(false);
+    rearLeftTalon.setInverted(false);         added this to drivetrain constructor
     frontRightTalon.setInverted(true); 
-    rearRightTalon.setInverted(true);
+    rearRightTalon.setInverted(true); */
     // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
 
     // dont change this
-    drive.setRightSideInverted(false);
+    //drive.setRightSideInverted(false); added to drivetrain constructor
   }
 
   /**
@@ -261,10 +261,10 @@ public class Robot extends TimedRobot
       m_autonomousCommand.cancel();
     }
 
-    drive.setSafetyEnabled(true); //enables safety on the drivetrain
+    /* drive.setSafetyEnabled(true); //enables safety on the drivetrain
 
     frontLeftTalon.configFactoryDefault();
-    frontRightTalon.configFactoryDefault();
+    frontRightTalon.configFactoryDefault();                                 added all of this to the drivetrain subsystem
     rearLeftTalon.configFactoryDefault();
     rearRightTalon.configFactoryDefault();
 
@@ -276,7 +276,7 @@ public class Robot extends TimedRobot
     // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
 
     // dont change this
-    drive.setRightSideInverted(false);
+    drive.setRightSideInverted(false); */ 
   }
 
   /**
