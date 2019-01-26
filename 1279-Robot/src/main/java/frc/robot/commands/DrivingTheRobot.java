@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
 
@@ -19,7 +20,7 @@ public class DrivingTheRobot extends CommandGroup {
 
   DriveTrain drive;
   
-  public DrivingTheRobot(Joystick driverStick) {
+  public DrivingTheRobot(DifferentialDrive diffDrive, Joystick driverStick) {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -36,7 +37,7 @@ public class DrivingTheRobot extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    drive = new DriveTrain(RobotMap.FRONT_LEFT_ID, RobotMap.REAR_LEFT_ID, RobotMap.FRONT_RIGHT_ID, RobotMap.REAR_LEFT_ID, driverStick);
+    drive = new DriveTrain(diffDrive, driverStick);
   }
 
   public void drive(){

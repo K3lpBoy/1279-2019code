@@ -24,9 +24,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 public class Autonomous extends Trigger 
 {
 
-  Joystick driverJoyStick = RobotMap.getJoystick();
+  Joystick driverJoyStick;
 
-  DifferentialDrive driveTrain = RobotMap.getDifferentialDrive();
+  DifferentialDrive driveTrain;
 
   public Autonomous(Joystick dJoystick, DifferentialDrive drive)
   {

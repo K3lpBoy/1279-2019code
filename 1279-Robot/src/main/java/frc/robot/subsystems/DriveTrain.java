@@ -32,34 +32,10 @@ public class DriveTrain extends Subsystem
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public DriveTrain(int FL, int RL, int FR, int RR, Joystick stick){
+  public DriveTrain(DifferentialDrive diffDrive, Joystick stick){
     // drive = new DriveTrain(frontLeft, rearLeft, frontRight, rearRight));
-
+    drive = diffDrive;
     driverStick = stick;
-    WPI_TalonSRX frontLeft = new WPI_TalonSRX(FL);
-    WPI_TalonSRX rearLeft = new WPI_TalonSRX(RL);
-    WPI_TalonSRX frontRight = new WPI_TalonSRX(FR);
-    WPI_TalonSRX rearRight = new WPI_TalonSRX(RR);
-    SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeft, rearLeft);
-    SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, rearRight);
-
-    DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
-
-    frontLeft.configFactoryDefault();
-    frontRight.configFactoryDefault();
-    rearLeft.configFactoryDefault();
-    rearRight.configFactoryDefault();
-
-    // adjust these so that when the stick is forward both of these are green
-    frontLeft.setInverted(false);
-    rearLeft.setInverted(false);
-    frontRight.setInverted(true); 
-    rearRight.setInverted(true);
-    // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
-
-    drive.setRightSideInverted(false); // don't change this
-
-    drive.setSafetyEnabled(true);
   }
 
   public void robotDrive(){

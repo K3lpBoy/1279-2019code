@@ -45,7 +45,7 @@ import edu.wpi.first.wpilibj.IterativeRobot; // these allow the camera to work
  */
 public class Robot extends TimedRobot 
 {
-  //xbox buttons
+  /*xbox buttons
   private final int DRIVER_JOYSTICK = 0;
   private final int A_BUTTON = 1;
   private final int LEFT_X_AXIS = 1;
@@ -64,21 +64,11 @@ public class Robot extends TimedRobot
   private final int REAR_LEFT_ID = 2;
   private final int FRONT_RIGHT_ID = 3;
   private final int REAR_RIGHT_ID = 4;
-  private final int BALL_ARM_LIFTER_ID = 5;
+  private final int BALL_ARM_LIFTER_ID = 5; */
   
   private final int HATCH_TALON_ID = 7; // This is just a test ID for hatch talon
   
   boolean autoDriver = false;
-
-  //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
-  /* WPI_TalonSRX frontLeftTalon = new WPI_TalonSRX(FRONT_LEFT_ID);
-  WPI_TalonSRX rearLeftTalon = new WPI_TalonSRX(REAR_LEFT_ID);
-  SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeftTalon, rearLeftTalon);      added to drivetrain constructor
-  WPI_TalonSRX frontRightTalon = new WPI_TalonSRX(FRONT_RIGHT_ID);
-  WPI_TalonSRX rearRightTalon = new WPI_TalonSRX(REAR_RIGHT_ID);
-  SpeedControllerGroup m_right = new SpeedControllerGroup(frontRightTalon, rearRightTalon); */
-
-
 
   WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
@@ -88,11 +78,11 @@ public class Robot extends TimedRobot
   // purposes right now
   //HatchMechanismCommand hatchMech = ;
 
-  Joystick driverStick = new Joystick(DRIVER_JOYSTICK);
+  Joystick driverStick = new Joystick(RobotMap.DRIVER_JOYSTICK);
 
   //DifferentialDrive drive = new DifferentialDrive(m_left, m_right); added to drivetrain constructor
 
-  WPI_TalonSRX ballArmLifterTalon = new WPI_TalonSRX(BALL_ARM_LIFTER_ID);
+  WPI_TalonSRX ballArmLifterTalon = new WPI_TalonSRX(5); // fix magic number
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
@@ -105,15 +95,21 @@ public class Robot extends TimedRobot
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  HatchMechanismCommand hatchSpin = new HatchMechanismCommand(hatchTalon, HATCH_SPINNER_BUTTON, driverStick);
+  HatchMechanismCommand hatchSpin = new HatchMechanismCommand(hatchTalon, 2, driverStick); // fix magic number
 
-  DrivingTheRobot driveTrain = new DrivingTheRobot(driverStick);
+  //drivetrain stuff
+  WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
+  WPI_TalonSRX rearLeft = new WPI_TalonSRX(RobotMap.REAR_LEFT_ID);
+  SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeft, rearLeft);
+  WPI_TalonSRX frontRight = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_ID);
+  WPI_TalonSRX rearRight = new WPI_TalonSRX(RobotMap.REAR_RIGHT_ID);
+  SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, rearRight);
+
+  DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
+  DrivingTheRobot driveTrain = new DrivingTheRobot(drive, driverStick);
+  //end of drivetrain definitions
 
   LimitSwitchNormal limitSwitch = LimitSwitchNormal.NormallyClosed;
-
-  //CREATE A COMMAND FOR DRIVETRAIN! MAY BE ABLE TO GET HATCH WORK WITH DRIVETRAIN
-  //ADD PARRALEL
-
 
   /**
    * This function is run when the robot is first started up and should be
@@ -201,23 +197,6 @@ public class Robot extends TimedRobot
     {
       m_autonomousCommand.start();
     }
-
-    // //drive.setSafetyEnabled(true); //enables safety on the drivetrain
-
-    /* frontLeftTalon.configFactoryDefault();
-    frontRightTalon.configFactoryDefault();     added this to the drivetrain constructor
-    rearLeftTalon.configFactoryDefault();
-    rearRightTalon.configFactoryDefault(); */
-
-    // adjust these so that when the stick is forward both of these are green
-    /* frontLeftTalon.setInverted(false);
-    rearLeftTalon.setInverted(false);         added this to drivetrain constructor
-    frontRightTalon.setInverted(true); 
-    rearRightTalon.setInverted(true); */
-    // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
-
-    // dont change this
-    ////drive.setRightSideInverted(false); added to drivetrain constructor
   }
 
   /**
@@ -264,24 +243,24 @@ public class Robot extends TimedRobot
     if (m_autonomousCommand != null) 
     {
       m_autonomousCommand.cancel();
-    }
+    } 
 
-    /* //drive.setSafetyEnabled(true); //enables safety on the drivetrain
-
-    frontLeftTalon.configFactoryDefault();
-    frontRightTalon.configFactoryDefault();                                 added all of this to the drivetrain subsystem
-    rearLeftTalon.configFactoryDefault();
-    rearRightTalon.configFactoryDefault();
+    frontLeft.configFactoryDefault();
+    frontRight.configFactoryDefault();
+    rearLeft.configFactoryDefault();
+    rearRight.configFactoryDefault();
 
     // adjust these so that when the stick is forward both of these are green
-    frontLeftTalon.setInverted(false);
-    rearLeftTalon.setInverted(false);
-    frontRightTalon.setInverted(true); 
-    rearRightTalon.setInverted(true);
+    frontLeft.setInverted(false);
+    rearLeft.setInverted(false);
+    frontRight.setInverted(true); 
+    rearRight.setInverted(true);
     // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
 
-    // dont change this
-    //drive.setRightSideInverted(false); */ 
+    drive.setRightSideInverted(false); // don't change this
+
+    drive.setSafetyEnabled(true);
+        // end of drivetrain stuff
   }
 
   /**
@@ -292,12 +271,12 @@ public class Robot extends TimedRobot
   {
     Scheduler.getInstance().run();
 
-    double xSpeed = driverStick.getRawAxis(LEFT_X_AXIS) * -1; // makes forward stick positive
-    double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
+    /*double xSpeed = driverStick.getRawAxis(LEFT_X_AXIS) * -1; // makes forward stick positive
+    double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right */
 
     //drive.arcadeDrive(xSpeed, zRotation);
     
-    if(driverStick.getRawButton(HATCH_SPINNER_BUTTON))
+    if(driverStick.getRawButton(2))
     {
       hatchSpin.toggle();
     }
@@ -313,23 +292,7 @@ public class Robot extends TimedRobot
     /**/
     boolean hatchSpinning = false;
 
-    
-    //.turnHatch();
-    /*if (driverStick.getRawButton(1)){
-      System.out.println("xSpeed:" + xSpeed + "    zRotation:" + zRotation);
-    }*/
-
-    /* below this is an example of how I would run a motor
-    if (driverStick.getRawButton(A_BUTTON)){
-      ballArmLifterTalon.set(ControlMode.PercentOutput, 0.5); //theoretically this should run this motor at half speed
-    }
-    else {
-      ballArmLifterTalon.set(ControlMode.PercentOutput, 0); // making sure the motor shuts off when the button isn't pressed
-    } */
-
-    /* if(driverStick.getRawButton(A_BUTTON)){                      // this is test code for the bosch seat motor
-      hatchMech.toggle(); so this stops everything when its running damn
-    } */
+    driveTrain.drive();
   }
 
   /**
@@ -337,11 +300,11 @@ public class Robot extends TimedRobot
    */
   @Override
   public void testPeriodic() {
-    driveTrain.drive();
+    /*driveTrain.drive();
 
     if(driverStick.getRawButton(HATCH_SPINNER_BUTTON))
     {
       hatchSpin.toggle();
-    }
+    }*/
   }
 }
