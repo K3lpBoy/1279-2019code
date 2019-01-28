@@ -77,6 +77,6 @@ public class OI {
   Button dpadLeft = new JoystickButton(operatorStick, 16);
 
   public OI(){
-    operatorXButton.whenPressed(new HatchMechCommand()); // this should work to run
+    aButton.whenPressed(new HatchMechCommand()); // this should work to run
   }
 }
