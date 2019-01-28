@@ -276,6 +276,8 @@ public class Robot extends TimedRobot
 
     driveTrainTest.robotDrive();
 
+    /* if this doesn't work, go to the OI and change what it says at the bottom, leave line 277 in here */
+
   }
 
   /**

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.HatchMechCommand;
+import frc.robot.commands.MainRobotGroup;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -78,5 +79,6 @@ public class OI {
 
   public OI(){
     aButton.whenPressed(new HatchMechCommand()); // this should work to run
+    // aButton.whenPressed(new MainRobotGroup()); uncomment this and comment out the line above it if it doesn't work
   }
 }
