@@ -27,10 +27,10 @@ public class HatchSubsystem extends Subsystem
   static final double waitTime = 0.8;
   Timer hatchTimer = new Timer();
 
-  public HatchSubsystem(int talonIDForHatch, WPI_TalonSRX talonForHatch)
+  public HatchSubsystem()
   {
-    this.hatchTalonID = talonIDForHatch;
-    this.hatchTalon = talonForHatch;
+    /*this.hatchTalonID = talonIDForHatch;
+    this.hatchTalon = talonForHatch;*/
   }
 
   @Override

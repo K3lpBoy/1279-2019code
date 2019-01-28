@@ -15,11 +15,13 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Autonomous;
-import frc.robot.commands.DrivingTheRobot;
+//import frc.robot.commands.DrivingTheRobot;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.HatchMechanismCommand;
 import frc.robot.subsystems.AutonomousSubsystem;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.HatchSubsystem;
 
 import java.sql.Driver;
 
@@ -73,6 +75,9 @@ public class Robot extends TimedRobot
   WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
   Relay stopDriveTrain = new Relay(0);
+
+  public static DriveTrain driveTrainTest = new DriveTrain();
+  public static HatchSubsystem hatch = new HatchSubsystem();
   
   // WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing
   // purposes right now
@@ -243,21 +248,21 @@ public class Robot extends TimedRobot
       m_autonomousCommand.cancel();
     } 
 
-    frontLeft.configFactoryDefault();
-    frontRight.configFactoryDefault();
-    rearLeft.configFactoryDefault();
-    rearRight.configFactoryDefault();
+    RobotMap.frontLeft.configFactoryDefault();
+    RobotMap.frontRight.configFactoryDefault();
+    RobotMap.rearLeft.configFactoryDefault();
+    RobotMap.rearRight.configFactoryDefault();
 
     // adjust these so that when the stick is forward both of these are green
-    frontLeft.setInverted(false);
-    rearLeft.setInverted(false);
-    frontRight.setInverted(true); 
-    rearRight.setInverted(true);
+    RobotMap.frontLeft.setInverted(false);
+    RobotMap.rearLeft.setInverted(false);
+    RobotMap.frontRight.setInverted(true); 
+    RobotMap.rearRight.setInverted(true);
     // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
 
-    drive.setRightSideInverted(false); // don't change this
+    RobotMap.diffDrive.setRightSideInverted(false); // don't change this
 
-    drive.setSafetyEnabled(true);
+    RobotMap.diffDrive.setSafetyEnabled(true);
         // end of drivetrain stuff
   }
 
@@ -267,21 +272,10 @@ public class Robot extends TimedRobot
   @Override
   public void teleopPeriodic() 
   {
-    Scheduler.getInstance().run();
+    Scheduler.getInstance().run(); // afaik this is responsible for the OI stuff
 
-    /*double xSpeed = driverStick.getRawAxis(LEFT_X_AXIS) * -1; // makes forward stick positive
-    double zRotation =  driverStick.getRawAxis(RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right */
+    driveTrainTest.robotDrive();
 
-    //drive.arcadeDrive(xSpeed, zRotation);
-    
-    if(driverStick.getRawButton(2))
-    {
-      hatchSpin.toggle();
-    }
-
-    boolean hatchSpinning = false;
-
-    driveTrain.drive();
   }
 
   /**

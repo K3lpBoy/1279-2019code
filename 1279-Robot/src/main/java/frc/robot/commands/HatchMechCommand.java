@@ -8,11 +8,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
-public class Drive extends Command {
-  public Drive() {
+public class HatchMechCommand extends Command {
+  boolean isRaised = true; // i'm not sure if this will stay after the command is finished
+
+  public HatchMechCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.hatch);
+    setTimeout(0.8); // waits 0.8 
   }
 
   // Called just before this Command runs the first time
@@ -23,12 +28,20 @@ public class Drive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(isRaised){
+      Robot.hatch.spinToReleaseHatch();
+      isRaised = !isRaised;
+    }
+    else if(!isRaised){
+      Robot.hatch.spinToGetHatch();
+      isRaised = !isRaised;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true

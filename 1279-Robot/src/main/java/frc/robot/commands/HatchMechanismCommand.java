@@ -39,7 +39,7 @@ public class HatchMechanismCommand extends Trigger
   static final double waitTime = 0.8;
   Timer hatchTimer = new Timer();
 
-  HatchSubsystem hatchSubsystem = new HatchSubsystem(hatchTalonID, hatchTalon);
+  HatchSubsystem hatchSubsystem = new HatchSubsystem();
   
   public HatchMechanismCommand(WPI_TalonSRX talonForHatch, int ButtonForHatch, Joystick dJoystick)
   {

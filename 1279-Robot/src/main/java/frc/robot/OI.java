@@ -7,6 +7,11 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.HatchMechCommand;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -39,4 +44,39 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
+
+  // these are 1 indexed
+  Joystick driverStick = new Joystick(0); // xbox button
+  Button aButton = new JoystickButton(driverStick, 1);
+  Button bButton = new JoystickButton(driverStick, 2);
+  Button xButton = new JoystickButton(driverStick, 3);
+  Button yButton = new JoystickButton(driverStick, 4);
+  Button leftShoulder = new JoystickButton(driverStick, 5);
+  Button rightShoulder = new JoystickButton(driverStick, 6);
+  Button select = new JoystickButton(driverStick, 7);
+  Button start = new JoystickButton(driverStick, 8);
+  Button leftStickPress = new JoystickButton(driverStick, 9);
+  Button rightStickPress = new JoystickButton(driverStick, 10);
+
+  Joystick operatorStick = new Joystick(1);
+  Button triangle = new JoystickButton(operatorStick, 1);
+  Button circle = new JoystickButton(operatorStick, 2);
+  Button operatorXButton = new JoystickButton(operatorStick, 3);
+  Button square = new JoystickButton(operatorStick, 4);
+  Button l2 = new JoystickButton(operatorStick, 5);
+  Button r2 = new JoystickButton(operatorStick, 6);
+  Button l1 = new JoystickButton(operatorStick, 7);
+  Button r1 = new JoystickButton(operatorStick, 8);
+  Button operatorStart = new JoystickButton(operatorStick, 9);
+  Button operatorSelect = new JoystickButton(operatorStick, 10);
+  Button l3 = new JoystickButton(operatorStick, 11);
+  Button r3 = new JoystickButton(operatorStick, 12);
+  Button dpadUp = new JoystickButton(operatorStick, 13);
+  Button dpadRight = new JoystickButton(operatorStick, 14);
+  Button dpadDown = new JoystickButton(operatorStick, 15);
+  Button dpadLeft = new JoystickButton(operatorStick, 16);
+
+  public OI(){
+    operatorXButton.whenPressed(new HatchMechCommand()); // this should work to run
+  }
 }

@@ -22,8 +22,8 @@ public class DriveTrain extends Subsystem
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  DifferentialDrive drive = RobotMap.diffDrive;
-  Joystick driverStick = RobotMap.driverStick;
+  static DifferentialDrive drive = RobotMap.diffDrive;
+  static Joystick driverStick = RobotMap.driverStick;
 
   @Override
   public void initDefaultCommand() 
@@ -38,7 +38,7 @@ public class DriveTrain extends Subsystem
     driverStick = stick;
   }*/
 
-  public void robotDrive(){
+  public static void robotDrive(){
     double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive
     double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
