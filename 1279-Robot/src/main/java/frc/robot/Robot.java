@@ -76,7 +76,7 @@ public class Robot extends TimedRobot
 
   Relay stopDriveTrain = new Relay(0);
 
-  public static DriveTrain driveTrainTest = new DriveTrain();
+  public static DriveTrain driveTrainTest = new DriveTrain(); // constructing our drivetrain
   public static HatchSubsystem hatch = new HatchSubsystem();
   
   // WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing
