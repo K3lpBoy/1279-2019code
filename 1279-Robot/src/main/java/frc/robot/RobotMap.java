@@ -35,7 +35,7 @@ public class RobotMap
 
   //talon IDs (NOT FINAL)
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
-  public final static int FRONT_LEFT_ID = 1;
+  public final static int FRONT_LEFT_ID = 6; // 1 was hooked up to hatch turning
   public final static int REAR_LEFT_ID = 2;
   public final static int FRONT_RIGHT_ID = 3;
   public final static int REAR_RIGHT_ID = 4;
