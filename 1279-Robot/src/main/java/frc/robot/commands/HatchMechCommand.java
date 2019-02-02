@@ -18,6 +18,7 @@ public class HatchMechCommand extends Command {
     // eg. requires(chassis);
     requires(Robot.hatch);
     setTimeout(0.8); // waits 0.8 
+    System.out.println("this code is being run");
   }
 
   // Called just before this Command runs the first time
@@ -29,12 +30,12 @@ public class HatchMechCommand extends Command {
   @Override
   protected void execute() {
     if(isRaised){
-      Robot.hatch.spinToReleaseHatch();
       isRaised = !isRaised;
+      Robot.hatch.spinToReleaseHatch();
     }
     else if(!isRaised){
-      Robot.hatch.spinToGetHatch();
       isRaised = !isRaised;
+      Robot.hatch.spinToGetHatch();
     }
   }
 

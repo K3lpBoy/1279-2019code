@@ -68,11 +68,11 @@ public class Robot extends TimedRobot
   private final int REAR_RIGHT_ID = 4;
   private final int BALL_ARM_LIFTER_ID = 5; */
   
-  private final int HATCH_TALON_ID = 7; // This is just a test ID for hatch talon
+  // private final int HATCH_TALON_ID = 7; // This is just a test ID for hatch talon
   
   boolean autoDriver = false;
 
-  WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
+  // WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
   Relay stopDriveTrain = new Relay(0);
 
@@ -85,8 +85,6 @@ public class Robot extends TimedRobot
 
   Joystick driverStick = new Joystick(RobotMap.DRIVER_JOYSTICK);
 
-  WPI_TalonSRX ballArmLifterTalon = new WPI_TalonSRX(5); // fix magic number
-
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
@@ -98,7 +96,7 @@ public class Robot extends TimedRobot
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  HatchMechanismCommand hatchSpin = new HatchMechanismCommand(hatchTalon, 2, driverStick); // fix magic number
+  //HatchMechanismCommand hatchSpin = new HatchMechanismCommand(hatchTalon, 2, driverStick); // fix magic number
 
   //drivetrain stuff
   /* WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
@@ -126,8 +124,8 @@ public class Robot extends TimedRobot
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    CameraServer.getInstance().startAutomaticCapture(0); // gets the camera feed
-    CameraServer.getInstance().startAutomaticCapture(1);
+    /* eraServer.getInstance().startAutomaticCapture(0); // gets the camera feed
+    CameraServer.getInstance().startAutomaticCapture(1); */
 
     //below this is my code, most of this was test stuff
     //leftTalon.set(ControlMode.PercentOutput, 0);
@@ -262,7 +260,7 @@ public class Robot extends TimedRobot
 
     RobotMap.diffDrive.setRightSideInverted(false); // don't change this
 
-    RobotMap.diffDrive.setSafetyEnabled(true);
+    RobotMap.diffDrive.setSafetyEnabled(false);
         // end of drivetrain stuff
   }
 

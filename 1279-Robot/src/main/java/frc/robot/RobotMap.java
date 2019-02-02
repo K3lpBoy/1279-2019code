@@ -22,9 +22,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class RobotMap 
 {
   public static final int HATCH_SPINNER_BUTTON = 2;
-  public static final int HATCH_TALON_ID = 7; // This is just a test ID for hatch talon
-
-  static WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
   public static Joystick driverStick = new Joystick(0);
   public static final int DRIVER_JOYSTICK = 0;
@@ -39,7 +36,7 @@ public class RobotMap
   public final static int REAR_LEFT_ID = 2;
   public final static int FRONT_RIGHT_ID = 3;
   public final static int REAR_RIGHT_ID = 4;
-  public final int BALL_ARM_LIFTER_ID = 5;
+  public static final int HATCH_TALON_ID = 7; 
 
   // drivetrain stuff
   public static WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
@@ -49,6 +46,8 @@ public class RobotMap
   public static WPI_TalonSRX rearRight = new WPI_TalonSRX(RobotMap.REAR_RIGHT_ID);
   public static SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, rearRight);
   public static DifferentialDrive diffDrive = new DifferentialDrive(m_left, m_right);
+
+  public static WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
   //Autonomous Instance Variables
   double xSpeed = 0.4;
