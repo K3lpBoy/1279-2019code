@@ -35,8 +35,8 @@ public class RobotMap
   public final static int FRONT_LEFT_ID = 7; // 1 was hooked up to hatch turning
   public final static int REAR_LEFT_ID = 8;
   public final static int FRONT_RIGHT_ID = 6;
-  public final static int REAR_RIGHT_ID = 4;
-  public static final int HATCH_TALON_ID = 7; 
+  public final static int REAR_RIGHT_ID = 10;
+  public static final int HATCH_TALON_ID = 2; 
 
   // drivetrain stuff
   public static WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
