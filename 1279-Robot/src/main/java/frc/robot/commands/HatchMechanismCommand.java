@@ -51,11 +51,11 @@ public class HatchMechanismCommand extends Trigger
 
   public void Open()
   {
-    if(hatchSpinning){
+    while(hatchSpinning){
         hatchSubsystem.spinToGetHatch();
         hatchSubsystem.stopSpin();
     }
-    else
+    //else
     {
         // find a way to do rumble, if I can't do that just do nothing then
     }
@@ -63,7 +63,7 @@ public class HatchMechanismCommand extends Trigger
   
   public void Close()
   {
-    if(!hatchSpinning)
+    while(!hatchSpinning)
     {
         hatchSubsystem.spinToReleaseHatch();
         hatchSubsystem.stopSpin();
@@ -72,14 +72,14 @@ public class HatchMechanismCommand extends Trigger
 
   public void toggle()
   {
-    if(hatchSpinning)
+    while(hatchSpinning)
     {
         hatchSubsystem.spinToGetHatch();
         hatchSubsystem.stopSpin();
         hatchSpinning = !hatchSpinning;
         System.out.println("hatch mech going up");
     }
-    else if(!hatchSpinning)
+    while(!hatchSpinning)
     {
         hatchSubsystem.spinToReleaseHatch();
         hatchSubsystem.stopSpin();
