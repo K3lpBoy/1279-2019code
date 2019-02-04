@@ -51,7 +51,7 @@ public class HatchMechanismCommand extends Trigger
 
   public void Open()
   {
-    while(hatchSpinning){
+    if(hatchSpinning){
         hatchSubsystem.spinToGetHatch();
         hatchSubsystem.stopSpin();
     }
@@ -63,7 +63,7 @@ public class HatchMechanismCommand extends Trigger
   
   public void Close()
   {
-    while(!hatchSpinning)
+    if(!hatchSpinning)
     {
         hatchSubsystem.spinToReleaseHatch();
         hatchSubsystem.stopSpin();
@@ -72,14 +72,14 @@ public class HatchMechanismCommand extends Trigger
 
   public void toggle()
   {
-    while(hatchSpinning)
+    if(hatchSpinning)
     {
         hatchSubsystem.spinToGetHatch();
         hatchSubsystem.stopSpin();
         hatchSpinning = !hatchSpinning;
         System.out.println("hatch mech going up");
     }
-    while(!hatchSpinning)
+    else if(!hatchSpinning)
     {
         hatchSubsystem.spinToReleaseHatch();
         hatchSubsystem.stopSpin();
