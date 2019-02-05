@@ -21,7 +21,7 @@ import frc.robot.RobotMap;
 public class HatchSubsystem extends Subsystem 
 {
   
-  int hatchTalonID = RobotMap.getHatchTalonID();
+  int hatchTalonID = RobotMap.HATCH_TALON_ID;
   WPI_TalonSRX hatchTalon = new WPI_TalonSRX(hatchTalonID);
 
   static final double waitTime = 0.8;

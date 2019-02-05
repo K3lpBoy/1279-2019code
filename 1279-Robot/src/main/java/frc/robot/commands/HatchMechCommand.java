@@ -10,10 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class HatchMechCommand extends Command {
+public class HatchMechCommand extends Command 
+{
   boolean isRaised = true; // i'm not sure if this will stay after the command is finished
 
-  public HatchMechCommand() {
+  public HatchMechCommand() 
+  {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.hatch);
@@ -23,37 +25,46 @@ public class HatchMechCommand extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
+  protected void initialize() 
+  {
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
-    if(isRaised){
-      isRaised = !isRaised;
+  protected void execute() 
+  {
+    if(isRaised)
+    {
       Robot.hatch.spinToReleaseHatch();
-    }
-    else if(!isRaised){
       isRaised = !isRaised;
+    }
+    else if(!isRaised)
+    {
       Robot.hatch.spinToGetHatch();
+      isRaised = !isRaised;
     }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() {
+  protected boolean isFinished() 
+  {
     return isTimedOut();
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
+  protected void end() 
+  {
     Robot.hatch.stopSpin();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
+  protected void interrupted() 
+  {
+
   }
 }
