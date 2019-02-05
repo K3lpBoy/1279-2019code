@@ -24,8 +24,8 @@ public class HatchSubsystem extends Subsystem
   int hatchTalonID = RobotMap.HATCH_TALON_ID;
   WPI_TalonSRX hatchTalon = new WPI_TalonSRX(hatchTalonID);
 
-  static final double waitTime = 0.8;
-  Timer hatchTimer = new Timer();
+  //static final double waitTime = 0.8;
+  //Timer hatchTimer = new Timer();
 
   public HatchSubsystem()
   {

@@ -27,7 +27,7 @@ public class HatchMechCommand extends Command
   @Override
   protected void initialize() 
   {
-
+    //Robot.hatch.stopSpin();
   }
 
   // Called repeatedly when this Command is scheduled to run
