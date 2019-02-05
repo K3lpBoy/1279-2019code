@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Autonomous;
 //import frc.robot.commands.DrivingTheRobot;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.HatchMechanismCommand;
 import frc.robot.subsystems.AutonomousSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
