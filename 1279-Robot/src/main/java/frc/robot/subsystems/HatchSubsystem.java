@@ -42,14 +42,14 @@ public class HatchSubsystem extends Subsystem
 
   public void spinToGetHatch()
   {
-    hatchTalon.set(ControlMode.PercentOutput, 0.8);
+    hatchTalon.set(ControlMode.PercentOutput, 0.8);//changed from 0.8
     //Timer.delay(waitTime); // seconds
     //hatchTalon.set(ControlMode.PercentOutput, 0);
   }
 
   public void spinToReleaseHatch()
   {
-    hatchTalon.set(ControlMode.PercentOutput, -0.8);
+    hatchTalon.set(ControlMode.PercentOutput, -0.8);//changed from 1.8
     //Timer.delay(waitTime);
     //hatchTalon.set(ControlMode.PercentOutput, 0);
   }

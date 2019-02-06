@@ -7,6 +7,10 @@
 
 package frc.robot;
 
+//import static org.junit.Assert.fail;
+
+//import com.sun.org.apache.xml.internal.utils.BoolStack;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -77,8 +81,24 @@ public class OI {
   Button dpadDown = new JoystickButton(operatorStick, 15);
   Button dpadLeft = new JoystickButton(operatorStick, 16);
 
+  static boolean UpDown = true;
+
   public OI(){
-    aButton.whenPressed(new HatchMechCommand()); // this should work to run
+    //boolean UpDown = true; // Initialize hatch to Up = true
+    //while (Flag)
+    //{
+      System.out.println("HI");
+      aButton.whenPressed(callHatchMechCommand(UpDown)); // this should work to run
+      //Flag = false;
+    //}
     // aButton.whenPressed(new MainRobotGroup()); uncomment this and comment out the line above it if it doesn't work
+  }
+
+  public static HatchMechCommand callHatchMechCommand(boolean UD)
+  {
+    System.out.println("UD = " + UD);
+    UpDown = !UpDown;
+    System.out.println("UpDown = " + UpDown);
+    return new HatchMechCommand(UD);
   }
 }

@@ -14,12 +14,13 @@ public class HatchMechCommand extends Command
 {
   boolean isRaised = true; // i'm not sure if this will stay after the command is finished
 
-  public HatchMechCommand() 
+  public HatchMechCommand( boolean isRaised) 
   {
+    this.isRaised = isRaised;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.hatch);
-    setTimeout(0.8); // waits 0.8 
+    setTimeout(0.8); // waits 0.8
     System.out.println("this code is being run");
   }
 
@@ -36,13 +37,19 @@ public class HatchMechCommand extends Command
   {
     if(isRaised)
     {
+      System.out.println("1 - HatchMechCommand: execute - before spin");
       Robot.hatch.spinToReleaseHatch();
-      isRaised = !isRaised;
+      System.out.println("2 - HathMechCommand: execute - after spin");
+      //isRaised = !isRaised;
+      //System.out.println("Changed boolean - false");
     }
-    else if(!isRaised)
+    else //if(!isRaised)
     {
+      System.out.println("3 - HatchMechCommand: execute - before releasing");
       Robot.hatch.spinToGetHatch();
-      isRaised = !isRaised;
+      System.out.println("4 - HatchMechCommand: execute - after releasing");
+      //isRaised = !isRaised;
+      //System.out.println("Changed boolean - true");
     }
   }
 
@@ -50,6 +57,8 @@ public class HatchMechCommand extends Command
   @Override
   protected boolean isFinished() 
   {
+    System.out.println("HatchMechCommand: isFinished");
+    //isRaised = !isRaised;
     return isTimedOut();
   }
 
@@ -57,6 +66,7 @@ public class HatchMechCommand extends Command
   @Override
   protected void end() 
   {
+    System.out.println("HatchMechCommand: end");
     Robot.hatch.stopSpin();
   }
 

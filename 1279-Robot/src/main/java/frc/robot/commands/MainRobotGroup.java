@@ -15,6 +15,7 @@ public class MainRobotGroup extends CommandGroup {
    * Add your docs here.
    */
   public MainRobotGroup() {
+    boolean UpDown = true;
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -33,6 +34,7 @@ public class MainRobotGroup extends CommandGroup {
     // arm.
 
     addParallel(new DrivetrainCommand());
-    addParallel(new HatchMechCommand());
+    addParallel(new HatchMechCommand(UpDown));
+    System.out.println("THIS IS FROM COMMAND GROUP");
   }
 }
