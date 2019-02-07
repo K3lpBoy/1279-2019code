@@ -34,7 +34,7 @@ public class MainRobotGroup extends CommandGroup {
     // arm.
 
     addParallel(new DrivetrainCommand());
-    addParallel(new HatchMechCommand(UpDown));
+    addParallel(new HatchMechCommand());
     System.out.println("THIS IS FROM COMMAND GROUP");
   }
 }

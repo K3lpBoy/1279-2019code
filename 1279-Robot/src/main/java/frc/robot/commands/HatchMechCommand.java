@@ -14,9 +14,10 @@ public class HatchMechCommand extends Command
 {
   boolean isRaised = true; // i'm not sure if this will stay after the command is finished
 
-  public HatchMechCommand( boolean isRaised) 
+  public HatchMechCommand() 
   {
-    this.isRaised = isRaised;
+    //this.isRaised = isRaised;
+    isRaised = false;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.hatch);
@@ -68,6 +69,7 @@ public class HatchMechCommand extends Command
   {
     System.out.println("HatchMechCommand: end");
     Robot.hatch.stopSpin();
+    isRaised = !isRaised;
   }
 
   // Called when another command which requires one or more of the same

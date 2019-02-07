@@ -81,24 +81,26 @@ public class OI {
   Button dpadDown = new JoystickButton(operatorStick, 15);
   Button dpadLeft = new JoystickButton(operatorStick, 16);
 
+  int oiDebugCounter = 0;
+
   static boolean UpDown = true;
 
   public OI(){
     //boolean UpDown = true; // Initialize hatch to Up = true
     //while (Flag)
     //{
-      System.out.println("HI");
-      aButton.whenPressed(callHatchMechCommand(UpDown)); // this should work to run
+      //System.out.println("HI");
+      aButton.whenPressed(new HatchMechCommand()); // this should work to run
       //Flag = false;
     //}
     // aButton.whenPressed(new MainRobotGroup()); uncomment this and comment out the line above it if it doesn't work
   }
 
-  public static HatchMechCommand callHatchMechCommand(boolean UD)
+  /* public static HatchMechCommand callHatchMechCommand(boolean UD)
   {
     System.out.println("UD = " + UD);
     UpDown = !UpDown;
     System.out.println("UpDown = " + UpDown);
     return new HatchMechCommand(UD);
-  }
+  } */
 }

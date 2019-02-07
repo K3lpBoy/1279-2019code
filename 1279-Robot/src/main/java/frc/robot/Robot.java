@@ -111,6 +111,10 @@ public class Robot extends TimedRobot
 
   LimitSwitchNormal limitSwitch = LimitSwitchNormal.NormallyClosed;
 
+  // this is test stuff to test watchdog stuff
+  WPI_TalonSRX itsAProgrammingProblem = new WPI_TalonSRX(4);
+
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -240,7 +244,7 @@ public class Robot extends TimedRobot
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) 
+    /* if (m_autonomousCommand != null) 
     {
       m_autonomousCommand.cancel();
     } 
@@ -261,6 +265,12 @@ public class Robot extends TimedRobot
 
     RobotMap.diffDrive.setSafetyEnabled(false);
         // end of drivetrain stuff
+    */
+
+    //itsAProgrammingProblem.setSafetyEnabled(false);
+    //itsAProgrammingProblem.setExpiration(2);
+
+    System.out.println("teleopInit() has been run");
   }
 
   /**
@@ -269,11 +279,19 @@ public class Robot extends TimedRobot
   @Override
   public void teleopPeriodic() 
   {
-    Scheduler.getInstance().run(); // afaik this is responsible for the OI stuff
+    /*Scheduler.getInstance().run(); // afaik this is responsible for the OI stuff
 
-    driveTrainTest.robotDrive();
+    driveTrainTest.robotDrive();*/ 
 
-    /* if this doesn't work, go to the OI and change what it says at the bottom, leave line 277 in here */
+    if(driverStick.getRawButton(1)){
+      itsAProgrammingProblem.set(ControlMode.PercentOutput, 0.8);
+      //itsAProgrammingProblem.feed();
+    }
+    else{
+      itsAProgrammingProblem.stopMotor();
+    }
+    System.out.print(itsAProgrammingProblem.isSafetyEnabled() + " ");
+    System.out.println(itsAProgrammingProblem.getExpiration());
 
   }
 
@@ -288,5 +306,17 @@ public class Robot extends TimedRobot
     {
       hatchSpin.toggle();
     }*/
+    //4itsAProgrammingProblem.setExpiration(2);
+
+    //WPI_TalonSRX itsAProgrammingProblem = new WPI_TalonSRX(4);
+    if(driverStick.getRawButton(1)){
+      itsAProgrammingProblem.set(ControlMode.PercentOutput, 0.8);
+      itsAProgrammingProblem.feed();
+    }
+    System.out.println(itsAProgrammingProblem.isSafetyEnabled());
+    /* else{
+      itsAProgrammingProblem.set(ControlMode.PercentOutput, 0);
+    } */
+
   }
 }
