@@ -20,6 +20,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.AutonomousSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.FourBarLinkageForHatch;
 import frc.robot.subsystems.HatchSubsystem;
 
 import java.sql.Driver;
@@ -77,6 +78,7 @@ public class Robot extends TimedRobot
 
   public static DriveTrain driveTrainTest = new DriveTrain(); // constructing our drivetrain
   public static HatchSubsystem hatch = new HatchSubsystem();
+  public static FourBarLinkageForHatch fourBarLinkage = new FourBarLinkageForHatch();
   
   // WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing
   // purposes right now
@@ -211,13 +213,14 @@ public class Robot extends TimedRobot
   {
     Scheduler.getInstance().run();
     
-    double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive
-    double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
+    
+    //double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive
+    //double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
     ////drive.arcadeDrive(xSpeed, zRotation);
 
     //autodriver
-    if(driverStick.getRawButton(RobotMap.AUTONOMOUS_BOTTON))
+    /*if(driverStick.getRawButton(RobotMap.AUTONOMOUS_BOTTON))
     {
       autoDriver = false;
 
@@ -234,7 +237,7 @@ public class Robot extends TimedRobot
           autoDriver = true;
         }
       }
-    }
+    }*/
   }
 
   @Override

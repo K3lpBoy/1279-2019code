@@ -36,7 +36,9 @@ public class RobotMap
   public final static int REAR_LEFT_ID = 2;
   public final static int FRONT_RIGHT_ID = 6;
   public final static int REAR_RIGHT_ID = 5; // changed for testing purposes, was 4
-  public static final int HATCH_TALON_ID = 8; 
+  public static final int HATCH_TALON_ID = 8;
+
+  public static final int FOUR_BAR_LINKAGE_TALON = 1;
 
   // drivetrain stuff
   public static WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
@@ -48,6 +50,7 @@ public class RobotMap
   public static DifferentialDrive diffDrive = new DifferentialDrive(m_left, m_right);
 
   public static WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
+  public static WPI_TalonSRX fourBarLinkageTalon = new WPI_TalonSRX(FOUR_BAR_LINKAGE_TALON);
 
   //Autonomous Instance Variables
   double xSpeed = 0.4;

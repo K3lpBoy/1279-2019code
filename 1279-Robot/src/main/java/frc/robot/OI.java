@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.HatchMechCommand;
 import frc.robot.commands.MainRobotGroup;
+import frc.robot.commands.FourBarLinkageCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -85,12 +86,14 @@ public class OI {
 
   static boolean UpDown = true;
 
-  public OI(){
+  public OI()
+  {
     //boolean UpDown = true; // Initialize hatch to Up = true
     //while (Flag)
     //{
       //System.out.println("HI");
       aButton.whenPressed(new HatchMechCommand()); // this should work to run
+      bButton.whenPressed(new FourBarLinkageCommand());
       //Flag = false;
     //}
     // aButton.whenPressed(new MainRobotGroup()); uncomment this and comment out the line above it if it doesn't work

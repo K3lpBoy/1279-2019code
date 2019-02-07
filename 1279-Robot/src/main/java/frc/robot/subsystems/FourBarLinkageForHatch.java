@@ -7,23 +7,41 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
  */
-public class FourBarLinkageForHatch extends Subsystem {
+public class FourBarLinkageForHatch extends Subsystem 
+{
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  WPI_TalonSRX fourBarLinkageTalon = RobotMap.fourBarLinkageTalon;
 
   @Override
-  public void initDefaultCommand() {
+  public void initDefaultCommand() 
+  {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
   public void turnLinkageToPutHatchOn()
   {
+    fourBarLinkageTalon.set(ControlMode.PercentOutput, 0.267);
     //0.267 turn for it;
+  }
+
+  public void turnLinkageToMoveHatchBack()
+  {
+    fourBarLinkageTalon.set(ControlMode.PercentOutput, -0.267);
+  }
+
+  public void stopLinkage()
+  {
+    fourBarLinkageTalon.set(ControlMode.PercentOutput, 0);
   }
 }
