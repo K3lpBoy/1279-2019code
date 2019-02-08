@@ -283,7 +283,7 @@ public class Robot extends TimedRobot
     itsAProgrammingProblem.setSafetyEnabled(true); */
   }
 
-  /**
+  /** 
    * This function is called periodically during operator control.
    */
   @Override
