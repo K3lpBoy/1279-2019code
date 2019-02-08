@@ -92,8 +92,8 @@ public class OI {
     //while (Flag)
     //{
       //System.out.println("HI");
-      aButton.whenPressed(new HatchMechCommand()); // this should work to run
-      bButton.whenPressed(new FourBarLinkageCommand());
+      //aButton.whenPressed(new HatchMechCommand()); // this should work to run
+      //bButton.whenPressed(new FourBarLinkageCommand());
       //Flag = false;
     //}
     // aButton.whenPressed(new MainRobotGroup()); uncomment this and comment out the line above it if it doesn't work

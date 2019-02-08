@@ -46,5 +46,7 @@ public class DriveTrain extends Subsystem
     double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
     RobotMap.diffDrive.arcadeDrive(xSpeed, zRotation);
+
+    RobotMap.diffDrive.feed();
   }
 }

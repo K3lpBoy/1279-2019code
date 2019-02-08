@@ -100,21 +100,21 @@ public class Robot extends TimedRobot
   //HatchMechanismCommand hatchSpin = new HatchMechanismCommand(hatchTalon, 2, driverStick); // fix magic number
 
   //drivetrain stuff
-  /* WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
+  WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
   WPI_TalonSRX rearLeft = new WPI_TalonSRX(RobotMap.REAR_LEFT_ID);
   SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeft, rearLeft);
   WPI_TalonSRX frontRight = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_ID);
   WPI_TalonSRX rearRight = new WPI_TalonSRX(RobotMap.REAR_RIGHT_ID);
   SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, rearRight);
 
-  DifferentialDrive drive = new DifferentialDrive(m_left, m_right); */
+  DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
   //DrivingTheRobot driveTrain = new DrivingTheRobot(drive, driverStick);
   //end of drivetrain definitions
 
   LimitSwitchNormal limitSwitch = LimitSwitchNormal.NormallyClosed;
 
   // this is test stuff to test watchdog stuff
-  WPI_TalonSRX itsAProgrammingProblem = new WPI_TalonSRX(4);
+  //WPI_TalonSRX itsAProgrammingProblem = new WPI_TalonSRX(7);
 
 
   /**
@@ -170,7 +170,7 @@ public class Robot extends TimedRobot
   @Override
   public void disabledPeriodic() 
   {
-    Scheduler.getInstance().run();
+    //RJW: Scheduler.getInstance().run();
   }
 
   /**
@@ -211,9 +211,9 @@ public class Robot extends TimedRobot
   @Override
   public void autonomousPeriodic() 
   {
-    Scheduler.getInstance().run();
+    //RJW: Scheduler.getInstance().run();
     
-    
+
     //double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive
     //double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
@@ -247,7 +247,7 @@ public class Robot extends TimedRobot
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    /* if (m_autonomousCommand != null) 
+    if (m_autonomousCommand != null) 
     {
       m_autonomousCommand.cancel();
     } 
@@ -268,12 +268,19 @@ public class Robot extends TimedRobot
 
     RobotMap.diffDrive.setSafetyEnabled(false);
         // end of drivetrain stuff
-    */
+
+    RobotMap.diffDrive.setExpiration(2);
+    RobotMap.diffDrive.setSafetyEnabled(false);
+    
 
     //itsAProgrammingProblem.setSafetyEnabled(false);
     //itsAProgrammingProblem.setExpiration(2);
-
-    System.out.println("teleopInit() has been run");
+// RJW TEST:
+   //Scheduler.getInstance().removeAll();
+// END RJW
+    /* System.out.println("teleopInit() has been run");
+    itsAProgrammingProblem.configFactoryDefault();
+    itsAProgrammingProblem.setSafetyEnabled(true); */
   }
 
   /**
@@ -282,19 +289,21 @@ public class Robot extends TimedRobot
   @Override
   public void teleopPeriodic() 
   {
-    /*Scheduler.getInstance().run(); // afaik this is responsible for the OI stuff
+    Scheduler.getInstance().run(); // afaik this is responsible for the OI stuff
 
-    driveTrainTest.robotDrive();*/ 
-
-    if(driverStick.getRawButton(1)){
+    driveTrainTest.robotDrive();
+    
+    /* if(driverStick.getRawButton(1))
+    {
       itsAProgrammingProblem.set(ControlMode.PercentOutput, 0.8);
       //itsAProgrammingProblem.feed();
     }
-    else{
+    else
+    {
       itsAProgrammingProblem.stopMotor();
     }
     System.out.print(itsAProgrammingProblem.isSafetyEnabled() + " ");
-    System.out.println(itsAProgrammingProblem.getExpiration());
+    System.out.println(itsAProgrammingProblem.getExpiration()); */
 
   }
 
@@ -312,11 +321,11 @@ public class Robot extends TimedRobot
     //4itsAProgrammingProblem.setExpiration(2);
 
     //WPI_TalonSRX itsAProgrammingProblem = new WPI_TalonSRX(4);
-    if(driverStick.getRawButton(1)){
+    /*if(driverStick.getRawButton(1)){
       itsAProgrammingProblem.set(ControlMode.PercentOutput, 0.8);
       itsAProgrammingProblem.feed();
-    }
-    System.out.println(itsAProgrammingProblem.isSafetyEnabled());
+    } 
+    System.out.println(itsAProgrammingProblem.isSafetyEnabled()); */
     /* else{
       itsAProgrammingProblem.set(ControlMode.PercentOutput, 0);
     } */
