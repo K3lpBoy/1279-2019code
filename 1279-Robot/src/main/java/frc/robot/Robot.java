@@ -190,6 +190,9 @@ public class Robot extends TimedRobot
   {
     //MAJOR NEWS: SANDSTORM IS IN AUTONOMOUS AND NOT IN TELEOP. TO DRIVE NORMALLY, MUST USE SAME TECHNIQUES AS IN TELEOP
 
+
+    System.out.println("autonomous init is being run");
+
     m_autonomousCommand = m_chooser.getSelected(); 
     
     /*
@@ -211,10 +214,10 @@ public class Robot extends TimedRobot
     RobotMap.rearRight.configFactoryDefault();
 
     // adjust these so that when the stick is forward both of these are green
-    RobotMap.frontLeft.setInverted(false);
-    RobotMap.rearLeft.setInverted(false);
-    RobotMap.frontRight.setInverted(true); 
-    RobotMap.rearRight.setInverted(true);
+    //RobotMap.frontLeft.setInverted(false);  UNCOMMENT
+    //RobotMap.rearLeft.setInverted(false);   UNCOMMENT
+    //RobotMap.frontRight.setInverted(true); UNCOMMENT
+    //RobotMap.rearRight.setInverted(true);  UNCOMMENT
     // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
 
     RobotMap.diffDrive.setRightSideInverted(false); // don't change this
@@ -222,7 +225,7 @@ public class Robot extends TimedRobot
     RobotMap.diffDrive.setSafetyEnabled(false);
         // end of drivetrain stuff
 
-    RobotMap.diffDrive.setExpiration(2);
+    //RobotMap.diffDrive.setExpiration(2);
     RobotMap.diffDrive.setSafetyEnabled(false);
     
     RobotMap.frontLeft.setSafetyEnabled(false);
@@ -239,7 +242,7 @@ public class Robot extends TimedRobot
   public void autonomousPeriodic() 
   {
     //RJW: Scheduler.getInstance().run();
-    
+    System.out.println("autonomous periodic is being run");
     RobotMap.diffDrive.arcadeDrive(0.7, 0);
 
     //double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive
@@ -275,6 +278,8 @@ public class Robot extends TimedRobot
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    System.out.println("teleop init is being run");
+
     if (m_autonomousCommand != null) 
     {
       m_autonomousCommand.cancel();
