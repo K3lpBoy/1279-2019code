@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.*;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 /**
@@ -45,8 +46,8 @@ public class DriveTrain extends Subsystem
     double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive
     double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
-    RobotMap.diffDrive.arcadeDrive(xSpeed, zRotation);
+    Robot.drive.arcadeDrive(xSpeed, zRotation);
 
-    RobotMap.diffDrive.feed();
+    Robot.drive.feed();
   }
 }

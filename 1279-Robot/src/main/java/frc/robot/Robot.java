@@ -101,14 +101,14 @@ public class Robot extends TimedRobot
   //HatchMechanismCommand hatchSpin = new HatchMechanismCommand(hatchTalon, 2, driverStick); // fix magic number
 
   //drivetrain stuff
-  WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
+  /*WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
   WPI_TalonSRX rearLeft = new WPI_TalonSRX(RobotMap.REAR_LEFT_ID);
   SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeft, rearLeft);
   WPI_TalonSRX frontRight = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_ID);
   WPI_TalonSRX rearRight = new WPI_TalonSRX(RobotMap.REAR_RIGHT_ID);
   SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, rearRight);
-
-  DifferentialDrive drive = new DifferentialDrive(m_left, m_right);
+  */
+  public static DifferentialDrive drive = new DifferentialDrive(RobotMap.m_left, RobotMap.m_right);
   //DrivingTheRobot driveTrain = new DrivingTheRobot(drive, driverStick);
   //end of drivetrain definitions
 
@@ -220,13 +220,13 @@ public class Robot extends TimedRobot
     //RobotMap.rearRight.setInverted(true);  UNCOMMENT
     // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
 
-    RobotMap.diffDrive.setRightSideInverted(false); // don't change this
+    drive.setRightSideInverted(false); // don't change this
 
-    RobotMap.diffDrive.setSafetyEnabled(false);
+    drive.setSafetyEnabled(false);
         // end of drivetrain stuff
 
     //RobotMap.diffDrive.setExpiration(2);
-    RobotMap.diffDrive.setSafetyEnabled(false);
+    drive.setSafetyEnabled(false);
     
     RobotMap.frontLeft.setSafetyEnabled(false);
     RobotMap.rearLeft.setSafetyEnabled(false);
@@ -243,7 +243,14 @@ public class Robot extends TimedRobot
   {
     //RJW: Scheduler.getInstance().run();
     System.out.println("autonomous periodic is being run");
-    RobotMap.diffDrive.arcadeDrive(0.7, 0);
+    
+    System.out.println("TIMESTAMP 1: " + java.lang.System.currentTimeMillis());
+    drive.arcadeDrive(0.7, 0);
+    System.out.println("TIMESTAMP 2: " + java.lang.System.currentTimeMillis() + "\n");
+
+    /* RobotMap.diffDrive.feed(); ok so yeah these do nothing
+    RobotMap.diffDrive.feedWatchdog(); */ 
+
 
     //double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive
     //double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
@@ -297,13 +304,13 @@ public class Robot extends TimedRobot
     RobotMap.rearRight.setInverted(true);
     // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
 
-    RobotMap.diffDrive.setRightSideInverted(false); // don't change this
+    drive.setRightSideInverted(false); // don't change this
 
-    RobotMap.diffDrive.setSafetyEnabled(false);
+    drive.setSafetyEnabled(false);
         // end of drivetrain stuff
 
-    RobotMap.diffDrive.setExpiration(2);
-    RobotMap.diffDrive.setSafetyEnabled(false);
+    drive.setExpiration(2);
+    drive.setSafetyEnabled(false);
     
     RobotMap.frontLeft.setSafetyEnabled(false);
     RobotMap.rearLeft.setSafetyEnabled(false);
@@ -330,7 +337,7 @@ public class Robot extends TimedRobot
 
     robotDriveTrain.robotDrive();
 
-    System.out.println("DiffDrive Safety - " + RobotMap.diffDrive.isSafetyEnabled());
+    System.out.println("DiffDrive Safety - " + drive.isSafetyEnabled());
     System.out.println("Front Left Safety - " + RobotMap.frontLeft.isSafetyEnabled());
     System.out.println("Rear Left Safety - " + RobotMap.rearLeft.isSafetyEnabled());
     System.out.println("Front Right Safety - " + RobotMap.frontRight.isSafetyEnabled());

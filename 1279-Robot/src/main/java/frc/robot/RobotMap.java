@@ -47,7 +47,7 @@ public class RobotMap
   public static WPI_TalonSRX frontRight = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_ID);
   public static WPI_TalonSRX rearRight = new WPI_TalonSRX(RobotMap.REAR_RIGHT_ID);
   public static SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, rearRight);
-  public static DifferentialDrive diffDrive = new DifferentialDrive(m_left, m_right);
+  //public static DifferentialDrive diffDrive = new DifferentialDrive(m_left, m_right);
 
   public static WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
   public static WPI_TalonSRX fourBarLinkageTalon = new WPI_TalonSRX(FOUR_BAR_LINKAGE_TALON);
