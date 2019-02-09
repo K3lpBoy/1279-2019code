@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Autonomous;
+import frc.robot.commands.DrivetrainCommand;
 //import frc.robot.commands.DrivingTheRobot;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.AutonomousSubsystem;
@@ -76,7 +77,7 @@ public class Robot extends TimedRobot
 
   Relay stopDriveTrain = new Relay(0);
 
-  public static DriveTrain driveTrainTest = new DriveTrain(); // constructing our drivetrain
+  public static DriveTrain robotDriveTrain = new DriveTrain(); // constructing our drivetrain SUBSYSTEM
   public static HatchSubsystem hatch = new HatchSubsystem();
   public static FourBarLinkageForHatch fourBarLinkage = new FourBarLinkageForHatch();
   
@@ -203,6 +204,32 @@ public class Robot extends TimedRobot
     {
       m_autonomousCommand.start();
     }
+
+    RobotMap.frontLeft.configFactoryDefault();
+    RobotMap.frontRight.configFactoryDefault();
+    RobotMap.rearLeft.configFactoryDefault();
+    RobotMap.rearRight.configFactoryDefault();
+
+    // adjust these so that when the stick is forward both of these are green
+    RobotMap.frontLeft.setInverted(false);
+    RobotMap.rearLeft.setInverted(false);
+    RobotMap.frontRight.setInverted(true); 
+    RobotMap.rearRight.setInverted(true);
+    // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
+
+    RobotMap.diffDrive.setRightSideInverted(false); // don't change this
+
+    RobotMap.diffDrive.setSafetyEnabled(false);
+        // end of drivetrain stuff
+
+    RobotMap.diffDrive.setExpiration(2);
+    RobotMap.diffDrive.setSafetyEnabled(false);
+    
+    RobotMap.frontLeft.setSafetyEnabled(false);
+    RobotMap.rearLeft.setSafetyEnabled(false);
+    RobotMap.frontRight.setSafetyEnabled(false);
+    RobotMap.rearRight.setSafetyEnabled(false);
+    
   }
 
   /**
@@ -213,6 +240,7 @@ public class Robot extends TimedRobot
   {
     //RJW: Scheduler.getInstance().run();
     
+    RobotMap.diffDrive.arcadeDrive(0.7, 0);
 
     //double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive
     //double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
@@ -272,6 +300,10 @@ public class Robot extends TimedRobot
     RobotMap.diffDrive.setExpiration(2);
     RobotMap.diffDrive.setSafetyEnabled(false);
     
+    RobotMap.frontLeft.setSafetyEnabled(false);
+    RobotMap.rearLeft.setSafetyEnabled(false);
+    RobotMap.frontRight.setSafetyEnabled(false);
+    RobotMap.rearRight.setSafetyEnabled(false);
 
     //itsAProgrammingProblem.setSafetyEnabled(false);
     //itsAProgrammingProblem.setExpiration(2);
@@ -291,7 +323,14 @@ public class Robot extends TimedRobot
   {
     Scheduler.getInstance().run(); // afaik this is responsible for the OI stuff
 
-    driveTrainTest.robotDrive();
+    robotDriveTrain.robotDrive();
+
+    System.out.println("DiffDrive Safety - " + RobotMap.diffDrive.isSafetyEnabled());
+    System.out.println("Front Left Safety - " + RobotMap.frontLeft.isSafetyEnabled());
+    System.out.println("Rear Left Safety - " + RobotMap.rearLeft.isSafetyEnabled());
+    System.out.println("Front Right Safety - " + RobotMap.frontRight.isSafetyEnabled());
+    System.out.println("Rear Right Safety - " + RobotMap.rearRight.isSafetyEnabled());
+
     
     /* if(driverStick.getRawButton(1))
     {
