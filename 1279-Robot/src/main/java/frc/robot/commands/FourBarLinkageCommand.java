@@ -29,14 +29,15 @@ public class FourBarLinkageCommand extends Command
   protected void initialize() 
   {
     Robot.fourBarLinkage.initializeCounter(); // important to reset the counter
-    if(linkageDeployed == false)
+    if(linkageDeployed)
     {
-      Robot.fourBarLinkage.turnLinkageToPutHatchOn();
+      Robot.fourBarLinkage.hatchBack();
     }
     else
     {
-      Robot.fourBarLinkage.turnLinkageToPutHatchOn();
+      Robot.fourBarLinkage.hatchForward();
     }
+    linkageDeployed = !linkageDeployed;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -59,7 +60,6 @@ public class FourBarLinkageCommand extends Command
   protected void end() 
   {
     Robot.fourBarLinkage.stopLinkage();
-    linkageDeployed = !linkageDeployed;
   }
 
   // Called when another command which requires one or more of the same
