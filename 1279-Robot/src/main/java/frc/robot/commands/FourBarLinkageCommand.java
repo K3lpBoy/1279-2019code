@@ -28,13 +28,7 @@ public class FourBarLinkageCommand extends Command
   @Override
   protected void initialize() 
   {
-
-  }
-
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() 
-  {
+    Robot.fourBarLinkage.initializeCounter(); // important to reset the counter
     if(linkageDeployed == false)
     {
       Robot.fourBarLinkage.turnLinkageToPutHatchOn();
@@ -43,6 +37,13 @@ public class FourBarLinkageCommand extends Command
     {
       Robot.fourBarLinkage.turnLinkageToPutHatchOn();
     }
+  }
+
+  // Called repeatedly when this Command is scheduled to run
+  @Override
+  protected void execute() 
+  {
+    
 
   }
 
@@ -50,7 +51,7 @@ public class FourBarLinkageCommand extends Command
   @Override
   protected boolean isFinished() 
   {
-    return false;
+    return Robot.fourBarLinkage.isSwitchSet(); // finishes when the limit switch is activated, shouldn't be an issue due to how slowly it goes
   }
 
   // Called once after isFinished returns true

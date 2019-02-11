@@ -10,6 +10,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -21,6 +23,8 @@ public class FourBarLinkageForHatch extends Subsystem
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   WPI_TalonSRX fourBarLinkageTalon = RobotMap.fourBarLinkageTalon;
+  DigitalInput hatchArmSwitch = new DigitalInput(0); // PLACEHOLDER NUMBER
+  Counter counter = new Counter(hatchArmSwitch);
 
   @Override
   public void initDefaultCommand() 
@@ -43,5 +47,13 @@ public class FourBarLinkageForHatch extends Subsystem
   public void stopLinkage()
   {
     fourBarLinkageTalon.set(ControlMode.PercentOutput, 0);
+  }
+
+  public boolean isSwitchSet(){
+    return counter.get() > 0; // increments when the limit switch is activated
+  }
+
+  public void initializeCounter(){
+    counter.reset();
   }
 }

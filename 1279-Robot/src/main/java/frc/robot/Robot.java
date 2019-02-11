@@ -333,7 +333,7 @@ public class Robot extends TimedRobot
   @Override
   public void teleopPeriodic() 
   {
-    Scheduler.getInstance().run(); // afaik this is responsible for the OI stuff
+    Scheduler.getInstance().run(); // afaik this is responsible for the OI stuff, the thing that polls for button presses
 
     robotDriveTrain.robotDrive();
 

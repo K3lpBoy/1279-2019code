@@ -92,7 +92,7 @@ public class OI {
     //while (Flag)
     //{
       //System.out.println("HI");
-      //aButton.whenPressed(new HatchMechCommand()); // this should work to run
+      aButton.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism
       //bButton.whenPressed(new FourBarLinkageCommand());
       //Flag = false;
     //}

@@ -30,12 +30,6 @@ public class HatchMechCommand extends Command
   protected void initialize() 
   {
     //Robot.hatch.stopSpin();
-  }
-
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() 
-  {
     if(isRaised)
     {
       System.out.println("1 - HatchMechCommand: execute - before spin");
@@ -52,6 +46,13 @@ public class HatchMechCommand extends Command
       //isRaised = !isRaised;
       //System.out.println("Changed boolean - true");
     }
+  }
+
+  // Called repeatedly when this Command is scheduled to run
+  @Override
+  protected void execute() 
+  {
+    // I moved this all to the initialize command so they don't run a bunch of times - Marco 2/10 
   }
 
   // Make this return true when this Command no longer needs to run execute()
