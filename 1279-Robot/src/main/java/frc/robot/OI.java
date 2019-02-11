@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.HatchMechCommand;
 import frc.robot.commands.MainRobotGroup;
+import frc.robot.commands.CargoArmDown;
+import frc.robot.commands.CargoArmUp;
 import frc.robot.commands.FourBarLinkageCommand;
 
 /**
@@ -94,7 +96,8 @@ public class OI {
       //System.out.println("HI");
       aButton.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism
       //bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing, leaving this commented for now
-      //bButton.whenPressed(new FourBarLinkageCommand());
+      operatorXbutton.whenPressed(new CargoArmDown());
+      square.whenPressed(new CargoArmUp());
       //Flag = false;
     //}
     // aButton.whenPressed(new MainRobotGroup()); uncomment this and comment out the line above it if it doesn't work

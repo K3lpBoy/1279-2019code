@@ -7,9 +7,13 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -19,6 +23,8 @@ public class CargoArms extends Subsystem {
   // here. Call these from Commands.
 
   WPI_TalonSRX cargoArmTalon = RobotMap.cargoArmTalon;
+  DigitalInput hatchArmSwitch = new DigitalInput(0); // PLACEHOLDER NUMBER
+  Counter counter = new Counter(hatchArmSwitch);
 
   @Override
   public void initDefaultCommand() {
@@ -26,5 +32,24 @@ public class CargoArms extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
+  public void initializeCounter(){
+    counter.reset();
+  }
+
+  public boolean isSwitchSet(){
+    return counter.get() > 0;
+  }
+
+  public void raiseArms(){
+    cargoArmTalon.set(ControlMode.PercentOutput, 0.5); // placeholder speed, gotta do some testing for it
+  }
+
+  public void lowerArms(){
+    cargoArmTalon.set(ControlMode.PercentOutput, -0.5); // also a placeholder speed
+  }
+
+  public void stop(){
+    cargoArmTalon.stopMotor();
+  }
 
 }

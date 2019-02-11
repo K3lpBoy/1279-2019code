@@ -19,6 +19,7 @@ import frc.robot.commands.DrivetrainCommand;
 //import frc.robot.commands.DrivingTheRobot;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.AutonomousSubsystem;
+import frc.robot.subsystems.CargoArms;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FourBarLinkageForHatch;
@@ -80,6 +81,7 @@ public class Robot extends TimedRobot
   public static DriveTrain robotDriveTrain = new DriveTrain(); // constructing our drivetrain SUBSYSTEM
   public static HatchSubsystem hatch = new HatchSubsystem();
   public static FourBarLinkageForHatch fourBarLinkage = new FourBarLinkageForHatch();
+  public static CargoArms cargoArms = new CargoArms();
   
   // WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing
   // purposes right now
