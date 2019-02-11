@@ -96,7 +96,7 @@ public class OI {
       //System.out.println("HI");
       aButton.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism
       //bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing, leaving this commented for now
-      operatorXbutton.whenPressed(new CargoArmDown());
+      operatorXButton.whenPressed(new CargoArmDown());
       square.whenPressed(new CargoArmUp());
       //Flag = false;
     //}
