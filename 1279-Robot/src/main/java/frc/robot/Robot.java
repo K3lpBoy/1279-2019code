@@ -127,7 +127,7 @@ public class Robot extends TimedRobot
   @Override
   public void robotInit() 
   {
-    //m_oi = new OI();
+    m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -319,6 +319,9 @@ public class Robot extends TimedRobot
     RobotMap.frontRight.setSafetyEnabled(false);
     RobotMap.rearRight.setSafetyEnabled(false);
 
+    RobotMap.hatchTalon.setSafetyEnabled(false);
+    RobotMap.fourBarLinkageTalon.setSafetyEnabled(false);
+
     //itsAProgrammingProblem.setSafetyEnabled(false);
     //itsAProgrammingProblem.setExpiration(2);
 // RJW TEST:
@@ -339,11 +342,11 @@ public class Robot extends TimedRobot
 
     robotDriveTrain.robotDrive();
 
-    System.out.println("DiffDrive Safety - " + drive.isSafetyEnabled());
+    /*System.out.println("DiffDrive Safety - " + drive.isSafetyEnabled());
     System.out.println("Front Left Safety - " + RobotMap.frontLeft.isSafetyEnabled());
     System.out.println("Rear Left Safety - " + RobotMap.rearLeft.isSafetyEnabled());
     System.out.println("Front Right Safety - " + RobotMap.frontRight.isSafetyEnabled());
-    System.out.println("Rear Right Safety - " + RobotMap.rearRight.isSafetyEnabled());
+    System.out.println("Rear Right Safety - " + RobotMap.rearRight.isSafetyEnabled()); */
 
     
     /* if(driverStick.getRawButton(1))

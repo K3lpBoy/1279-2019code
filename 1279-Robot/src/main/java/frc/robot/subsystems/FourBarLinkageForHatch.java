@@ -23,8 +23,10 @@ public class FourBarLinkageForHatch extends Subsystem
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   WPI_TalonSRX fourBarLinkageTalon = RobotMap.fourBarLinkageTalon;
-  DigitalInput hatchArmSwitch = new DigitalInput(0); // PLACEHOLDER NUMBER
-  Counter counter = new Counter(hatchArmSwitch);
+  DigitalInput hatchArmSwitchFront = new DigitalInput(RobotMap.HATCH_ARM_SWITCH_ID_FRONT); 
+  DigitalInput hatchArmSwitchBack = new DigitalInput(RobotMap.HATCH_ARM_SWITCH_ID_BACK); 
+  Counter counterFront = new Counter(hatchArmSwitchFront);
+  Counter counterRear = new Counter(hatchArmSwitchBack);
 
   @Override
   public void initDefaultCommand() 
@@ -35,13 +37,13 @@ public class FourBarLinkageForHatch extends Subsystem
 
   public void hatchForward()
   {
-    fourBarLinkageTalon.set(ControlMode.PercentOutput, 0.267);
+    fourBarLinkageTalon.set(ControlMode.PercentOutput, 0.8);
     //0.267 turn for it;
   }
 
   public void hatchBack()
   {
-    fourBarLinkageTalon.set(ControlMode.PercentOutput, -0.267);
+    fourBarLinkageTalon.set(ControlMode.PercentOutput, -0.8);
   }
 
   public void stopLinkage()
@@ -49,11 +51,16 @@ public class FourBarLinkageForHatch extends Subsystem
     fourBarLinkageTalon.set(ControlMode.PercentOutput, 0);
   }
 
-  public boolean isSwitchSet(){
-    return counter.get() > 0; // increments when the limit switch is activated
+  public boolean isFrontSwitchSet(){
+    return counterFront.get() > 0; // increments when the limit switch is activated
+  }
+
+  public boolean isRearSwitchSet(){
+    return counterRear.get() > 0;
   }
 
   public void initializeCounter(){
-    counter.reset();
+    counterFront.reset();
+    counterRear.reset();
   }
 }

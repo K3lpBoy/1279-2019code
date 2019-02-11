@@ -36,7 +36,7 @@ public class RobotMap
   public final static int REAR_LEFT_ID = 13;
   public final static int FRONT_RIGHT_ID = 6;
   public final static int REAR_RIGHT_ID = 5; // changed for testing purposes, was 4
-  public static final int HATCH_TALON_ID = 8;
+  public static final int HATCH_TALON_ID = 2;
 
   public static final int FOUR_BAR_LINKAGE_TALON = 1;
   public static final int CARGO_ARM_TALON = 9999999; //placeholder for now, 2/10
@@ -53,6 +53,11 @@ public class RobotMap
   public static WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
   public static WPI_TalonSRX fourBarLinkageTalon = new WPI_TalonSRX(FOUR_BAR_LINKAGE_TALON);
   public static WPI_TalonSRX cargoArmTalon = new WPI_TalonSRX(CARGO_ARM_TALON);
+
+  //limit switches
+  public static int CARGO_ARM_SWITCH_ID = 3;
+  public static int HATCH_ARM_SWITCH_ID_BACK = 0;
+  public static int HATCH_ARM_SWITCH_ID_FRONT = 1;
 
   //Autonomous Instance Variables
   double xSpeed = 0.4;

@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class HatchMechCommand extends Command 
 {
@@ -17,7 +18,7 @@ public class HatchMechCommand extends Command
   public HatchMechCommand() 
   {
     //this.isRaised = isRaised;
-    isRaised = false;
+    isRaised = true;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.hatch);
@@ -30,6 +31,32 @@ public class HatchMechCommand extends Command
   protected void initialize() 
   {
     //Robot.hatch.stopSpin();
+    //RobotMap.hatchTalon.setSafetyEnabled(false);
+    /* if(isRaised)
+    {
+      System.out.println("1 - HatchMechCommand: execute - before spin");
+      Robot.hatch.spinToReleaseHatch();
+      System.out.println("2 - HathMechCommand: execute - after spin");
+      //isRaised = !isRaised;
+      //System.out.println("Changed boolean - false");
+    }
+    else //if(!isRaised)
+    {
+      System.out.println("3 - HatchMechCommand: execute - before releasing");
+      Robot.hatch.spinToGetHatch();
+      System.out.println("4 - HatchMechCommand: execute - after releasing");
+      //isRaised = !isRaised;
+      //System.out.println("Changed boolean - true");
+    } */
+  }
+
+  // Called repeatedly when this Command is scheduled to run
+  @Override
+  protected void execute() 
+  {
+    // I moved this all to the initialize command so they don't run a bunch of times - Marco 2/10 
+    System.out.println("TIME: " + java.lang.System.currentTimeMillis());
+    RobotMap.hatchTalon.feed();
     if(isRaised)
     {
       System.out.println("1 - HatchMechCommand: execute - before spin");
@@ -48,18 +75,11 @@ public class HatchMechCommand extends Command
     }
   }
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() 
-  {
-    // I moved this all to the initialize command so they don't run a bunch of times - Marco 2/10 
-  }
-
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() 
   {
-    System.out.println("HatchMechCommand: isFinished");
+    System.out.println(isTimedOut());
     //isRaised = !isRaised;
     return isTimedOut();
   }
@@ -78,6 +98,7 @@ public class HatchMechCommand extends Command
   @Override
   protected void interrupted() 
   {
-
+    end();
+    System.out.println("hatch interrupted!");
   }
 }

@@ -23,7 +23,7 @@ public class CargoArms extends Subsystem {
   // here. Call these from Commands.
 
   WPI_TalonSRX cargoArmTalon = RobotMap.cargoArmTalon;
-  DigitalInput hatchArmSwitch = new DigitalInput(0); // PLACEHOLDER NUMBER
+  DigitalInput hatchArmSwitch = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID); // PLACEHOLDER NUMBER
   Counter counter = new Counter(hatchArmSwitch);
 
   @Override
