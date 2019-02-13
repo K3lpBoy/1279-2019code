@@ -20,6 +20,7 @@ import frc.robot.commands.DrivetrainCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.AutonomousSubsystem;
 import frc.robot.subsystems.CargoArms;
+import frc.robot.subsystems.CargoIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FourBarLinkageForHatch;
@@ -82,6 +83,7 @@ public class Robot extends TimedRobot
   public static HatchSubsystem hatch = new HatchSubsystem();
   public static FourBarLinkageForHatch fourBarLinkage = new FourBarLinkageForHatch();
   public static CargoArms cargoArms = new CargoArms();
+  public static CargoIntake intake = new CargoIntake();
   
   // WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing
   // purposes right now
@@ -320,7 +322,7 @@ public class Robot extends TimedRobot
     RobotMap.rearRight.setSafetyEnabled(false);
 
     RobotMap.hatchTalon.setSafetyEnabled(false);
-    RobotMap.fourBarLinkageTalon.setSafetyEnabled(false);
+    //RobotMap.fourBarLinkageTalon.setSafetyEnabled(false);
 
     //itsAProgrammingProblem.setSafetyEnabled(false);
     //itsAProgrammingProblem.setExpiration(2);

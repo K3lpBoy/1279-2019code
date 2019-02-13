@@ -22,7 +22,7 @@ public class FourBarLinkageForHatch extends Subsystem
 {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  WPI_TalonSRX fourBarLinkageTalon = RobotMap.fourBarLinkageTalon;
+  private WPI_TalonSRX fourBarLinkageTalon = new WPI_TalonSRX(RobotMap.FOUR_BAR_LINKAGE_TALON);
   DigitalInput hatchArmSwitchFront = new DigitalInput(RobotMap.HATCH_ARM_SWITCH_ID_FRONT); 
   DigitalInput hatchArmSwitchBack = new DigitalInput(RobotMap.HATCH_ARM_SWITCH_ID_BACK); 
   Counter counterFront = new Counter(hatchArmSwitchFront);
@@ -62,5 +62,22 @@ public class FourBarLinkageForHatch extends Subsystem
   public void initializeCounter(){
     counterFront.reset();
     counterRear.reset();
+  }
+
+  public boolean getRear(){
+    return counterRear.get() > 0;
+  }
+
+  public boolean getFront(){
+    return counterFront.get() > 0;
+  }
+
+  public boolean getSwitch(int limitSwitch){
+    if (limitSwitch == 0) {
+      return counterFront.get() > 0;
+    }
+    else{
+      return counterRear.get() > 0;
+    }
   }
 }

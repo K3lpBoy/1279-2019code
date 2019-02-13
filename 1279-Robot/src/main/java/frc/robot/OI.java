@@ -18,6 +18,8 @@ import frc.robot.commands.HatchMechCommand;
 import frc.robot.commands.MainRobotGroup;
 import frc.robot.commands.CargoArmDown;
 import frc.robot.commands.CargoArmUp;
+import frc.robot.commands.CargoIn;
+import frc.robot.commands.CargoOut;
 import frc.robot.commands.FourBarLinkageCommand;
 
 /**
@@ -66,7 +68,7 @@ public class OI {
   Button leftStickPress = new JoystickButton(driverStick, 9);
   Button rightStickPress = new JoystickButton(driverStick, 10);
 
-  Joystick operatorStick = new Joystick(1);
+  public static Joystick operatorStick = new Joystick(1);
   Button triangle = new JoystickButton(operatorStick, 1);
   Button circle = new JoystickButton(operatorStick, 2);
   Button operatorXButton = new JoystickButton(operatorStick, 3);
@@ -98,6 +100,8 @@ public class OI {
       bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing, leaving this commented for now
       operatorXButton.whenPressed(new CargoArmDown());
       square.whenPressed(new CargoArmUp());
+      triangle.whenPressed(new CargoIn());
+      circle.whenPressed(new CargoOut());
       //Flag = false;
     //}
     // aButton.whenPressed(new MainRobotGroup()); uncomment this and comment out the line above it if it doesn't work

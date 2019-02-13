@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Counter;
@@ -23,8 +24,10 @@ public class CargoArms extends Subsystem {
   // here. Call these from Commands.
 
   WPI_TalonSRX cargoArmTalon = RobotMap.cargoArmTalon;
-  DigitalInput hatchArmSwitch = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID); // PLACEHOLDER NUMBER
-  Counter counter = new Counter(hatchArmSwitch);
+  DigitalInput hatchArmSwitchFront = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_FRONT); // PLACEHOLDER NUMBER
+  DigitalInput hatchArmSwitchRear = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_REAR);
+  Counter counterFront = new Counter(hatchArmSwitchFront);
+  Counter counterRear = new Counter(hatchArmSwitchRear);
 
   @Override
   public void initDefaultCommand() {
@@ -33,23 +36,33 @@ public class CargoArms extends Subsystem {
   }
 
   public void initializeCounter(){
-    counter.reset();
+    counterFront.reset();
+    counterRear.reset();
   }
 
-  public boolean isSwitchSet(){
+  /*public boolean isSwitchSet(){
     return counter.get() > 0;
-  }
+  } */
 
   public void raiseArms(){
-    cargoArmTalon.set(ControlMode.PercentOutput, 0.5); // placeholder speed, gotta do some testing for it
+    cargoArmTalon.set(ControlMode.PercentOutput, 0.8); // placeholder speed, gotta do some testing for it
   }
 
   public void lowerArms(){
-    cargoArmTalon.set(ControlMode.PercentOutput, -0.5); // also a placeholder speed
+    cargoArmTalon.set(ControlMode.PercentOutput, -0.8); // also a placeholder speed
   }
 
   public void stop(){
     cargoArmTalon.stopMotor();
+    cargoArmTalon.setNeutralMode(NeutralMode.Brake);
+  }
+
+  public boolean getFront(){
+    return counterFront.get() > 0;
+  }
+
+  public boolean getRear(){
+    return counterRear.get() > 0;
   }
 
 }

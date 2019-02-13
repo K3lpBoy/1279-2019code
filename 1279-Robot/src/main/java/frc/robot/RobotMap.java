@@ -39,7 +39,9 @@ public class RobotMap
   public static final int HATCH_TALON_ID = 2;
 
   public static final int FOUR_BAR_LINKAGE_TALON = 1;
-  public static final int CARGO_ARM_TALON = 9999999; //placeholder for now, 2/10
+  public static final int CARGO_ARM_TALON = 8; 
+  public static final int CARGO_INTAKE_LEFT = 10;
+  public static final int CARGO_INTAKE_RIGHT = 3;
 
   // drivetrain stuff
   public static WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
@@ -51,13 +53,14 @@ public class RobotMap
   //public static DifferentialDrive diffDrive = new DifferentialDrive(m_left, m_right);
 
   public static WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
-  public static WPI_TalonSRX fourBarLinkageTalon = new WPI_TalonSRX(FOUR_BAR_LINKAGE_TALON);
+  //public static WPI_TalonSRX fourBarLinkageTalon = new WPI_TalonSRX(FOUR_BAR_LINKAGE_TALON);
   public static WPI_TalonSRX cargoArmTalon = new WPI_TalonSRX(CARGO_ARM_TALON);
 
   //limit switches
-  public static int CARGO_ARM_SWITCH_ID = 3;
   public static int HATCH_ARM_SWITCH_ID_BACK = 0;
   public static int HATCH_ARM_SWITCH_ID_FRONT = 1;
+  public static int CARGO_ARM_SWITCH_ID_FRONT = 2; // placeholder
+  public static int CARGO_ARM_SWITCH_ID_REAR = 3; // placeholder
 
   //Autonomous Instance Variables
   double xSpeed = 0.4;

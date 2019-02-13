@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
 
 public class CargoArmUp extends Command {
@@ -21,19 +22,20 @@ public class CargoArmUp extends Command {
   @Override
   protected void initialize() {
     Robot.cargoArms.initializeCounter();
-    if(!Robot.cargoArms.isSwitchSet())
-    Robot.cargoArms.raiseArms(); // hopefully this should work so that it doesn't damage itself if it runs itself while it's already down because it resets the counter first
+    //if(!Robot.cargoArms.isSwitchSet())
+    //Robot.cargoArms.raiseArms(); // hopefully this should work so that it doesn't damage itself if it runs itself while it's already down because it resets the counter first
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.cargoArms.raiseArms();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.cargoArms.isSwitchSet();
+    return Robot.cargoArms.getRear() || !OI.operatorStick.getRawButton(4); // limit switch or the square button is released
   }
 
   // Called once after isFinished returns true

@@ -8,40 +8,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.Robot;
 
-public class CargoArmDown extends Command {
-  public CargoArmDown() {
+public class CargoIn extends Command {
+  public CargoIn() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoArms);
+    requires(Robot.intake);
+    setTimeout(0.5);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.cargoArms.initializeCounter();
-    //if(!Robot.cargoArms.isSwitchSet())
-    //Robot.cargoArms.lowerArms(); // hopefully this should prevent it from driving while already up
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.cargoArms.lowerArms();
+    Robot.intake.intake();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.cargoArms.getFront() || !OI.operatorStick.getRawButton(3); // limit switch or x button is released
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.cargoArms.stop();
+    Robot.intake.stop();
   }
 
   // Called when another command which requires one or more of the same
