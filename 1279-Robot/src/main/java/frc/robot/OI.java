@@ -26,7 +26,15 @@ import frc.robot.commands.FourBarLinkageCommand;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
+/**
+ * THIS IS DAN
+ * What the OI allows us to do is to assign different button controls to each mechanism
+ * As well, this is where we have the Robot do the desired commands
+ * (An example from this year is that when the "A button" on the XBOX controller is pressed,
+ * the hatch will spin either forward-to pick up the hatch-or back-to let it go.)
+ */
+public class OI 
+{
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
@@ -55,9 +63,9 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-  // these are 1 indexed
-  Joystick driverStick = new Joystick(0); // xbox button
-  Button aButton = new JoystickButton(driverStick, 1);
+  // THESE ARE 1 (ONE) indexed
+  Joystick driverStick = new Joystick(0); // xbox button -- This is where we declare where the joystick is ported to on the drive train. (LOOK ON DRIVER STATION)
+  Button aButton = new JoystickButton(driverStick, 1); //One indexed. Check the Driver Station for what button is which
   Button bButton = new JoystickButton(driverStick, 2);
   Button xButton = new JoystickButton(driverStick, 3);
   Button yButton = new JoystickButton(driverStick, 4);
@@ -68,7 +76,7 @@ public class OI {
   Button leftStickPress = new JoystickButton(driverStick, 9);
   Button rightStickPress = new JoystickButton(driverStick, 10);
 
-  public static Joystick operatorStick = new Joystick(1);
+  public static Joystick operatorStick = new Joystick(1); // This is the operator joystick. Goes into port one beneath driver controller
   Button triangle = new JoystickButton(operatorStick, 1);
   Button circle = new JoystickButton(operatorStick, 2);
   Button operatorXButton = new JoystickButton(operatorStick, 3);
@@ -90,6 +98,10 @@ public class OI {
 
   static boolean UpDown = true;
 
+  /**
+   * THIS IS DAN
+   * This is where we say what commands should be executed when any button is pressed
+   */
   public OI()
   {
     //boolean UpDown = true; // Initialize hatch to Up = true

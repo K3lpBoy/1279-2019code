@@ -24,22 +24,26 @@ public class CargoIntake extends Subsystem {
   private WPI_TalonSRX rightTalon = new WPI_TalonSRX(RobotMap.CARGO_INTAKE_RIGHT);
 
   @Override
-  public void initDefaultCommand() {
+  public void initDefaultCommand()
+  {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void outtake(){
-    leftTalon.set(ControlMode.PercentOutput, 0.5);
-    rightTalon.set(ControlMode.PercentOutput, -0.5);
+  public void outtake()
+  {
+    leftTalon.set(ControlMode.PercentOutput, 0.7);
+    rightTalon.set(ControlMode.PercentOutput, -0.7);
   }
 
-  public void intake(){
-    leftTalon.set(ControlMode.PercentOutput, -0.5);
-    rightTalon.set(ControlMode.PercentOutput, 0.5);
+  public void intake()
+  {
+    leftTalon.set(ControlMode.PercentOutput, -0.4);
+    rightTalon.set(ControlMode.PercentOutput, 0.4);
   }
 
-  public void stop(){
+  public void stop()
+  {
     leftTalon.stopMotor();
     rightTalon.stopMotor();
   }

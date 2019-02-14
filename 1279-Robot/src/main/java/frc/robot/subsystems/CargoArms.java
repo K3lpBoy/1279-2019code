@@ -19,7 +19,8 @@ import frc.robot.RobotMap;
 /**
  * Add your docs here.
  */
-public class CargoArms extends Subsystem {
+public class CargoArms extends Subsystem 
+{
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -30,12 +31,14 @@ public class CargoArms extends Subsystem {
   Counter counterRear = new Counter(hatchArmSwitchRear);
 
   @Override
-  public void initDefaultCommand() {
+  public void initDefaultCommand() 
+  {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void initializeCounter(){
+  public void initializeCounter()
+  {
     counterFront.reset();
     counterRear.reset();
   }
@@ -44,24 +47,29 @@ public class CargoArms extends Subsystem {
     return counter.get() > 0;
   } */
 
-  public void raiseArms(){
-    cargoArmTalon.set(ControlMode.PercentOutput, 0.8); // placeholder speed, gotta do some testing for it
+  public void raiseArms()
+  {
+    cargoArmTalon.set(ControlMode.PercentOutput, 0.9); // placeholder speed, gotta do some testing for it
   }
 
-  public void lowerArms(){
-    cargoArmTalon.set(ControlMode.PercentOutput, -0.8); // also a placeholder speed
+  public void lowerArms()
+  {
+    cargoArmTalon.set(ControlMode.PercentOutput, -0.9); // also a placeholder speed
   }
 
-  public void stop(){
+  public void stop()
+  {
     cargoArmTalon.stopMotor();
     cargoArmTalon.setNeutralMode(NeutralMode.Brake);
   }
 
-  public boolean getFront(){
+  public boolean getFront()
+  {
     return counterFront.get() > 0;
   }
 
-  public boolean getRear(){
+  public boolean getRear()
+  {
     return counterRear.get() > 0;
   }
 
