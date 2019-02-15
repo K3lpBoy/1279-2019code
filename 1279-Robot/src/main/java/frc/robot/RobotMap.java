@@ -42,6 +42,7 @@ public class RobotMap
   public static final int CARGO_ARM_TALON = 8; 
   public static final int CARGO_INTAKE_LEFT = 10;
   public static final int CARGO_INTAKE_RIGHT = 3;
+  public static final int CARGO_ARM_TALON_2 = WRITE THIS IN;
 
   // drivetrain stuff
   public static WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
@@ -55,7 +56,8 @@ public class RobotMap
   public static WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
   //public static WPI_TalonSRX fourBarLinkageTalon = new WPI_TalonSRX(FOUR_BAR_LINKAGE_TALON);
   public static WPI_TalonSRX cargoArmTalon = new WPI_TalonSRX(CARGO_ARM_TALON);
-
+  public static WPI_TalonSRX cargoArmTalon2 = new WPI_TalonSRX(CARGO_ARM_TALON_2);
+  
   //limit switches
   public static int HATCH_ARM_SWITCH_ID_BACK = 0;
   public static int HATCH_ARM_SWITCH_ID_FRONT = 1;

@@ -13,7 +13,6 @@ import frc.robot.Robot;
 public class FourBarLinkageCommand extends Command 
 {
   boolean linkageDeployed = false;
-  int limitSwitch;
 
   public FourBarLinkageCommand() 
   {
@@ -30,26 +29,7 @@ public class FourBarLinkageCommand extends Command
   protected void initialize() 
   {
     System.out.println("linkage initialized");
-    /* */
-    Robot.fourBarLinkage.initializeCounter();
-    //Robot.fourBarLinkage.hatchForward();
-    System.out.println("Initialized At " + java.lang.System.currentTimeMillis());
-    if(Robot.fourBarLinkage.getRear()) {
-      linkageDeployed = false;
-      limitSwitch = 0; // front one
-    }
-    else if(Robot.fourBarLinkage.getFront()){
-      linkageDeployed = true;
-      limitSwitch = 1;
-    }
-    Robot.fourBarLinkage.initializeCounter();
-  }
-
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() 
-  {
-    System.out.println("TIMESTAMP: " + java.lang.System.currentTimeMillis());
+    /* Robot.fourBarLinkage.initializeCounter(); // important to reset the counter
     if(linkageDeployed)
     {
       Robot.fourBarLinkage.hatchBack();
@@ -58,6 +38,18 @@ public class FourBarLinkageCommand extends Command
     {
       Robot.fourBarLinkage.hatchForward();
     }
+    linkageDeployed = !linkageDeployed; */
+    Robot.fourBarLinkage.initializeCounter();
+    Robot.fourBarLinkage.hatchForward();
+    System.out.println("Initialized At " + java.lang.System.currentTimeMillis());
+
+  }
+
+  // Called repeatedly when this Command is scheduled to run
+  @Override
+  protected void execute() 
+  {
+    System.out.println("TIMESTAMP: " + java.lang.System.currentTimeMillis());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -65,7 +57,7 @@ public class FourBarLinkageCommand extends Command
   protected boolean isFinished() 
   {
     System.out.println(Robot.fourBarLinkage.isFrontSwitchSet() || Robot.fourBarLinkage.isRearSwitchSet());
-    return Robot.fourBarLinkage.getSwitch(limitSwitch); // finishes when the limit switch is activated, shouldn't be an issue due to how slowly it goes
+    return Robot.fourBarLinkage.isFrontSwitchSet() || Robot.fourBarLinkage.isRearSwitchSet(); // finishes when the limit switch is activated, shouldn't be an issue due to how slowly it goes
   }
 
   // Called once after isFinished returns true
@@ -74,7 +66,6 @@ public class FourBarLinkageCommand extends Command
   {
     Robot.fourBarLinkage.stopLinkage();
     System.out.println("linkage finished at: " + java.lang.System.currentTimeMillis());
-    linkageDeployed = !linkageDeployed;
   }
 
   // Called when another command which requires one or more of the same

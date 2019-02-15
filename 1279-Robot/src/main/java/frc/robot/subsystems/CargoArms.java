@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -23,7 +24,10 @@ public class CargoArms extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  WPI_TalonSRX cargoArmTalon = RobotMap.cargoArmTalon;
+  /* WPI_TalonSRX cargoArmTalon = RobotMap.cargoArmTalon;
+  WPI_TalonSRX cargoArmTalon2 = RobotMap.cargoArmTalon2; */
+  private SpeedControllerGroup cargoArmGroup = new SpeedControllerGroup(RobotMap.cargoArmTalon, RobotMap.cargoArmTalon2);
+
   DigitalInput hatchArmSwitchFront = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_FRONT); // PLACEHOLDER NUMBER
   DigitalInput hatchArmSwitchRear = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_REAR);
   Counter counterFront = new Counter(hatchArmSwitchFront);
@@ -45,16 +49,17 @@ public class CargoArms extends Subsystem {
   } */
 
   public void raiseArms(){
-    cargoArmTalon.set(ControlMode.PercentOutput, 0.8); // placeholder speed, gotta do some testing for it
+    cargoArmGroup.set(0.8); // placeholder speed, gotta do some testing for it
   }
 
   public void lowerArms(){
-    cargoArmTalon.set(ControlMode.PercentOutput, -0.8); // also a placeholder speed
+    cargoArmGroup.set(-0.8); // also a placeholder speed
   }
 
   public void stop(){
-    cargoArmTalon.stopMotor();
-    cargoArmTalon.setNeutralMode(NeutralMode.Brake);
+    cargoArmGroup.stopMotor();
+    RobotMap.cargoArmTalon.setNeutralMode(NeutralMode.Brake);
+    RobotMap.cargoArmTalon2.setNeutralMode(NeutralMode.Brake);
   }
 
   public boolean getFront(){
