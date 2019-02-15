@@ -16,7 +16,12 @@ import frc.robot.RobotMap;
 /**
  * Add your docs here.
  */
-public class CargoIntake extends Subsystem {
+
+ /**
+  * This subsystem is for taking in the cargo and pushing it out
+  */
+public class CargoIntake extends Subsystem 
+{
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -30,6 +35,11 @@ public class CargoIntake extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
+  /**
+   * Spins the Cargo out at 70%
+   * Spins the left clockwise
+   * Spins the right counterclock wise
+   */
   public void outtake()
   {
     leftTalon.set(ControlMode.PercentOutput, 0.7);

@@ -26,7 +26,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FourBarLinkageForHatch;
 import frc.robot.subsystems.HatchSubsystem;
 
-import java.sql.Driver;
+//import java.sql.Driver;
 
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -82,8 +82,8 @@ public class Robot extends TimedRobot
 
   // WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
 
-  Relay stopDriveTrain = new Relay(0);
-
+  //NAME THE SUBSYSTEMS IN THE ROBOT CLASS
+  //MAKE THE SUBSYSTEMS STATIC
   public static DriveTrain robotDriveTrain = new DriveTrain(); // constructing our drivetrain SUBSYSTEM
   public static HatchSubsystem hatch = new HatchSubsystem();
   public static FourBarLinkageForHatch fourBarLinkage = new FourBarLinkageForHatch();
