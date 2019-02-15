@@ -68,6 +68,7 @@ public class Robot extends TimedRobot
 
   // TODO: eventually make these into an interface
 
+  // TODO: Try out the cargo arms
   //talon IDs (NOT FINAL)
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
   private final int FRONT_LEFT_ID = 1;
