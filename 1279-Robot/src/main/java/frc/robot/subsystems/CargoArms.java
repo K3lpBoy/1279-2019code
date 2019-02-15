@@ -51,15 +51,18 @@ public class CargoArms extends Subsystem
     return counter.get() > 0;
   } */
 
-  public void raiseArms(){
+  public void raiseArms()
+  {
     cargoArmGroup.set(0.8); // placeholder speed, gotta do some testing for it
   }
 
-  public void lowerArms(){
+  public void lowerArms()
+  {
     cargoArmGroup.set(-0.8); // also a placeholder speed
   }
 
-  public void stop(){
+  public void stop()
+  {
     cargoArmGroup.stopMotor();
     RobotMap.cargoArmTalon.setNeutralMode(NeutralMode.Brake);
     RobotMap.cargoArmTalon2.setNeutralMode(NeutralMode.Brake);
