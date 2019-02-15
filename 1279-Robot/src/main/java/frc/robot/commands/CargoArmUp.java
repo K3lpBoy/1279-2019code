@@ -35,7 +35,7 @@ public class CargoArmUp extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.cargoArms.getRear() || !OI.operatorStick.getRawButton(4); // limit switch or the square button is released
+    return Robot.cargoArms.getRear(); // limit switch or the square button is released
   }
 
   // Called once after isFinished returns true
@@ -48,5 +48,6 @@ public class CargoArmUp extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end(); // this should work in tandem with the whileHeld() in OI to get this run off the button
   }
 }
