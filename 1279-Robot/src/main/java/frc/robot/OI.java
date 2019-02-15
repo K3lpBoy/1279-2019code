@@ -108,12 +108,14 @@ public class OI
     //while (Flag)
     //{
       //System.out.println("HI");
-      aButton.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism
+      aButton.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism, MOVE THIS TO OPERATOR OR JUST ASK NICK LATER
       bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing, leaving this commented for now
       operatorXButton.whileHeld(new CargoArmDown());
       square.whileHeld(new CargoArmUp());
       triangle.whenPressed(new CargoIn());
       circle.whenPressed(new CargoOut());
+      //somebutton.whenPressed(new FlipDriveDirection());
+
       //Flag = false;
     //}
     // aButton.whenPressed(new MainRobotGroup()); uncomment this and comment out the line above it if it doesn't work
