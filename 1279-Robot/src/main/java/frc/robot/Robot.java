@@ -48,6 +48,11 @@ import edu.wpi.first.wpilibj.IterativeRobot; // these allow the camera to work
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
+
+ /**
+  * THIS IS DAN
+  * The Robot class is where we drive. We have to remember to 
+  */
 public class Robot extends TimedRobot 
 {
   /*xbox buttons

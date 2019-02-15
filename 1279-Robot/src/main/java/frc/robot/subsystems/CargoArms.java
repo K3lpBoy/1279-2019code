@@ -20,7 +20,8 @@ import frc.robot.RobotMap;
 /**
  * Add your docs here.
  */
-public class CargoArms extends Subsystem {
+public class CargoArms extends Subsystem 
+{
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -34,12 +35,14 @@ public class CargoArms extends Subsystem {
   Counter counterRear = new Counter(hatchArmSwitchRear);
 
   @Override
-  public void initDefaultCommand() {
+  public void initDefaultCommand() 
+  {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void initializeCounter(){
+  public void initializeCounter()
+  {
     counterFront.reset();
     counterRear.reset();
   }
@@ -62,11 +65,13 @@ public class CargoArms extends Subsystem {
     RobotMap.cargoArmTalon2.setNeutralMode(NeutralMode.Brake);
   }
 
-  public boolean getFront(){
+  public boolean getFront()
+  {
     return counterFront.get() > 0;
   }
 
-  public boolean getRear(){
+  public boolean getRear()
+  {
     return counterRear.get() > 0;
   }
 

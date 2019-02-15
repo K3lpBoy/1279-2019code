@@ -19,6 +19,11 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
+/**
+ * THIS IS NOTES FROM DAN
+ * The Robot Map allows us to assign what talons go to which mechanism
+ * MAKE THE DIFFERENT VARIABLES STATIC - that way, they are accessable across all of the different classes
+ */
 public class RobotMap 
 {
   public static final int HATCH_SPINNER_BUTTON = 2;
@@ -65,8 +70,8 @@ public class RobotMap
   public static int CARGO_ARM_SWITCH_ID_REAR = 3; // placeholder
 
   //Autonomous Instance Variables
-  double xSpeed = 0.4;
-  double zRotation = 0;
+  //double xSpeed = 0.4;
+  //double zRotation = 0;
 
   public static int getHatchTalonID()
   {
