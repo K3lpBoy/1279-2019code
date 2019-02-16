@@ -11,8 +11,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
 
-public class FlipDriveDirection extends Command {
-  public FlipDriveDirection() {
+/**
+ * This flips the direction of the drivetrain with a press of a button.
+ * This means that if you are driving forward originially, then you press a button, you now drive backwards
+ */
+public class FlipDriveDirection extends Command
+{
+  public FlipDriveDirection()
+  {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.robotDriveTrain);
@@ -20,18 +26,22 @@ public class FlipDriveDirection extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
+  protected void initialize()
+  {
     Robot.robotDriveTrain.flipDirection();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  protected void execute()
+  {
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() {
+  protected boolean isFinished()
+  {
     return true;
   }
 

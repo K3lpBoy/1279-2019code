@@ -53,7 +53,11 @@ public class DriveTrain extends Subsystem
     Robot.drive.feed();
   }
 
-  public void flipDirection(){
+  /**
+   * This flips the direction of the drive train
+   */
+  public void flipDirection()
+  {
     inverse = inverse * -1; // just flips the value between 1 and negative 1
   }
 }
