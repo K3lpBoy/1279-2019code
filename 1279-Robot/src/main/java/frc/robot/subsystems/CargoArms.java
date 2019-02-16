@@ -27,7 +27,10 @@ public class CargoArms extends Subsystem
 
   /* WPI_TalonSRX cargoArmTalon = RobotMap.cargoArmTalon;
   WPI_TalonSRX cargoArmTalon2 = RobotMap.cargoArmTalon2; */
-  private SpeedControllerGroup cargoArmGroup = new SpeedControllerGroup(RobotMap.cargoArmTalon, RobotMap.cargoArmTalon2);
+  private WPI_TalonSRX cargoArmTalon = new WPI_TalonSRX(RobotMap.CARGO_ARM_TALON);
+  private WPI_TalonSRX cargoArmTalon2 = new WPI_TalonSRX(RobotMap.CARGO_ARM_TALON_2);
+  private SpeedControllerGroup cargoArmGroup = new SpeedControllerGroup(cargoArmTalon, cargoArmTalon2);
+  private double speed = 0.40;
 
   DigitalInput hatchArmSwitchFront = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_FRONT); // PLACEHOLDER NUMBER
   DigitalInput hatchArmSwitchRear = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_REAR);
@@ -53,19 +56,19 @@ public class CargoArms extends Subsystem
 
   public void raiseArms()
   {
-    cargoArmGroup.set(0.1); // placeholder speed, gotta do some testing for it
+    cargoArmGroup.set(speed); // placeholder speed, gotta do some testing for it
   }
 
   public void lowerArms()
   {
-    cargoArmGroup.set(-0.1); // also a placeholder speed
+    cargoArmGroup.set(speed * -1); // also a placeholder speed
   }
 
   public void stop()
   {
     cargoArmGroup.stopMotor();
-    RobotMap.cargoArmTalon.setNeutralMode(NeutralMode.Brake);
-    RobotMap.cargoArmTalon2.setNeutralMode(NeutralMode.Brake);
+    cargoArmTalon.setNeutralMode(NeutralMode.Brake);
+    cargoArmTalon2.setNeutralMode(NeutralMode.Brake);
   }
 
   public boolean getFront()

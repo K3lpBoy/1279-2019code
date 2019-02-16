@@ -24,6 +24,9 @@ public class CargoArmUp extends Command {
     Robot.cargoArms.initializeCounter();
     //if(!Robot.cargoArms.isSwitchSet())
     //Robot.cargoArms.raiseArms(); // hopefully this should work so that it doesn't damage itself if it runs itself while it's already down because it resets the counter first
+    if(Robot.cargoArms.getRear()){
+      end(); // this is a failsafe
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run

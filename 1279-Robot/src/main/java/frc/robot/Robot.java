@@ -35,6 +35,7 @@ import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.drive.*;  // these are necessary for the drivetrain builder
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.*; // see https://phoenix-documentation.readthedocs.io/en/latest/ch15_WPIDrive.html
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -142,8 +143,11 @@ public class Robot extends TimedRobot
     /* eraServer.getInstance().startAutomaticCapture(0); // gets the camera feed
     CameraServer.getInstance().startAutomaticCapture(1); */
 
-    UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture();
+    UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
     camera1.setResolution(640, 480); 
+    camera1.setFPS(20); // change this if needed
+    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(2);
+    VideoSink server = CameraServer.getInstance().getServer();
   }
 
   /**
@@ -343,24 +347,7 @@ public class Robot extends TimedRobot
 
     robotDriveTrain.robotDrive();
 
-    /*System.out.println("DiffDrive Safety - " + drive.isSafetyEnabled());
-    System.out.println("Front Left Safety - " + RobotMap.frontLeft.isSafetyEnabled());
-    System.out.println("Rear Left Safety - " + RobotMap.rearLeft.isSafetyEnabled());
-    System.out.println("Front Right Safety - " + RobotMap.frontRight.isSafetyEnabled());
-    System.out.println("Rear Right Safety - " + RobotMap.rearRight.isSafetyEnabled()); */
-
     
-    /* if(driverStick.getRawButton(1))
-    {
-      itsAProgrammingProblem.set(ControlMode.PercentOutput, 0.8);
-      //itsAProgrammingProblem.feed();
-    }
-    else
-    {
-      itsAProgrammingProblem.stopMotor();
-    }
-    System.out.print(itsAProgrammingProblem.isSafetyEnabled() + " ");
-    System.out.println(itsAProgrammingProblem.getExpiration()); */
 
   }
 

@@ -24,6 +24,9 @@ public class CargoArmDown extends Command {
     Robot.cargoArms.initializeCounter();
     //if(!Robot.cargoArms.isSwitchSet())
     //Robot.cargoArms.lowerArms(); // hopefully this should prevent it from driving while already up
+    if(Robot.cargoArms.getFront()){
+      end(); // prevents it from running while down
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
