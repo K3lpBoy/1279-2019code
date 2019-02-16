@@ -73,15 +73,15 @@ public class RobotMap
   //double xSpeed = 0.4;
   //double zRotation = 0;
 
-  public static int getHatchTalonID()
+  /*public static int getHatchTalonID()
   {
     return HATCH_TALON_ID;
-  }
+  }*/
 
-  public static int getHatchButton()
+  /*public static int getHatchButton()
   {
     return HATCH_SPINNER_BUTTON;
-  }
+  }*/
   
   /* public static Joystick getJoystick()
   {
@@ -93,10 +93,10 @@ public class RobotMap
     //return drive;
   } */
 
-  public static WPI_TalonSRX getHatchTalon()
+  /*public static WPI_TalonSRX getHatchTalon()
   {
     return hatchTalon;
-  }
+  }*/
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;

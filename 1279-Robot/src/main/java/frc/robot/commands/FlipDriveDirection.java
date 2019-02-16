@@ -35,7 +35,7 @@ public class FlipDriveDirection extends Command
   @Override
   protected void execute()
   {
-
+    //No execute because all we need it to do is flip the direction
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -47,12 +47,16 @@ public class FlipDriveDirection extends Command
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
+  protected void end() 
+  {
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
+  protected void interrupted() 
+  {
+    
   }
 }

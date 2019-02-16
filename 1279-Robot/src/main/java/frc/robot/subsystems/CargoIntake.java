@@ -18,7 +18,7 @@ import frc.robot.RobotMap;
  */
 
  /**
-  * This subsystem is for taking in the cargo and pushing it out
+  * This subsystem is for taking in the cargo AND pushing it out
   */
 public class CargoIntake extends Subsystem 
 {

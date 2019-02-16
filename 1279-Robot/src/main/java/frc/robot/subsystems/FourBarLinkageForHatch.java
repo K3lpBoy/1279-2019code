@@ -51,32 +51,40 @@ public class FourBarLinkageForHatch extends Subsystem
     fourBarLinkageTalon.set(ControlMode.PercentOutput, 0);
   }
 
-  public boolean isFrontSwitchSet(){
+  public boolean isFrontSwitchSet()
+  {
     return counterFront.get() > 0; // increments when the limit switch is activated
   }
 
-  public boolean isRearSwitchSet(){
+  public boolean isRearSwitchSet()
+  {
     return counterRear.get() > 0;
   }
 
-  public void initializeCounter(){
+  public void initializeCounter()
+  {
     counterFront.reset();
     counterRear.reset();
   }
 
-  public boolean getRear(){
+  public boolean getRear()
+  {
     return counterRear.get() > 0;
   }
 
-  public boolean getFront(){
+  public boolean getFront()
+  {
     return counterFront.get() > 0;
   }
 
-  public boolean getSwitch(int limitSwitch){
-    if (limitSwitch == 0) {
+  public boolean getSwitch(int limitSwitch)
+  {
+    if (limitSwitch == 0) 
+    {
       return counterFront.get() > 0;
     }
-    else{
+    else
+    {
       return counterRear.get() > 0;
     }
   }

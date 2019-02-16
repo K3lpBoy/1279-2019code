@@ -14,11 +14,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.Autonomous;
+//import frc.robot.commands.Autonomous;
 import frc.robot.commands.DrivetrainCommand;
 //import frc.robot.commands.DrivingTheRobot;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.AutonomousSubsystem;
+//import frc.robot.subsystems.AutonomousSubsystem;
 import frc.robot.subsystems.CargoArms;
 import frc.robot.subsystems.CargoIntake;
 import frc.robot.subsystems.DriveTrain;
@@ -100,7 +100,7 @@ public class Robot extends TimedRobot
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
-  public static AutonomousSubsystem m_autoSubSystem = new AutonomousSubsystem();
+  //public static AutonomousSubsystem m_autoSubSystem = new AutonomousSubsystem();
 
   Command m_autonomousCommand;
 
