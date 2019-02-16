@@ -53,12 +53,12 @@ public class CargoArms extends Subsystem
 
   public void raiseArms()
   {
-    cargoArmGroup.set(0.8); // placeholder speed, gotta do some testing for it
+    cargoArmGroup.set(0.1); // placeholder speed, gotta do some testing for it
   }
 
   public void lowerArms()
   {
-    cargoArmGroup.set(-0.8); // also a placeholder speed
+    cargoArmGroup.set(-0.1); // also a placeholder speed
   }
 
   public void stop()

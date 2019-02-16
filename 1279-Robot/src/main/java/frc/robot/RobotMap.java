@@ -39,15 +39,15 @@ public class RobotMap
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
   public final static int FRONT_LEFT_ID = 7; // 1 was hooked up to hatch turning
   public final static int REAR_LEFT_ID = 13;
-  public final static int FRONT_RIGHT_ID = 6;
+  public final static int FRONT_RIGHT_ID = 8;
   public final static int REAR_RIGHT_ID = 5; // changed for testing purposes, was 4
   public static final int HATCH_TALON_ID = 2;
 
-  public static final int FOUR_BAR_LINKAGE_TALON = 1;
-  public static final int CARGO_ARM_TALON = 8; 
+  public static final int FOUR_BAR_LINKAGE_TALON_ID = 1;
+  public static final int CARGO_ARM_TALON = 6; 
+  public static final int CARGO_ARM_TALON_2 = 4;
   public static final int CARGO_INTAKE_LEFT = 10;
   public static final int CARGO_INTAKE_RIGHT = 3;
-  public static final int CARGO_ARM_TALON_2 = WRITE THIS IN;
 
   // drivetrain stuff
   public static WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);

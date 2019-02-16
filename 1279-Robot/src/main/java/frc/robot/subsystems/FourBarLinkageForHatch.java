@@ -22,7 +22,7 @@ public class FourBarLinkageForHatch extends Subsystem
 {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private WPI_TalonSRX fourBarLinkageTalon = new WPI_TalonSRX(RobotMap.FOUR_BAR_LINKAGE_TALON);
+  private WPI_TalonSRX fourBarLinkageTalon = new WPI_TalonSRX(RobotMap.FOUR_BAR_LINKAGE_TALON_ID);
   DigitalInput hatchArmSwitchFront = new DigitalInput(RobotMap.HATCH_ARM_SWITCH_ID_FRONT); 
   DigitalInput hatchArmSwitchBack = new DigitalInput(RobotMap.HATCH_ARM_SWITCH_ID_BACK); 
   Counter counterFront = new Counter(hatchArmSwitchFront);

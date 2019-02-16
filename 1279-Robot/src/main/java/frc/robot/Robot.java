@@ -33,6 +33,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.drive.*;  // these are necessary for the drivetrain builder
+import edu.wpi.cscore.MjpegServer;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.*; // see https://phoenix-documentation.readthedocs.io/en/latest/ch15_WPIDrive.html
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -90,10 +92,7 @@ public class Robot extends TimedRobot
   public static FourBarLinkageForHatch fourBarLinkage = new FourBarLinkageForHatch();
   public static CargoArms cargoArms = new CargoArms();
   public static CargoIntake intake = new CargoIntake();
-  
-  // WPI_TalonSRX hatchTalon = new WPI_TalonSRX(5); // this is only for testing
-  // purposes right now
-  //HatchMechanismCommand hatchMech = ;
+
 
   Joystick driverStick = new Joystick(RobotMap.DRIVER_JOYSTICK);
 
@@ -143,14 +142,8 @@ public class Robot extends TimedRobot
     /* eraServer.getInstance().startAutomaticCapture(0); // gets the camera feed
     CameraServer.getInstance().startAutomaticCapture(1); */
 
-    //below this is my code, most of this was test stuff
-    //leftTalon.set(ControlMode.PercentOutput, 0);
-    //testJoystick = new Joystick(0);
-    //testTalon = new Talon(1);
-    //testTalon.set(ControlMode.PercentOutput, 0);
-    //testTalon.setInverted(false);
-    //testTalon.setSafetyEnabled(false);
-    
+    UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture();
+    camera1.setResolution(640, 480); 
   }
 
   /**

@@ -73,7 +73,7 @@ public class FourBarLinkageCommand extends Command
   @Override
   protected boolean isFinished() 
   {
-    //System.out.println(Robot.fourBarLinkage.isFrontSwitchSet() || Robot.fourBarLinkage.isRearSwitchSet());
+    System.out.println(Robot.fourBarLinkage.isFrontSwitchSet() || Robot.fourBarLinkage.isRearSwitchSet());
     return Robot.fourBarLinkage.getSwitch(limitSwitch); // finishes when the limit switch is activated, shouldn't be an issue due to how slowly it goes
   }
 
