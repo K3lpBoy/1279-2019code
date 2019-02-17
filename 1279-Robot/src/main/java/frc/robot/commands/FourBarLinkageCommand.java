@@ -45,10 +45,12 @@ public class FourBarLinkageCommand extends Command
     if(Robot.fourBarLinkage.getFront()){
       linkageDeployed = true;
       limitSwitch = 1; // looks for the rear limit switch
+      System.out.println("linkage deployed, set to go back");
     }
     if(Robot.fourBarLinkage.getRear()){
       linkageDeployed = false;
       limitSwitch = 0; // looks for the front limit switch
+      System.out.println("linkage not deployed, set to go forward");
     }
     System.out.println("Initialized At " + java.lang.System.currentTimeMillis());
     Robot.fourBarLinkage.initializeCounter();

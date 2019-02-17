@@ -47,7 +47,7 @@ public class RobotMap
 
   public static final int CARGO_ARM_TALON = 6; 
   public static final int CARGO_ARM_TALON_2 = 4;
-  
+
   public static final int CARGO_INTAKE_LEFT = 10;
   public static final int CARGO_INTAKE_RIGHT = 3;
 

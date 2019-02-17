@@ -15,7 +15,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.HatchMechCommand;
+import frc.robot.commands.LinkageIn;
+import frc.robot.commands.LinkageOut;
 import frc.robot.commands.MainRobotGroup;
+import frc.robot.commands.SetDrivetrainForward;
+import frc.robot.commands.SetDrivetrainReverse;
 import frc.robot.commands.CargoArmDown;
 import frc.robot.commands.CargoArmUp;
 import frc.robot.commands.CargoIn;
@@ -64,7 +68,7 @@ public class OI
   // button.whenReleased(new ExampleCommand());
 
   // THESE ARE 1 (ONE) indexed
-  Joystick driverStick = new Joystick(0); // xbox button -- This is where we declare where the joystick is ported to on the drive train. (LOOK ON DRIVER STATION)
+  static Joystick driverStick = new Joystick(0); // xbox button -- This is where we declare where the joystick is ported to on the drive train. (LOOK ON DRIVER STATION)
   Button aButton = new JoystickButton(driverStick, 1); //One indexed. Check the Driver Station for what button is which
   Button bButton = new JoystickButton(driverStick, 2);
   Button xButton = new JoystickButton(driverStick, 3);
@@ -112,13 +116,23 @@ public class OI
       bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing
       operatorXButton.whileHeld(new CargoArmDown());
       square.whileHeld(new CargoArmUp());
-      triangle.whenPressed(new CargoIn());
-      circle.whenPressed(new CargoOut());
+      triangle.whileHeld(new CargoIn());
+      circle.whileHeld(new CargoOut());
+      rightShoulder.whenPressed(new SetDrivetrainForward());
+      yButton.whenPressed(new SetDrivetrainReverse());
+      dpadUp.whenPressed(new LinkageOut());
+      dpadDown.whenPressed(new LinkageIn());
       //somebutton.whenPressed(new FlipDriveDirection());
 
       //Flag = false;
     //}
     // aButton.whenPressed(new MainRobotGroup()); uncomment this and comment out the line above it if it doesn't work
+  }
+
+  public static Joystick getGamepad(int stickId){
+    if (stickId == 0) return driverStick;
+    if (stickId == 1) return operatorStick;
+    return driverStick; // failsafe
   }
 
   /* public static HatchMechCommand callHatchMechCommand(boolean UD)

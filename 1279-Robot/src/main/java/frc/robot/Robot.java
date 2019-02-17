@@ -32,10 +32,16 @@ import frc.robot.subsystems.HatchSubsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.can.*;
-import edu.wpi.first.wpilibj.drive.*;  // these are necessary for the drivetrain builder
+
+import org.opencv.core.Mat;
+
+import edu.wpi.first.wpilibj.drive.*; // these are necessary for the drivetrain builder
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSink;
+import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.*; // see https://phoenix-documentation.readthedocs.io/en/latest/ch15_WPIDrive.html
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -58,23 +64,10 @@ import edu.wpi.first.wpilibj.IterativeRobot; // these allow the camera to work
   */
 public class Robot extends TimedRobot 
 {
-  /*xbox buttons
-  private final int DRIVER_JOYSTICK = 0;
-  private final int A_BUTTON = 1;
-  private final int LEFT_X_AXIS = 1;
-  private final int RIGHT_Y_AXIS = 4;
-  private final int AUTONOMOUS_BOTTON = 5;
-
-  private final int HATCH_SPINNER_BUTTON = 2;
-
-  private static final int AUTONOMOUS_BUTTON = 5;
-
-  // TODO: eventually make these into an interface
-
   // TODO: Try out the cargo arms
   //talon IDs (NOT FINAL)
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
-  private final int FRONT_LEFT_ID = 1;
+  /* private final int FRONT_LEFT_ID = 1;
   private final int REAR_LEFT_ID = 2;
   private final int FRONT_RIGHT_ID = 3;
   private final int REAR_RIGHT_ID = 4;
@@ -94,6 +87,10 @@ public class Robot extends TimedRobot
   public static CargoArms cargoArms = new CargoArms();
   public static CargoIntake intake = new CargoIntake();
 
+ /*  boolean cameraZeroEnabled = true; // checker to see which camera is enabled when switching
+  UsbCamera camera0 = new UsbCamera("USB Camera 0", 0);
+  UsbCamera camera1 = new UsbCamera("USB Camera 1", 1);
+  MjpegServer cameraServer = new MjpegServer() */
 
   Joystick driverStick = new Joystick(RobotMap.DRIVER_JOYSTICK);
 
@@ -110,23 +107,15 @@ public class Robot extends TimedRobot
 
   //HatchMechanismCommand hatchSpin = new HatchMechanismCommand(hatchTalon, 2, driverStick); // fix magic number
 
-  //drivetrain stuff
-  /*WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
-  WPI_TalonSRX rearLeft = new WPI_TalonSRX(RobotMap.REAR_LEFT_ID);
-  SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeft, rearLeft);
-  WPI_TalonSRX frontRight = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_ID);
-  WPI_TalonSRX rearRight = new WPI_TalonSRX(RobotMap.REAR_RIGHT_ID);
-  SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, rearRight);
-  */
   public static DifferentialDrive drive = new DifferentialDrive(RobotMap.m_left, RobotMap.m_right);
   //DrivingTheRobot driveTrain = new DrivingTheRobot(drive, driverStick);
   //end of drivetrain definitions
 
-  LimitSwitchNormal limitSwitch = LimitSwitchNormal.NormallyClosed;
-
-  // this is test stuff to test watchdog stuff
-  //WPI_TalonSRX itsAProgrammingProblem = new WPI_TalonSRX(7);
-
+  UsbCamera camera1;
+  UsbCamera camera2;
+  VideoSink server;
+//Joystick joy1 = new Joystick(0);
+  boolean prevTrigger = false;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -143,11 +132,16 @@ public class Robot extends TimedRobot
     /* eraServer.getInstance().startAutomaticCapture(0); // gets the camera feed
     CameraServer.getInstance().startAutomaticCapture(1); */
 
-    UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-    camera1.setResolution(640, 480); 
-    camera1.setFPS(20); // change this if needed
-    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(2);
-    VideoSink server = CameraServer.getInstance().getServer();
+    /* camera1.setResolution(640, 480); 
+    camera1.setFPS(30); // change this if needed
+    camera2.setResolution(640, 480);
+    camera2.setFPS(30); */
+
+    camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+    camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+    server = CameraServer.getInstance().addServer("Switched camera");
+    camera1.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
+    camera2.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
   }
 
   /**
@@ -347,7 +341,25 @@ public class Robot extends TimedRobot
 
     robotDriveTrain.robotDrive();
 
-    
+    /* if(driverStick.getRawButton(3) && cameraOneEnabled){
+      System.out.println("setting camera 2");
+      server.setSource(camera2);
+      cameraOneEnabled = false;
+    }
+    if(driverStick.getRawButton(3) && !cameraOneEnabled){
+      System.out.println("setting camera 1");
+      server.setSource(camera1);
+      cameraOneEnabled = true;
+    } */
+
+    if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
+      System.out.println("Setting camera 2");
+      server.setSource(camera2);
+    } else if (!OI.getGamepad(0).getRawButton(3) && prevTrigger) {
+      System.out.println("Setting camera 1");
+      server.setSource(camera1);
+    }
+    prevTrigger = OI.getGamepad(0).getRawButton(3);
 
   }
 
