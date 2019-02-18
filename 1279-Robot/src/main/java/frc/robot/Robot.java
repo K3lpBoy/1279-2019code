@@ -363,8 +363,8 @@ public class Robot extends TimedRobot
     }
     prevTrigger = OI.getGamepad(0).getRawButton(3); */
 
-    /* System.out.print("joystick trigger ")
-    System.out.println();.getGamepad(0).getTrigger()); */
+    System.out.print("joystick trigger ");
+    System.out.println(OI.getGamepad(0).getTrigger());
 
   }
 

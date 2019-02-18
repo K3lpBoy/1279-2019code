@@ -16,16 +16,16 @@ public class ClimbingCommand extends Command
   {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.climbingHab);
+    requires(Robot.cargoArms);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() 
   {
-    Robot.climbingHab.initializeCounter();
+    Robot.cargoArms.initializeCounter();
 
-    if(Robot.climbingHab.getFront())
+    if(Robot.cargoArms.getFront())
     {
       end();
     }
@@ -35,14 +35,14 @@ public class ClimbingCommand extends Command
   @Override
   protected void execute() 
   {
-    Robot.climbingHab.climb();
+    Robot.cargoArms.lowerClimbing(); // lowers faster
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() 
   {
-    return Robot.climbingHab.getFront();
+    return Robot.cargoArms.getFront();
   }
 
   // Called once after isFinished returns true

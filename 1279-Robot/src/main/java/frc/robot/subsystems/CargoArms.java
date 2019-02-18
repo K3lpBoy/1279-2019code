@@ -64,6 +64,14 @@ public class CargoArms extends Subsystem
     cargoArmGroup.set(-0.50); // this is now going up
   }
 
+  public void lowerClimbing(){
+    cargoArmGroup.set(0.70);
+  }
+
+  public void hold(){
+    cargoArmGroup.set(-0.35); // holds it for a button
+  }
+
   public void stop()
   {
     cargoArmGroup.stopMotor();
