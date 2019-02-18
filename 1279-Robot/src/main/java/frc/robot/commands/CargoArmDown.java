@@ -45,6 +45,7 @@ public class CargoArmDown extends Command {
   @Override
   protected void end() {
     Robot.cargoArms.stop();
+    System.out.println("cargo arm bottom limit switch hit");
   }
 
   // Called when another command which requires one or more of the same

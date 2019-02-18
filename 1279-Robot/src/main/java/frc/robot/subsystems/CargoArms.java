@@ -30,7 +30,7 @@ public class CargoArms extends Subsystem
   private WPI_TalonSRX cargoArmTalon = new WPI_TalonSRX(RobotMap.CARGO_ARM_TALON);
   private WPI_TalonSRX cargoArmTalon2 = new WPI_TalonSRX(RobotMap.CARGO_ARM_TALON_2);
   private SpeedControllerGroup cargoArmGroup = new SpeedControllerGroup(cargoArmTalon, cargoArmTalon2);
-  private double speed = 0.40;
+  //private double speed = 0.85;
 
   DigitalInput hatchArmSwitchFront = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_FRONT); // PLACEHOLDER NUMBER
   DigitalInput hatchArmSwitchRear = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_REAR);
@@ -56,12 +56,12 @@ public class CargoArms extends Subsystem
 
   public void raiseArms()
   {
-    cargoArmGroup.set(speed); // placeholder speed, gotta do some testing for it
+    cargoArmGroup.set(0.40); // placeholder speed, gotta do some testing for it
   }
 
   public void lowerArms()
   {
-    cargoArmGroup.set(speed * -1); // also a placeholder speed
+    cargoArmGroup.set(-0.50); // this is now going up
   }
 
   public void stop()

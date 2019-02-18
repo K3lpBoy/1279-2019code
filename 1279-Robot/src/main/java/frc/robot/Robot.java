@@ -352,14 +352,17 @@ public class Robot extends TimedRobot
       cameraOneEnabled = true;
     } */
 
-    if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
+    /* if (OI.getGamepad(0).getTrigger(3) && !prevTrigger) {
       System.out.println("Setting camera 2");
       server.setSource(camera2);
     } else if (!OI.getGamepad(0).getRawButton(3) && prevTrigger) {
       System.out.println("Setting camera 1");
       server.setSource(camera1);
     }
-    prevTrigger = OI.getGamepad(0).getRawButton(3);
+    prevTrigger = OI.getGamepad(0).getRawButton(3); */
+
+    /* System.out.print("joystick trigger ")
+    System.out.println();.getGamepad(0).getTrigger()); */
 
   }
 

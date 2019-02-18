@@ -44,6 +44,7 @@ public class CargoArmUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("cargo arm top limit switch hit");
     Robot.cargoArms.stop();
   }
 
