@@ -24,8 +24,8 @@ import frc.robot.commands.CargoArmDown;
 import frc.robot.commands.CargoArmUp;
 import frc.robot.commands.CargoIn;
 import frc.robot.commands.CargoOut;
+import frc.robot.commands.Climb;
 import frc.robot.commands.FourBarLinkageCommand;
-import frc.robot.commands.ClimbingCommand;;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -113,17 +113,20 @@ public class OI
     //while (Flag)
     //{
       //System.out.println("HI");
-      aButton.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism, MOVE THIS TO OPERATOR OR JUST ASK NICK LATER
-      bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing
-      operatorXButton.whileHeld(new CargoArmDown());
-      square.whileHeld(new CargoArmUp());
+      operatorStart.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism, MOVE THIS TO OPERATOR OR JUST ASK NICK LATER
+      //bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing
+      operatorXButton.whileHeld(new CargoArmDown()); // this actually goes up now
+      square.whileHeld(new CargoArmUp()); // this actually goes down now
       triangle.whileHeld(new CargoIn());
       circle.whileHeld(new CargoOut());
+      dpadUp.whileHeld(new LinkageOut());
+      dpadDown.whileHeld(new LinkageIn());
+      operatorSelect.whileHeld(new Climb());
+
       rightShoulder.whenPressed(new SetDrivetrainForward());
       yButton.whenPressed(new SetDrivetrainReverse());
-      dpadUp.whenPressed(new LinkageOut());
-      dpadDown.whenPressed(new LinkageIn());
-      l2.whileHeld(new ClimbingCommand()); //CHANGE LATER. JUST THERE TO TEST
+      
+      //l2.whileHeld(new ClimbingCommand()); //CHANGE LATER. JUST THERE TO TEST
       //somebutton.whenPressed(new FlipDriveDirection());
 
       //Flag = false;

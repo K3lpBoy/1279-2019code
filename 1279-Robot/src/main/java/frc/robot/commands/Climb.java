@@ -10,36 +10,36 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LinkageOut extends Command {
-  public LinkageOut() {
+public class Climb extends Command {
+  public Climb() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.fourBarLinkage);
+    requires(Robot.cargoArms);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.fourBarLinkage.initializeCounter();
+    Robot.cargoArms.initializeCounter();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.fourBarLinkage.getFront()) end();
-    Robot.fourBarLinkage.hatchForward();
+    if(Robot.cargoArms.getFront()) end();
+    Robot.cargoArms.climb();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.fourBarLinkage.getFront();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.fourBarLinkage.stopLinkage();
+    Robot.cargoArms.stop();
   }
 
   // Called when another command which requires one or more of the same

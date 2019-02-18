@@ -22,7 +22,7 @@ public class HatchMechCommand extends Command
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.hatch);
-    setTimeout(0.8); // waits 0.8
+    setTimeout(1); // waits 1 second
     System.out.println("this code is being run");
   }
 

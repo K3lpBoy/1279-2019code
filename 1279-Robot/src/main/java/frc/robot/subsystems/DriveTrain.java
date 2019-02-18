@@ -46,7 +46,7 @@ public class DriveTrain extends Subsystem
   public void robotDrive()
   {
     double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1 * inverse; // makes forward stick positive
-    double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS * inverse); // WPI Drivetrain uses positive=> right; right stick for left and right
+    double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
 
     Robot.drive.arcadeDrive(xSpeed, zRotation);
 

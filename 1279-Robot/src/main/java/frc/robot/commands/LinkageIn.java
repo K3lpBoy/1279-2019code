@@ -26,6 +26,7 @@ public class LinkageIn extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(Robot.fourBarLinkage.getRear()) end();
     Robot.fourBarLinkage.hatchBack();
   }
 
@@ -45,5 +46,6 @@ public class LinkageIn extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

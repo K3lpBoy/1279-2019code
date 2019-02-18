@@ -41,6 +41,7 @@ public class RobotMap
   public final static int REAR_LEFT_ID = 13;
   public final static int FRONT_RIGHT_ID = 8;
   public final static int REAR_RIGHT_ID = 5; // changed for testing purposes, was 4
+  
   public static final int HATCH_TALON_ID = 2;
 
   public static final int FOUR_BAR_LINKAGE_TALON_ID = 1;

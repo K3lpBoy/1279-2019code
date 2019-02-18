@@ -47,7 +47,7 @@ import edu.wpi.first.wpilibj.*; // see https://phoenix-documentation.readthedocs
 import edu.wpi.first.wpilibj.Joystick;
 // import edu.wpi.first.wpilibj.Talon; this isn't the right one
 
-import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot; // these allow the camera to work
 
 /**
@@ -139,7 +139,8 @@ public class Robot extends TimedRobot
 
     camera1 = CameraServer.getInstance().startAutomaticCapture(0);
     camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-    server = CameraServer.getInstance().addServer("Switched camera");
+    //server = CameraServer.getInstance().addServer("Switched camera");
+    server = CameraServer.getInstance().addSwitchedCamera("Switched camera");
     camera1.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
     camera2.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
   }
@@ -352,17 +353,17 @@ public class Robot extends TimedRobot
       cameraOneEnabled = true;
     } */
 
-    /* if (OI.getGamepad(0).getTrigger(3) && !prevTrigger) {
+    if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
       System.out.println("Setting camera 2");
       server.setSource(camera2);
     } else if (!OI.getGamepad(0).getRawButton(3) && prevTrigger) {
       System.out.println("Setting camera 1");
       server.setSource(camera1);
     }
-    prevTrigger = OI.getGamepad(0).getRawButton(3); */
+    prevTrigger = OI.getGamepad(0).getRawButton(3);
 
-    System.out.print("joystick trigger ");
-    System.out.println(OI.getGamepad(0).getTrigger());
+    /* System.out.print("joystick trigger ");
+    System.out.println(OI.getGamepad(0).getTrigger()); */
 
   }
 
