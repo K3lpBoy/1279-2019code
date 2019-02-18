@@ -25,6 +25,7 @@ import frc.robot.commands.CargoArmUp;
 import frc.robot.commands.CargoIn;
 import frc.robot.commands.CargoOut;
 import frc.robot.commands.FourBarLinkageCommand;
+import frc.robot.commands.ClimbingCommand;;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -122,6 +123,7 @@ public class OI
       yButton.whenPressed(new SetDrivetrainReverse());
       dpadUp.whenPressed(new LinkageOut());
       dpadDown.whenPressed(new LinkageIn());
+      l2.whileHeld(new ClimbingCommand()); //CHANGE LATER. JUST THERE TO TEST
       //somebutton.whenPressed(new FlipDriveDirection());
 
       //Flag = false;
@@ -129,7 +131,8 @@ public class OI
     // aButton.whenPressed(new MainRobotGroup()); uncomment this and comment out the line above it if it doesn't work
   }
 
-  public static Joystick getGamepad(int stickId){
+  public static Joystick getGamepad(int stickId)
+  {
     if (stickId == 0) return driverStick;
     if (stickId == 1) return operatorStick;
     return driverStick; // failsafe

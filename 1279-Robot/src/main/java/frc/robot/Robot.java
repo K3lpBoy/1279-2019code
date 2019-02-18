@@ -21,6 +21,7 @@ import frc.robot.commands.ExampleCommand;
 //import frc.robot.subsystems.AutonomousSubsystem;
 import frc.robot.subsystems.CargoArms;
 import frc.robot.subsystems.CargoIntake;
+import frc.robot.subsystems.Climbing;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FourBarLinkageForHatch;
@@ -86,6 +87,7 @@ public class Robot extends TimedRobot
   public static FourBarLinkageForHatch fourBarLinkage = new FourBarLinkageForHatch();
   public static CargoArms cargoArms = new CargoArms();
   public static CargoIntake intake = new CargoIntake();
+  public static Climbing climbingHab = new Climbing();
 
  /*  boolean cameraZeroEnabled = true; // checker to see which camera is enabled when switching
   UsbCamera camera0 = new UsbCamera("USB Camera 0", 0);
