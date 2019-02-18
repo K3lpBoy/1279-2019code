@@ -8,28 +8,26 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.Robot;
 
-public class CargoArmDown extends Command 
+public class ClimbingCommand extends Command 
 {
-  public CargoArmDown() 
+  public ClimbingCommand() 
   {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoArms);
+    requires(Robot.climbingHab);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() 
   {
-    Robot.cargoArms.initializeCounter();
-    //if(!Robot.cargoArms.isSwitchSet())
-    //Robot.cargoArms.lowerArms(); // hopefully this should prevent it from driving while already up
-    if(Robot.cargoArms.getFront())
+    Robot.climbingHab.initializeCounter();
+
+    if(Robot.climbingHab.getFront())
     {
-      end(); // prevents it from running while down
+      end();
     }
   }
 
@@ -37,21 +35,21 @@ public class CargoArmDown extends Command
   @Override
   protected void execute() 
   {
-    Robot.cargoArms.lowerArms();
+    Robot.climbingHab.climb();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() 
   {
-    return Robot.cargoArms.getFront(); // limit switch or x button is released
+    return Robot.climbingHab.getFront();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() 
   {
-    Robot.cargoArms.stop();
+    Robot.climbingHab.stop();
   }
 
   // Called when another command which requires one or more of the same
