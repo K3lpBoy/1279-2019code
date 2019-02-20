@@ -330,20 +330,9 @@ public class Robot extends TimedRobot
   @Override
   public void teleopPeriodic() 
   {
-    Scheduler.getInstance().run(); // afaik this is responsible for the OI stuff, the thing that polls for button presses
+    Scheduler.getInstance().run(); //this is responsible for the OI stuff, the thing that polls for button presses
 
     robotDriveTrain.robotDrive();
-
-    /* if(driverStick.getRawButton(3) && cameraOneEnabled){
-      System.out.println("setting camera 2");
-      server.setSource(camera2);
-      cameraOneEnabled = false;
-    }
-    if(driverStick.getRawButton(3) && !cameraOneEnabled){
-      System.out.println("setting camera 1");
-      server.setSource(camera1);
-      cameraOneEnabled = true;
-    } */
 
     if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
       System.out.println("Setting camera 2");
@@ -355,10 +344,6 @@ public class Robot extends TimedRobot
       System.out.println("setSource camera 1 code; source currently running: " + server.getSource());
     }
     prevTrigger = OI.getGamepad(0).getRawButton(3);
-
-    /* System.out.print("joystick trigger ");
-    System.out.println(OI.getGamepad(0).getTrigger()); */
-
   }
 
   /**
