@@ -24,15 +24,21 @@ public class CargoArmUp extends Command {
     Robot.cargoArms.initializeCounter();
     //if(!Robot.cargoArms.isSwitchSet())
     //Robot.cargoArms.raiseArms(); // hopefully this should work so that it doesn't damage itself if it runs itself while it's already down because it resets the counter first
-    if(Robot.cargoArms.getRear()){
-      end(); // this is a failsafe
-    }
+    /*if(Robot.cargoArms.getRear()){
+      end(); 
+    }*/
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.cargoArms.raiseArms();
+    if(!Robot.cargoArms.getRawRear()){
+      end();
+      System.out.println("cargoArms blocked by rear switch");
+    }
+    else{
+      Robot.cargoArms.raiseArms();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

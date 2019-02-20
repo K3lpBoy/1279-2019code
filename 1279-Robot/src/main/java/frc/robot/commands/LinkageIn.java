@@ -26,8 +26,14 @@ public class LinkageIn extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.fourBarLinkage.getRear()) end();
+    if(!Robot.fourBarLinkage.getRawRear()){ // returns true when open
+      System.out.println("linkage blocked by rear switch");
+      end();
+    } 
+    else{
     Robot.fourBarLinkage.hatchBack();
+    }
+    //System.out.println("linkage in; getRawRear: " + Robot.fourBarLinkage.getRawRear());
   }
 
   // Make this return true when this Command no longer needs to run execute()

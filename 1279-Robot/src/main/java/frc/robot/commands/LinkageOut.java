@@ -26,8 +26,14 @@ public class LinkageOut extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.fourBarLinkage.getFront()) end();
-    Robot.fourBarLinkage.hatchForward();
+    if(!Robot.fourBarLinkage.getRawFront()){ // returns true when open
+      System.out.println("linkage blocked by front switch");
+      end();
+    }
+    else{
+      Robot.fourBarLinkage.hatchForward();
+    }
+    //System.out.println("linkage out; getRawFront: " + Robot.fourBarLinkage.getRawFront());
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -37,7 +37,13 @@ public class CargoArmDown extends Command
   @Override
   protected void execute() 
   {
-    Robot.cargoArms.lowerArms();
+    if(!Robot.cargoArms.getRawFront()){
+      end();
+      System.out.println("cargoArms blocked by front limit switch");
+    }
+    else{
+      Robot.cargoArms.lowerArms();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
