@@ -337,11 +337,11 @@ public class Robot extends TimedRobot
     if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
       System.out.println("Setting camera 2");
       server.setSource(camera2);
-      System.out.println("setSource camera 2 code; source currently running: " + server.getSource());
+      System.out.println("setSource camera 2 code; source currently running: " + server.getSource().toString());
     } else if (!OI.getGamepad(0).getRawButton(3) && prevTrigger) {
       System.out.println("Setting camera 1");
       server.setSource(camera1);
-      System.out.println("setSource camera 1 code; source currently running: " + server.getSource());
+      System.out.println("setSource camera 1 code; source currently running: " + server.getSource().toString());
     }
     prevTrigger = OI.getGamepad(0).getRawButton(3);
   }
