@@ -24,6 +24,7 @@ public class DriveTrain extends Subsystem
   // here. Call these from Commands.
 
   private int inverse = 1;
+  private double modifier = 1;
 
   //static DifferentialDrive drive = RobotMap.diffDrive;
   static Joystick driverStick = RobotMap.driverStick;
@@ -45,8 +46,8 @@ public class DriveTrain extends Subsystem
 
   public void robotDrive()
   {
-    double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1 * inverse; // makes forward stick positive
-    double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
+    double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1 * inverse * modifier; // makes forward stick positive
+    double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS) * modifier; // WPI Drivetrain uses positive=> right; right stick for left and right
 
     Robot.drive.arcadeDrive(xSpeed, zRotation);
 
@@ -65,5 +66,12 @@ public class DriveTrain extends Subsystem
   }
   public void setDirectionBack(){
     inverse = -1;
+  }
+
+  public void slowSpeed(){
+    modifier = 0.4; // 40%
+  }
+  public void normalSpeed(){
+    modifier = 1; // 100%
   }
 }

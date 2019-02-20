@@ -20,6 +20,7 @@ import frc.robot.commands.LinkageOut;
 import frc.robot.commands.MainRobotGroup;
 import frc.robot.commands.SetDrivetrainForward;
 import frc.robot.commands.SetDrivetrainReverse;
+import frc.robot.commands.SlowDrivetrain;
 import frc.robot.commands.CargoArmDown;
 import frc.robot.commands.CargoArmUp;
 import frc.robot.commands.CargoIn;
@@ -113,18 +114,19 @@ public class OI
     //while (Flag)
     //{
       //System.out.println("HI");
-      operatorStart.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism, MOVE THIS TO OPERATOR OR JUST ASK NICK LATER
+      square.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism, MOVE THIS TO OPERATOR OR JUST ASK NICK LATER
       //bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing
-      operatorXButton.whileHeld(new CargoArmDown()); // this actually goes up now
-      square.whileHeld(new CargoArmUp()); // this actually goes down now
+      dpadRight.whileHeld(new CargoArmDown()); // this actually goes up now
+      dpadLeft.whileHeld(new CargoArmUp()); // this actually goes down now
       triangle.whileHeld(new CargoIn());
       circle.whileHeld(new CargoOut());
       dpadUp.whileHeld(new LinkageOut());
       dpadDown.whileHeld(new LinkageIn());
       operatorSelect.whileHeld(new Climb());
 
-      rightShoulder.whenPressed(new SetDrivetrainForward());
-      yButton.whenPressed(new SetDrivetrainReverse());
+      yButton.whenPressed(new SetDrivetrainForward());
+      bButton.whenPressed(new SetDrivetrainReverse());
+      rightShoulder.whileHeld(new SlowDrivetrain());
       
       //l2.whileHeld(new ClimbingCommand()); //CHANGE LATER. JUST THERE TO TEST
       //somebutton.whenPressed(new FlipDriveDirection());

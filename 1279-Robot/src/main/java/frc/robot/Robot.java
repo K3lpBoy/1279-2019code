@@ -129,14 +129,6 @@ public class Robot extends TimedRobot
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    /* eraServer.getInstance().startAutomaticCapture(0); // gets the camera feed
-    CameraServer.getInstance().startAutomaticCapture(1); */
-
-    /* camera1.setResolution(640, 480); 
-    camera1.setFPS(30); // change this if needed
-    camera2.setResolution(640, 480);
-    camera2.setFPS(30); */
-
     camera1 = CameraServer.getInstance().startAutomaticCapture(0);
     camera2 = CameraServer.getInstance().startAutomaticCapture(1);
     //server = CameraServer.getInstance().addServer("Switched camera");
@@ -356,9 +348,11 @@ public class Robot extends TimedRobot
     if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
       System.out.println("Setting camera 2");
       server.setSource(camera2);
+      System.out.println("setSource camera 2 code; source currently running: " + server.getSource());
     } else if (!OI.getGamepad(0).getRawButton(3) && prevTrigger) {
       System.out.println("Setting camera 1");
       server.setSource(camera1);
+      System.out.println("setSource camera 1 code; source currently running: " + server.getSource());
     }
     prevTrigger = OI.getGamepad(0).getRawButton(3);
 

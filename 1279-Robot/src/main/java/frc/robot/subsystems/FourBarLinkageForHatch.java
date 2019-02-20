@@ -77,6 +77,14 @@ public class FourBarLinkageForHatch extends Subsystem
     return counterFront.get() > 0;
   }
 
+  public boolean getRawRear(){
+    return hatchArmSwitchBack.get();
+  }
+
+  public boolean getRawFront(){
+    return hatchArmSwitchFront.get();
+  }
+
   public boolean getSwitch(int limitSwitch)
   {
     if (limitSwitch == 0) 

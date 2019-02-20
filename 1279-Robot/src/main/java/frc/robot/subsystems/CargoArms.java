@@ -32,10 +32,10 @@ public class CargoArms extends Subsystem
   private SpeedControllerGroup cargoArmGroup = new SpeedControllerGroup(cargoArmTalon, cargoArmTalon2);
   //private double speed = 0.85;
 
-  DigitalInput hatchArmSwitchFront = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_FRONT); // PLACEHOLDER NUMBER
-  DigitalInput hatchArmSwitchRear = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_REAR);
-  Counter counterFront = new Counter(hatchArmSwitchFront);
-  Counter counterRear = new Counter(hatchArmSwitchRear);
+  DigitalInput cargoArmSwitchFront = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_FRONT); // PLACEHOLDER NUMBER
+  DigitalInput cargoArmSwitchRear = new DigitalInput(RobotMap.CARGO_ARM_SWITCH_ID_REAR);
+  Counter counterFront = new Counter(cargoArmSwitchFront);
+  Counter counterRear = new Counter(cargoArmSwitchRear);
 
   @Override
   public void initDefaultCommand() 
@@ -89,4 +89,11 @@ public class CargoArms extends Subsystem
     return counterRear.get() > 0;
   }
 
+  public boolean getRawFront(){
+    return cargoArmSwitchFront.get();
+  }
+
+  public boolean getRawRear(){
+    return cargoArmSwitchRear.get();
+  }
 }
