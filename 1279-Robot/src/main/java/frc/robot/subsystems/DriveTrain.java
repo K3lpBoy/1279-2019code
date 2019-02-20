@@ -69,7 +69,7 @@ public class DriveTrain extends Subsystem
   }
 
   public void slowSpeed(){
-    modifier = 0.4; // 40%
+    modifier = 0.6; // 40%
   }
   public void normalSpeed(){
     modifier = 1; // 100%

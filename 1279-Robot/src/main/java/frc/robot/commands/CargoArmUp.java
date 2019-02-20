@@ -32,9 +32,9 @@ public class CargoArmUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(!Robot.cargoArms.getRawRear()){
+    if(!Robot.cargoArms.getRawFront()){
       end();
-      System.out.println("cargoArms blocked by rear switch");
+      System.out.println("cargoArms going down blocked by front switch");
     }
     else{
       Robot.cargoArms.raiseArms();

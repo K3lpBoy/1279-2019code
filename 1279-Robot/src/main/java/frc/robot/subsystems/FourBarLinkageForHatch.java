@@ -37,13 +37,13 @@ public class FourBarLinkageForHatch extends Subsystem
 
   public void hatchForward()
   {
-    fourBarLinkageTalon.set(ControlMode.PercentOutput, 0.8);
+    fourBarLinkageTalon.set(ControlMode.PercentOutput, 0.5);
     //0.267 turn for it;
   }
 
   public void hatchBack()
   {
-    fourBarLinkageTalon.set(ControlMode.PercentOutput, -0.8);
+    fourBarLinkageTalon.set(ControlMode.PercentOutput, -0.5);
   }
 
   public void stopLinkage()
