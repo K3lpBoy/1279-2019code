@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.HatchMechCommand;
+import frc.robot.commands.HatchTabDown;
+import frc.robot.commands.HatchTabUp;
 import frc.robot.commands.LinkageIn;
 import frc.robot.commands.LinkageOut;
 import frc.robot.commands.MainRobotGroup;
@@ -123,11 +125,13 @@ public class OI
       dpadUp.whileHeld(new LinkageOut());
       dpadDown.whileHeld(new LinkageIn());
       operatorSelect.whileHeld(new Climb());
+      //l2.whenPressed(new HatchTabUp());
+      //r2.whenPressed(new HatchTabDown());
 
       yButton.whenPressed(new SetDrivetrainForward());
       bButton.whenPressed(new SetDrivetrainReverse());
       rightShoulder.whileHeld(new SlowDrivetrain());
-      
+            
       //l2.whileHeld(new ClimbingCommand()); //CHANGE LATER. JUST THERE TO TEST
       //somebutton.whenPressed(new FlipDriveDirection());
 
