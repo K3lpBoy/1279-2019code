@@ -202,16 +202,17 @@ public class Robot extends TimedRobot
       m_autonomousCommand.start();
     }
 
+    // this is all stuff taken from the teleopinit
     RobotMap.frontLeft.configFactoryDefault();
     RobotMap.frontRight.configFactoryDefault();
     RobotMap.rearLeft.configFactoryDefault();
     RobotMap.rearRight.configFactoryDefault();
 
     // adjust these so that when the stick is forward both of these are green
-    //RobotMap.frontLeft.setInverted(false);  UNCOMMENT
-    //RobotMap.rearLeft.setInverted(false);   UNCOMMENT
-    //RobotMap.frontRight.setInverted(true); UNCOMMENT
-    //RobotMap.rearRight.setInverted(true);  UNCOMMENT
+    RobotMap.frontLeft.setInverted(false);
+    RobotMap.rearLeft.setInverted(false);
+    RobotMap.frontRight.setInverted(true); 
+    RobotMap.rearRight.setInverted(true);
     // DO NOT TOUCH THIS OR YOU WILL GRENADE THE TRANSMISSION
 
     drive.setRightSideInverted(false); // don't change this
@@ -219,13 +220,15 @@ public class Robot extends TimedRobot
     drive.setSafetyEnabled(false);
         // end of drivetrain stuff
 
-    //RobotMap.diffDrive.setExpiration(2);
+    drive.setExpiration(2);
     drive.setSafetyEnabled(false);
     
     RobotMap.frontLeft.setSafetyEnabled(false);
     RobotMap.rearLeft.setSafetyEnabled(false);
     RobotMap.frontRight.setSafetyEnabled(false);
     RobotMap.rearRight.setSafetyEnabled(false);
+
+    RobotMap.hatchTalon.setSafetyEnabled(false);
     
   }
 
@@ -235,41 +238,21 @@ public class Robot extends TimedRobot
   @Override
   public void autonomousPeriodic() 
   {
-    //RJW: Scheduler.getInstance().run();
-    System.out.println("autonomous periodic is being run");
-    
-    System.out.println("TIMESTAMP 1: " + java.lang.System.currentTimeMillis());
-    drive.arcadeDrive(0.7, 0);
-    System.out.println("TIMESTAMP 2: " + java.lang.System.currentTimeMillis() + "\n");
+    // just copy-pasted from teleop
+    Scheduler.getInstance().run(); //this is responsible for the OI stuff, the thing that polls for button presses
 
-    /* RobotMap.diffDrive.feed(); ok so yeah these do nothing
-    RobotMap.diffDrive.feedWatchdog(); */ 
+    robotDriveTrain.robotDrive();
 
-
-    //double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1; // makes forward stick positive
-    //double zRotation =  driverStick.getRawAxis(RobotMap.DRIVER_RIGHT_Y_AXIS); // WPI Drivetrain uses positive=> right; right stick for left and right
-
-    ////drive.arcadeDrive(xSpeed, zRotation);
-
-    //autodriver
-    /*if(driverStick.getRawButton(RobotMap.AUTONOMOUS_BOTTON))
-    {
-      autoDriver = false;
-
-      while(autoDriver == false)
-      {
-      
-        double autoSpeed = 0.4;
-        double autoRotation = 0;
-
-        ////drive.arcadeDrive(autoSpeed, autoRotation);
-        //Troublsome part of coding auto
-        if(driverStick.getRawButton(8))
-        {
-          autoDriver = true;
-        }
-      }
-    }*/
+    if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
+      System.out.println("Setting camera 2");
+      server.setSource(camera2);
+      System.out.println("setSource camera 2 code; source currently running: " + server.getSource().toString());
+    } else if (!OI.getGamepad(0).getRawButton(3) && prevTrigger) {
+      System.out.println("Setting camera 1");
+      server.setSource(camera1);
+      System.out.println("setSource camera 1 code; source currently running: " + server.getSource().toString());
+    }
+    prevTrigger = OI.getGamepad(0).getRawButton(3);
   }
 
   @Override
