@@ -23,6 +23,8 @@ import frc.robot.commands.MainRobotGroup;
 import frc.robot.commands.SetDrivetrainForward;
 import frc.robot.commands.SetDrivetrainReverse;
 import frc.robot.commands.SlowDrivetrain;
+import frc.robot.commands.TabHoldToGoDown;
+import frc.robot.commands.TabHoldToGoUp;
 import frc.robot.commands.CargoArmDown;
 import frc.robot.commands.CargoArmUp;
 import frc.robot.commands.CargoIn;
@@ -129,6 +131,8 @@ public class OI
       operatorSelect.whileHeld(new Climb());
       l2.whenPressed(new HatchTabUp());
       r2.whenPressed(new HatchTabDown());
+      l1.whileHeld(new TabHoldToGoUp());
+      r1.whileHeld(new TabHoldToGoDown());
 
       yButton.whenPressed(new SetDrivetrainForward());
       bButton.whenPressed(new SetDrivetrainReverse());

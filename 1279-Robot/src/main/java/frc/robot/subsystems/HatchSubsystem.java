@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -21,9 +22,8 @@ import frc.robot.RobotMap;
 public class HatchSubsystem extends Subsystem 
 {
   
-  int hatchTalonID = RobotMap.HATCH_TALON_ID;
-  WPI_TalonSRX hatchTalon = new WPI_TalonSRX(hatchTalonID);
-
+  private int hatchTalonID = RobotMap.HATCH_TALON_ID;
+  private WPI_TalonSRX hatchTalon = new WPI_TalonSRX(hatchTalonID);
   //static final double waitTime = 0.8;
   //Timer hatchTimer = new Timer();
 
