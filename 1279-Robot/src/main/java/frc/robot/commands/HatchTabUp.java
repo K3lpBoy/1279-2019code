@@ -39,7 +39,7 @@ public class HatchTabUp extends Command
   protected boolean isFinished() 
   {
     
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true

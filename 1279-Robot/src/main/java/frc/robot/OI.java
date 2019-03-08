@@ -27,6 +27,7 @@ import frc.robot.commands.CargoArmDown;
 import frc.robot.commands.CargoArmUp;
 import frc.robot.commands.CargoIn;
 import frc.robot.commands.CargoOut;
+import frc.robot.commands.CargoOutFast;
 import frc.robot.commands.Climb;
 import frc.robot.commands.FourBarLinkageCommand;
 
@@ -116,17 +117,18 @@ public class OI
     //while (Flag)
     //{
       //System.out.println("HI");
-      square.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism, MOVE THIS TO OPERATOR OR JUST ASK NICK LATER
+      //square.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism, MOVE THIS TO OPERATOR OR JUST ASK NICK LATER
       //bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing
       dpadRight.whileHeld(new CargoArmDown()); // this actually goes up now
       dpadLeft.whileHeld(new CargoArmUp()); // this actually goes down now
       triangle.whileHeld(new CargoIn());
       circle.whileHeld(new CargoOut());
+      square.whileHeld(new CargoOutFast());
       dpadUp.whileHeld(new LinkageOut());
       dpadDown.whileHeld(new LinkageIn());
       operatorSelect.whileHeld(new Climb());
-      //l2.whenPressed(new HatchTabUp());
-      //r2.whenPressed(new HatchTabDown());
+      l2.whenPressed(new HatchTabUp());
+      r2.whenPressed(new HatchTabDown());
 
       yButton.whenPressed(new SetDrivetrainForward());
       bButton.whenPressed(new SetDrivetrainReverse());

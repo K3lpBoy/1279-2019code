@@ -61,7 +61,7 @@ public class CargoArms extends Subsystem
 
   public void lowerArms()
   {
-    cargoArmGroup.set(-0.50); // this is now going up
+    cargoArmGroup.set(-0.60); // this is now going up
   }
 
   public void climb(){
