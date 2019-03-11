@@ -129,12 +129,20 @@ public class Robot extends TimedRobot
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
+
+    //MjpegServer mjpeg1 = new MjpegServer(name, listenAddress, port)
     camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-    camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+    //camera2 = CameraServer.getInstance().startAutomaticCapture(1);
     //server = CameraServer.getInstance().addServer("Switched camera");
-    server = CameraServer.getInstance().addSwitchedCamera("Switched camera");
-    camera1.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
-    camera2.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
+    //server = CameraServer.getInstance().addSwitchedCamera("Switched camera");
+    //camera1.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
+    //camera2.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
+    camera1.setFPS(15);
+    //camera2.setFPS(15);
+    camera1.setResolution(320, 240);
+    //camera2.setResolution(320, 240);
+    //UsbCamera usb = new UsbCamera("0", "/dev/video0");
+    
   }
 
   /**
@@ -243,6 +251,7 @@ public class Robot extends TimedRobot
 
     robotDriveTrain.robotDrive();
 
+    /* 
     if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
       System.out.println("Setting camera 2");
       server.setSource(camera2);
@@ -252,7 +261,16 @@ public class Robot extends TimedRobot
       server.setSource(camera1);
       System.out.println("setSource camera 1 code; source currently running: " + server.getSource().toString());
     }
-    prevTrigger = OI.getGamepad(0).getRawButton(3);
+    prevTrigger = OI.getGamepad(0).getRawButton(3); */
+
+    /* if(!DriveTrain.getDirection()){
+      System.out.println("setting camera 2");
+      server.setSource(camera2);
+    }
+    if(DriveTrain.getDirection()){
+      System.out.println("setting camera 1");
+      server.setSource(camera1);
+    } */
   }
 
   @Override
@@ -317,7 +335,7 @@ public class Robot extends TimedRobot
 
     robotDriveTrain.robotDrive();
 
-    if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
+    /* if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
       System.out.println("Setting camera 2");
       server.setSource(camera2);
       System.out.println("setSource camera 2 code; source currently running: " + server.getSource().toString());
@@ -326,7 +344,16 @@ public class Robot extends TimedRobot
       server.setSource(camera1);
       System.out.println("setSource camera 1 code; source currently running: " + server.getSource().toString());
     }
-    prevTrigger = OI.getGamepad(0).getRawButton(3);
+    prevTrigger = OI.getGamepad(0).getRawButton(3); */
+
+    /*if(!DriveTrain.getDirection()){
+      System.out.println("setting camera 2");
+      server.setSource(camera2);
+    }
+    if(DriveTrain.getDirection()){
+      System.out.println("setting camera 1");
+      server.setSource(camera1);
+    } */
   }
 
   /**

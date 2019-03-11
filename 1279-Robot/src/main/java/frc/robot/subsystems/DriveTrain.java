@@ -23,7 +23,7 @@ public class DriveTrain extends Subsystem
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private int inverse = 1;
+  private static int inverse = 1;
   private double modifier = 1;
 
   //static DifferentialDrive drive = RobotMap.diffDrive;
@@ -73,5 +73,21 @@ public class DriveTrain extends Subsystem
   }
   public void normalSpeed(){
     modifier = 1; // 100%
+  }
+
+  /**
+   * Returns the direction of the drivetrain
+   * @return false when not inverted (cargo side), true when inverted (hatch side)
+   */
+  public static boolean getDirection(){
+    if(inverse == 1){
+      return false; // cargo side
+    }
+
+    if(inverse == -1){
+      return true; // hatch side
+    }
+
+    else return false;
   }
 }

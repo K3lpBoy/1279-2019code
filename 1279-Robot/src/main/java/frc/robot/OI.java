@@ -121,11 +121,11 @@ public class OI
       //System.out.println("HI");
       //square.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism, MOVE THIS TO OPERATOR OR JUST ASK NICK LATER
       //bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing
-      dpadRight.whileHeld(new CargoArmDown()); // this actually goes up now
-      dpadLeft.whileHeld(new CargoArmUp()); // this actually goes down now
+      dpadRight.whileHeld(new CargoArmDown()); // this actually goes UP AGAIN 
+      dpadLeft.whileHeld(new CargoArmUp()); // this actually goes DOWN AGAIN AAAAAA
       triangle.whileHeld(new CargoIn());
       circle.whileHeld(new CargoOut());
-      square.whileHeld(new CargoOutFast());
+      square.whileHeld(new CargoOutFast()); // actually goes slow now
       dpadUp.whileHeld(new LinkageOut());
       dpadDown.whileHeld(new LinkageIn());
       operatorSelect.whileHeld(new Climb());

@@ -54,7 +54,7 @@ public class CargoArms extends Subsystem
     return counter.get() > 0;
   } */
 
-  public void raiseArms()
+  public void raiseArms() // actually lowers
   {
     cargoArmGroup.set(0.40); // placeholder speed, gotta do some testing for it
   }
