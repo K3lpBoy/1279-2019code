@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//import frc.robot.commands.Autonomous;
 import frc.robot.commands.DrivetrainCommand;
 //import frc.robot.commands.DrivingTheRobot;
 import frc.robot.commands.ExampleCommand;
