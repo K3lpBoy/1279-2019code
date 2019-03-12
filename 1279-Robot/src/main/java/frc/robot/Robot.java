@@ -131,16 +131,18 @@ public class Robot extends TimedRobot
 
     //MjpegServer mjpeg1 = new MjpegServer(name, listenAddress, port)
     camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-    //camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-    //server = CameraServer.getInstance().addServer("Switched camera");
-    //server = CameraServer.getInstance().addSwitchedCamera("Switched camera");
-    //camera1.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
-    //camera2.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
+    camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+    server = CameraServer.getInstance().addServer("Switched camera");
+    server = CameraServer.getInstance().addSwitchedCamera("Switched camera");
+    camera1.setConnectionStrategy(VideoSource.ConnectionStrategy.kAutoManage);
+    camera2.setConnectionStrategy(VideoSource.ConnectionStrategy.kAutoManage);
     camera1.setFPS(15);
-    //camera2.setFPS(15);
+    camera2.setFPS(15);
     camera1.setResolution(320, 240);
-    //camera2.setResolution(320, 240);
+    camera2.setResolution(320, 240);
     //UsbCamera usb = new UsbCamera("0", "/dev/video0");
+
+    server.setSource(camera1); // initializes the camera server object so that it doesn't freeze when started
     
   }
 
@@ -262,14 +264,14 @@ public class Robot extends TimedRobot
     }
     prevTrigger = OI.getGamepad(0).getRawButton(3); */
 
-    /* if(!DriveTrain.getDirection()){
+    if(!DriveTrain.getDirection()){
       System.out.println("setting camera 2");
       server.setSource(camera2);
     }
     if(DriveTrain.getDirection()){
       System.out.println("setting camera 1");
       server.setSource(camera1);
-    } */
+    }
   }
 
   @Override
@@ -345,14 +347,14 @@ public class Robot extends TimedRobot
     }
     prevTrigger = OI.getGamepad(0).getRawButton(3); */
 
-    /*if(!DriveTrain.getDirection()){
+    if(!DriveTrain.getDirection()){
       System.out.println("setting camera 2");
       server.setSource(camera2);
     }
     if(DriveTrain.getDirection()){
       System.out.println("setting camera 1");
       server.setSource(camera1);
-    } */
+    } 
   }
 
   /**
