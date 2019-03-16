@@ -26,8 +26,13 @@ public class Climb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.cargoArms.getFront()) end();
-    Robot.cargoArms.climb();
+    if(!Robot.cargoArms.getRawFront() || !Robot.cargoArms.getRawRear()){ // both just in case something messes up in direction
+      end();
+      System.out.println("cargoArms climb blocked by front limit switch");
+    }
+    else{
+      Robot.cargoArms.climb();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

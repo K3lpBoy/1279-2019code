@@ -65,7 +65,7 @@ public class CargoArms extends Subsystem
   }
 
   public void climb(){
-    cargoArmGroup.set(0.80);
+    cargoArmGroup.set(-0.80);
   }
 
   public void hold(){

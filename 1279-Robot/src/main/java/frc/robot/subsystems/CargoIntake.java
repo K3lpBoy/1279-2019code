@@ -47,8 +47,8 @@ public class CargoIntake extends Subsystem
   }
 
   public void outtakeFast(){ // this goes slow now
-    leftTalon.set(ControlMode.PercentOutput, 0.5);
-    rightTalon.set(ControlMode.PercentOutput, -0.5);
+    leftTalon.set(ControlMode.PercentOutput, 0.55);
+    rightTalon.set(ControlMode.PercentOutput, -0.55);
   }
 
   public void intake()
