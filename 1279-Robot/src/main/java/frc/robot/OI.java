@@ -129,8 +129,8 @@ public class OI
       dpadUp.whileHeld(new LinkageOut());
       dpadDown.whileHeld(new LinkageIn());
       //operatorSelect.whileHeld(new Climb());
-      //l2.whenPressed(new HatchTabUp());
-      //r2.whenPressed(new HatchTabDown());
+      l2.whenPressed(new HatchTabUp());
+      r2.whenPressed(new HatchTabDown());
       l1.whileHeld(new TabHoldToGoUp());
       r1.whileHeld(new TabHoldToGoDown());
 
