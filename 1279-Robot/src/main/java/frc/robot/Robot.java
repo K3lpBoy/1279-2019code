@@ -141,7 +141,11 @@ public class Robot extends TimedRobot
     camera1.setResolution(320, 240);
     camera2.setResolution(320, 240);
     //UsbCamera usb = new UsbCamera("0", "/dev/video0");
-
+    
+    //RobotMap.frontLeft.configOpenloopRamp(0.3);
+    //RobotMap.rearLeft.configOpenloopRamp(0.3);
+    //RobotMap.frontRight.configOpenloopRamp(0.3);
+    //RobotMap.rearRight.configOpenloopRamp(0.3);
     server.setSource(camera1); // initializes the camera server object so that it doesn't freeze when started
     
   }
@@ -265,11 +269,11 @@ public class Robot extends TimedRobot
     prevTrigger = OI.getGamepad(0).getRawButton(3); */
 
     if(!DriveTrain.getDirection()){
-      System.out.println("setting camera 2");
+      //System.out.println("setting camera 2");
       server.setSource(camera2);
     }
     if(DriveTrain.getDirection()){
-      System.out.println("setting camera 1");
+      //System.out.println("setting camera 1");
       server.setSource(camera1);
     }
   }
@@ -348,11 +352,11 @@ public class Robot extends TimedRobot
     prevTrigger = OI.getGamepad(0).getRawButton(3); */
 
     if(!DriveTrain.getDirection()){
-      System.out.println("setting camera 2");
+      //System.out.println("setting camera 2");
       server.setSource(camera2);
     }
     if(DriveTrain.getDirection()){
-      System.out.println("setting camera 1");
+      //System.out.println("setting camera 1");
       server.setSource(camera1);
     } 
   }
