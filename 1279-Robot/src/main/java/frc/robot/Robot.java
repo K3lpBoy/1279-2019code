@@ -85,6 +85,7 @@ public class Robot extends TimedRobot
   public static FourBarLinkageForHatch fourBarLinkage = new FourBarLinkageForHatch();
   public static CargoArms cargoArms = new CargoArms();
   public static CargoIntake intake = new CargoIntake();
+  public static AnalogInput distanceSensor = new AnalogInput(0);
 
  /*  boolean cameraZeroEnabled = true; // checker to see which camera is enabled when switching
   UsbCamera camera0 = new UsbCamera("USB Camera 0", 0);
@@ -147,6 +148,8 @@ public class Robot extends TimedRobot
     //RobotMap.frontRight.configOpenloopRamp(0.3);
     //RobotMap.rearRight.configOpenloopRamp(0.3);
     server.setSource(camera1); // initializes the camera server object so that it doesn't freeze when started
+
+    SmartDashboard.putNumber("Distance", distanceSensor.getValue());
     
   }
 
@@ -256,18 +259,6 @@ public class Robot extends TimedRobot
 
     robotDriveTrain.robotDrive();
 
-    /* 
-    if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
-      System.out.println("Setting camera 2");
-      server.setSource(camera2);
-      System.out.println("setSource camera 2 code; source currently running: " + server.getSource().toString());
-    } else if (!OI.getGamepad(0).getRawButton(3) && prevTrigger) {
-      System.out.println("Setting camera 1");
-      server.setSource(camera1);
-      System.out.println("setSource camera 1 code; source currently running: " + server.getSource().toString());
-    }
-    prevTrigger = OI.getGamepad(0).getRawButton(3); */
-
     if(!DriveTrain.getDirection()){
       //System.out.println("setting camera 2");
       server.setSource(camera2);
@@ -276,6 +267,8 @@ public class Robot extends TimedRobot
       //System.out.println("setting camera 1");
       server.setSource(camera1);
     }
+
+    SmartDashboard.putNumber("Distance", distanceSensor.getValue());
   }
 
   @Override
@@ -340,17 +333,6 @@ public class Robot extends TimedRobot
 
     robotDriveTrain.robotDrive();
 
-    /* if (OI.getGamepad(0).getRawButton(3) && !prevTrigger) {
-      System.out.println("Setting camera 2");
-      server.setSource(camera2);
-      System.out.println("setSource camera 2 code; source currently running: " + server.getSource().toString());
-    } else if (!OI.getGamepad(0).getRawButton(3) && prevTrigger) {
-      System.out.println("Setting camera 1");
-      server.setSource(camera1);
-      System.out.println("setSource camera 1 code; source currently running: " + server.getSource().toString());
-    }
-    prevTrigger = OI.getGamepad(0).getRawButton(3); */
-
     if(!DriveTrain.getDirection()){
       //System.out.println("setting camera 2");
       server.setSource(camera2);
@@ -359,6 +341,8 @@ public class Robot extends TimedRobot
       //System.out.println("setting camera 1");
       server.setSource(camera1);
     } 
+
+    SmartDashboard.putNumber("Distance", distanceSensor.getValue());
   }
 
   /**
