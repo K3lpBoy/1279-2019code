@@ -269,6 +269,21 @@ public class Robot extends TimedRobot
     }
 
     SmartDashboard.putNumber("Distance", distanceSensor.getValue());
+
+    SmartDashboard.putNumber("Distance", distanceSensor.getValue());
+    if(distanceSensor.getValue() > 690 && distanceSensor.getValue() < 760){
+      SmartDashboard.putString("u good:", "OH? ON JAH?");
+    }
+    else{
+      SmartDashboard.putString("u good:", "nah");
+    }
+
+    if(distanceSensor.getValue() > 68.5 && distanceSensor.getValue() < 70.5){
+      SmartDashboard.putString("", "nice");
+    }
+    else{
+      SmartDashboard.putString("", "");
+    }
   }
 
   @Override
@@ -343,6 +358,19 @@ public class Robot extends TimedRobot
     } 
 
     SmartDashboard.putNumber("Distance", distanceSensor.getValue());
+    if(distanceSensor.getValue() > 690 && distanceSensor.getValue() < 760){
+      SmartDashboard.putString("u good:", "OH? ON JAH?");
+    }
+    else{
+      SmartDashboard.putString("u good:", "nah");
+    }
+
+    if(distanceSensor.getValue() > 68.5 && distanceSensor.getValue() < 70.5){
+      SmartDashboard.putString("", "nice");
+    }
+    else{
+      SmartDashboard.putString("", "");
+    }
   }
 
   /**
