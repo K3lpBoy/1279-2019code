@@ -61,10 +61,10 @@ public class DriveTrain extends Subsystem
   {
     inverse = inverse * -1; // just flips the value between 1 and negative 1
   }
-  public void setDirectionForward(){
+  public void setDirectionForward(){ // hatch side
     inverse = 1;
   }
-  public void setDirectionBack(){
+  public void setDirectionBack(){ // cargo side
     inverse = -1;
   }
 

@@ -245,7 +245,8 @@ public class Robot extends TimedRobot
     RobotMap.rearRight.setSafetyEnabled(false);
 
     RobotMap.hatchTalon.setSafetyEnabled(false);
-    
+
+    robotDriveTrain.setDirectionBack(); // starts the match with hatch as forward    
   }
 
   /**
