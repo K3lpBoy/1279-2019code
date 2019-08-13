@@ -51,6 +51,9 @@ public class HatchMechCommand extends Command
   }
 
   // Called repeatedly when this Command is scheduled to run
+  /**
+   * I is confused boi
+   */
   @Override
   protected void execute() 
   {

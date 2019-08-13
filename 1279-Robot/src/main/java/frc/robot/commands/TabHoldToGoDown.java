@@ -44,7 +44,7 @@ public class TabHoldToGoDown extends Command
   @Override
   protected void end() 
   {
-    Robot.hatch.stopSpin();
+   Robot.hatch.stopSpin();
   }
 
   // Called when another command which requires one or more of the same

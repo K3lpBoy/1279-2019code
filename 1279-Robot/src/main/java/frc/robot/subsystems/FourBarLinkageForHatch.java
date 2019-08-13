@@ -35,22 +35,35 @@ public class FourBarLinkageForHatch extends Subsystem
     // setDefaultCommand(new MySpecialCommand());
   }
 
+  /**
+   * This turns the hatch mechanism forward at 50% speed
+   */
   public void hatchForward()
   {
     fourBarLinkageTalon.set(ControlMode.PercentOutput, 0.5);
     //0.267 turn for it;
   }
 
+  /**
+   * This hatchback command moves the four bar linkage back.
+   */
   public void hatchBack()
   {
     fourBarLinkageTalon.set(ControlMode.PercentOutput, -0.5);
   }
 
+/**
+ * This stops the four bar linkage
+ */
   public void stopLinkage()
   {
     fourBarLinkageTalon.set(ControlMode.PercentOutput, 0);
   }
 
+  /**
+   * Checks to see if the front limit switch is set
+   * @return True if greater than zero if the limit switch is set
+   */
   public boolean isFrontSwitchSet()
   {
     return counterFront.get() > 0; // increments when the limit switch is activated
@@ -77,11 +90,13 @@ public class FourBarLinkageForHatch extends Subsystem
     return counterFront.get() > 0;
   }
 
-  public boolean getRawRear(){
+  public boolean getRawRear()
+  {
     return hatchArmSwitchBack.get();
   }
 
-  public boolean getRawFront(){
+  public boolean getRawFront()
+  {
     return hatchArmSwitchFront.get();
   }
 

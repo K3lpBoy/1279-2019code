@@ -10,63 +10,67 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LinkageOut extends Command
+public class ElevatorUp extends Command
 {
-  public LinkageOut()
+  public ElevatorUp()
   {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.fourBarLinkage);
+    requires(Robot.elevator);
   }
 
   // Called just before this Command runs the first time
   /**
-   * Initializes the limit switch counter
+   * This will initialize the limit switch
+   * Checks to see if the bottom switch is set
+   * if so, then it stops it
+   * otherwise, it goes up
    */
   @Override
   protected void initialize()
   {
-    Robot.fourBarLinkage.initializeCounter();
+    Robot.elevator.initializeCounter();
+    if(!Robot.elevator.isSwitchSet())
+    {
+      Robot.elevator.raiseElevator();
+    }
+    if(Robot.elevator.getBottom())
+    {
+      end();
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
   /**
-   * Moves the four-bar linkage forward
-   * If blocked, then returns the sentence that it is blocked, and runs the end method
+   * 
    */
   @Override
   protected void execute()
   {
-    if(!Robot.fourBarLinkage.getRawFront())
-    { // returns true when open
-      System.out.println("linkage blocked by front switch");
+    if(!Robot.elevator.getRawBottom())
+    {
       end();
+      System.out.println("Elevator is hitting the bottom limit switch");
     }
     else
     {
-      Robot.fourBarLinkage.hatchForward();
+      Robot.elevator.raiseElevator();
     }
-    //System.out.println("linkage out; getRawFront: " + Robot.fourBarLinkage.getRawFront());
   }
 
   // Make this return true when this Command no longer needs to run execute()
-  /**
-   * Returns when the four bar linkage is touching the front limit switch
-   */
   @Override
   protected boolean isFinished()
   {
-    return Robot.fourBarLinkage.getFront();
+    return Robot.elevator.getBottom();
   }
 
   // Called once after isFinished returns true
-  /**
-   * Stops the four-bar linkage
-   */
   @Override
   protected void end()
   {
-    Robot.fourBarLinkage.stopLinkage();
+    System.out.println("Elevator has hit the top limit switch");
+    Robot.elevator.stop();
   }
 
   // Called when another command which requires one or more of the same

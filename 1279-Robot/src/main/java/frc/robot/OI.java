@@ -14,24 +14,26 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.HatchMechCommand;
-import frc.robot.commands.HatchTabDown;
-import frc.robot.commands.HatchTabUp;
-import frc.robot.commands.LinkageIn;
-import frc.robot.commands.LinkageOut;
-import frc.robot.commands.MainRobotGroup;
+//import frc.robot.commands.HatchMechCommand;
+//import frc.robot.commands.HatchTabDown;
+//import frc.robot.commands.HatchTabUp;
+//import frc.robot.commands.LinkageIn;
+//import frc.robot.commands.LinkageOut;
+//import frc.robot.commands.MainRobotGroup;
 import frc.robot.commands.SetDrivetrainForward;
 import frc.robot.commands.SetDrivetrainReverse;
 import frc.robot.commands.SlowDrivetrain;
 import frc.robot.commands.TabHoldToGoDown;
 import frc.robot.commands.TabHoldToGoUp;
-import frc.robot.commands.CargoArmDown;
-import frc.robot.commands.CargoArmUp;
+//import frc.robot.commands.CargoArmDown;
+//import frc.robot.commands.CargoArmUp;
 import frc.robot.commands.CargoIn;
 import frc.robot.commands.CargoOut;
 import frc.robot.commands.CargoOutFast;
-import frc.robot.commands.Climb;
-import frc.robot.commands.FourBarLinkageCommand;
+//import frc.robot.commands.Climb;
+import frc.robot.commands.ElevatorDown;
+import frc.robot.commands.ElevatorUp;
+//import frc.robot.commands.FourBarLinkageCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -43,6 +45,7 @@ import frc.robot.commands.FourBarLinkageCommand;
  * As well, this is where we have the Robot do the desired commands
  * (An example from this year is that when the "A button" on the XBOX controller is pressed,
  * the hatch will spin either forward-to pick up the hatch-or back-to let it go.)
+ * TODO: This should be used as a guide for how to create the OI and how it should be used. Allows for us to say what buttons we will use when controlling the robot
  */
 public class OI 
 {
@@ -76,7 +79,7 @@ public class OI
 
   // THESE ARE 1 (ONE) indexed
   static Joystick driverStick = new Joystick(0); // xbox button -- This is where we declare where the joystick is ported to on the drive train. (LOOK ON DRIVER STATION)
-  Button aButton = new JoystickButton(driverStick, 1); //One indexed. Check the Driver Station for what button is which
+  Button aButton = new JoystickButton(driverStick, 1); //One indexed. Check the Driver Station for what button is which. -- Thanks Marco
   Button bButton = new JoystickButton(driverStick, 2);
   Button xButton = new JoystickButton(driverStick, 3);
   Button yButton = new JoystickButton(driverStick, 4);
@@ -88,22 +91,27 @@ public class OI
   Button rightStickPress = new JoystickButton(driverStick, 10);
 
   public static Joystick operatorStick = new Joystick(1); // This is the operator joystick. Goes into port one beneath driver controller
-  Button triangle = new JoystickButton(operatorStick, 1);
-  Button circle = new JoystickButton(operatorStick, 2);
-  Button operatorXButton = new JoystickButton(operatorStick, 3);
-  Button square = new JoystickButton(operatorStick, 4);
-  Button l2 = new JoystickButton(operatorStick, 5);
-  Button r2 = new JoystickButton(operatorStick, 6);
-  Button l1 = new JoystickButton(operatorStick, 7);
-  Button r1 = new JoystickButton(operatorStick, 8);
-  Button operatorStart = new JoystickButton(operatorStick, 9);
-  Button operatorSelect = new JoystickButton(operatorStick, 10);
+  //To name a button, do this
+  //Button nameOfButton = new JoystickButton(stick, #);
+  //To find out the #, just randomly press buttons on Drive Train
+  Button square = new JoystickButton(operatorStick, 1);
+  Button operatorXButton = new JoystickButton(operatorStick, 2);
+  Button circle = new JoystickButton(operatorStick, 3);
+  Button triangle = new JoystickButton(operatorStick, 4);
+  Button l1 = new JoystickButton(operatorStick, 5);
+  Button r1 = new JoystickButton(operatorStick, 6);
+  Button l2 = new JoystickButton(operatorStick, 7);
+  Button r2 = new JoystickButton(operatorStick, 8);
+  Button share = new JoystickButton(operatorStick, 9);
+  Button options = new JoystickButton(operatorStick, 10);
   Button l3 = new JoystickButton(operatorStick, 11);
   Button r3 = new JoystickButton(operatorStick, 12);
-  Button dpadUp = new JoystickButton(operatorStick, 13);
-  Button dpadRight = new JoystickButton(operatorStick, 14);
-  Button dpadDown = new JoystickButton(operatorStick, 15);
-  Button dpadLeft = new JoystickButton(operatorStick, 16);
+  Button psButton = new JoystickButton(operatorStick, 13);
+  Button centerButton = new JoystickButton(operatorStick, 14);
+  Button dpadUp = new JoystickButton(operatorStick, 15);
+  Button dpadRight = new JoystickButton(operatorStick, 16);
+  Button dpadDown = new JoystickButton(operatorStick, 17);
+  Button dpadLeft = new JoystickButton(operatorStick, 18);
 
   int oiDebugCounter = 0;
 
@@ -121,19 +129,21 @@ public class OI
       //System.out.println("HI");
       //square.whenPressed(new HatchMechCommand()); // this runs the hatch mechanism, MOVE THIS TO OPERATOR OR JUST ASK NICK LATER
       //bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing
-      dpadRight.whileHeld(new CargoArmUp()); // this actually goes UP AGAIN 
-      dpadLeft.whileHeld(new CargoArmDown()); // this actually goes DOWN AGAIN AAAAAA
+      //dpadRight.whileHeld(new CargoArmUp()); // this actually goes UP AGAIN 
+      //dpadLeft.whileHeld(new CargoArmDown()); // this actually goes DOWN AGAIN AAAAAA
+      r2.whileHeld(new ElevatorUp());
+      l2.whileHeld(new ElevatorDown());
       triangle.whileHeld(new CargoIn());
       circle.whileHeld(new CargoOut());
       square.whileHeld(new CargoOutFast()); // actually goes slow now
-      dpadUp.whileHeld(new LinkageOut());
-      dpadDown.whileHeld(new LinkageIn());
-      operatorSelect.whileHeld(new Climb());
-      l2.whenPressed(new HatchTabUp());
-      r2.whenPressed(new HatchTabDown());
+      //share.whileHeld(new LinkageOut());
+      //options.whileHeld(new LinkageIn());
       l1.whileHeld(new TabHoldToGoUp());
       r1.whileHeld(new TabHoldToGoDown());
-
+      //options.whileHeld(new Climb());
+      //l2.whenPressed(new HatchTabUp());
+      //r2.whenPressed(new HatchTabDown());
+      
       yButton.whenPressed(new SetDrivetrainForward());
       bButton.whenPressed(new SetDrivetrainReverse());
       rightShoulder.whileHeld(new SlowDrivetrain());
@@ -146,10 +156,22 @@ public class OI
     // aButton.whenPressed(new MainRobotGroup()); uncomment this and comment out the line above it if it doesn't work
   }
 
+  /**
+   * This is the Joystick method. This allows for us to make sure that no matter what,
+   * the correct joystick is chosen
+   * @param stickId the id number of the stick
+   * @return driver stick if 0, operator stick if 1, and driver stick if anything else
+   */
   public static Joystick getGamepad(int stickId)
   {
-    if (stickId == 0) return driverStick;
-    if (stickId == 1) return operatorStick;
+    if (stickId == 0)
+    { 
+      return driverStick;
+    }
+    if (stickId == 1)
+    {
+      return operatorStick;
+    }
     return driverStick; // failsafe
   }
 

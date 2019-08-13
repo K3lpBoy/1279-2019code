@@ -10,6 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
+/**
+ * I is one confusie boi
+ */
 public class FourBarLinkageCommand extends Command 
 {
   boolean linkageDeployed = false;

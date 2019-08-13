@@ -36,29 +36,49 @@ public class CargoIntake extends Subsystem
   }
 
   /**
-   * Spins the Cargo out at 70%
+   * Spins the Cargo out at 50%
    * Spins the left clockwise
    * Spins the right counterclock wise
    */
   public void outtake()
   {
+    //cargoTalon.set(ControlMode.PercentOutput, -0.5);
     leftTalon.set(ControlMode.PercentOutput, 0.7);
     rightTalon.set(ControlMode.PercentOutput, -0.7);
   }
 
-  public void outtakeFast(){ // this goes slow now
+  /**
+   * Spins the Cargo out at 35%
+   * Spins the left clockwise
+   * Spins the right counterclock wise
+   */
+  public void outtakeFast()
+  { // this goes slow now
+    //cargoTalon.set(ControlMode.PercentOutput, -0.35);
     leftTalon.set(ControlMode.PercentOutput, 0.55);
     rightTalon.set(ControlMode.PercentOutput, -0.55);
   }
 
+  /**
+   * This is the intake method
+   * Spins the Cargo in at 50%
+   * Spins the right clockwise
+   * Spins the left counterclock wise
+   */
   public void intake()
   {
+    //cargoTalon.set(ControlMode.PercentOutput, 0.5);
     leftTalon.set(ControlMode.PercentOutput, -0.4);
     rightTalon.set(ControlMode.PercentOutput, 0.4);
   }
 
+  /**
+   * Stops the Cargo.
+   * Use stopMotor method to stop. Not just set it to zero
+   */
   public void stop()
   {
+    //cargoTalon.stopMotor();
     leftTalon.stopMotor();
     rightTalon.stopMotor();
   }

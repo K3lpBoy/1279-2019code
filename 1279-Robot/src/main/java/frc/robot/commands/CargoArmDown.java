@@ -8,7 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
+//import frc.robot.OI;
 import frc.robot.Robot;
 
 public class CargoArmDown extends Command 
@@ -24,7 +24,7 @@ public class CargoArmDown extends Command
   @Override
   protected void initialize() 
   {
-    Robot.cargoArms.initializeCounter();
+    //Robot.cargoArms.initializeCounter();
     //if(!Robot.cargoArms.isSwitchSet())
     //Robot.cargoArms.lowerArms(); // hopefully this should prevent it from driving while already up
     /* if(Robot.cargoArms.getRear())
@@ -37,28 +37,29 @@ public class CargoArmDown extends Command
   @Override
   protected void execute() 
   {
-    if(!Robot.cargoArms.getRawFront()){
+    /*if(!Robot.cargoArms.getRawFront()){
       end();
       System.out.println("cargoArms going down blocked by front limit switch");
     }
     else{
       Robot.cargoArms.lowerArms();
-    }
+    }*/
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() 
   {
-    return Robot.cargoArms.getFront(); // limit switch or x button is released
+    return false;
+    //return Robot.cargoArms.getFront(); // limit switch or x button is released
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() 
   {
-    Robot.cargoArms.stop();
-    System.out.println("cargo arm bottom limit switch hit");
+    /*Robot.cargoArms.stop();
+    System.out.println("cargo arm bottom limit switch hit");*/
   }
 
   // Called when another command which requires one or more of the same
@@ -66,6 +67,6 @@ public class CargoArmDown extends Command
   @Override
   protected void interrupted() 
   {
-    end();
+    //end();
   }
 }

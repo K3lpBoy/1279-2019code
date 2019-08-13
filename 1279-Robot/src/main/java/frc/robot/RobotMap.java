@@ -11,7 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -36,29 +36,32 @@ public class RobotMap
   public static final int AUTONOMOUS_BOTTON = 5;
 
   //talon IDs (NOT FINAL)
-  //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
+  //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED -- Thanks Marco
+  //These are the talons for the drive train
   public final static int FRONT_LEFT_ID = 7; // 1 was hooked up to hatch turning
-  public final static int REAR_LEFT_ID = 13;
+  public final static int REAR_LEFT_ID = 13; 
   public final static int FRONT_RIGHT_ID = 8;
   public final static int REAR_RIGHT_ID = 5; // changed for testing purposes, was 4
   
-  public static final int HATCH_TALON_ID = 2;
+  public static final int HATCH_TALON_ID = 2; //Hatch Talon ID
 
   public static final int FOUR_BAR_LINKAGE_TALON_ID = 1;
 
-  public static final int CARGO_ARM_TALON = 6; 
-  public static final int CARGO_ARM_TALON_2 = 4;
+  public static final int ELEVATOR_TALON = 6; // was originally the first cargo arm talon THIS IS THE ELEVATOR TALON
+  public static final int OTHER_ELEVATOR_TALON = 4; // was originally the other cargo arm talon THIS ONE AS WELL
 
   public static final int CARGO_INTAKE_LEFT = 10;
   public static final int CARGO_INTAKE_RIGHT = 3;
 
   // drivetrain stuff
+  //TODO: IMPORTANT: THIS IS TO BE COPIED AND PASTED INTO THE NEW CODE FOR NEXT YEAR. WHILE THE IDs MAY BE DIFFERENT, THIS SHOULD REMAIN THE SAME
   public static WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_ID);
   public static WPI_TalonSRX rearLeft = new WPI_TalonSRX(RobotMap.REAR_LEFT_ID);
   public static SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeft, rearLeft);
   public static WPI_TalonSRX frontRight = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_ID);
   public static WPI_TalonSRX rearRight = new WPI_TalonSRX(RobotMap.REAR_RIGHT_ID);
   public static SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, rearRight);
+  //TODO: THIS BOX RIGHT HERE
   //public static DifferentialDrive diffDrive = new DifferentialDrive(m_left, m_right);
 
   public static WPI_TalonSRX hatchTalon = new WPI_TalonSRX(HATCH_TALON_ID);
@@ -67,37 +70,8 @@ public class RobotMap
   //limit switches
   public static int HATCH_ARM_SWITCH_ID_BACK = 0;
   public static int HATCH_ARM_SWITCH_ID_FRONT = 1;
-  public static int CARGO_ARM_SWITCH_ID_FRONT = 2; // placeholder
-  public static int CARGO_ARM_SWITCH_ID_REAR = 3; // placeholder
-
-  //Autonomous Instance Variables
-  //double xSpeed = 0.4;
-  //double zRotation = 0;
-
-  /*public static int getHatchTalonID()
-  {
-    return HATCH_TALON_ID;
-  }*/
-
-  /*public static int getHatchButton()
-  {
-    return HATCH_SPINNER_BUTTON;
-  }*/
-  
-  /* public static Joystick getJoystick()
-  {
-    //return driverStick;
-  }
-
-  public static DifferentialDrive getDifferentialDrive()
-  {
-    //return drive;
-  } */
-
-  /*public static WPI_TalonSRX getHatchTalon()
-  {
-    return hatchTalon;
-  }*/
+  public static int ELEVATOR_SWITCH_ID_TOP = 2; // placeholder
+  public static int ELEVATOR_SWITCH_ID_BOTTOM = 3; // placeholder
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;

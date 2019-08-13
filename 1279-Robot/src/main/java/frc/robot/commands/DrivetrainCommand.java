@@ -34,6 +34,9 @@ public class DrivetrainCommand extends Command
   }
 
   // Called repeatedly when this Command is scheduled to run
+  /**
+   * Drives the robot
+   */
   @Override
   protected void execute() 
   {

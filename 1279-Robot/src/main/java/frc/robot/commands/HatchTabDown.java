@@ -10,6 +10,18 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
+/**
+ * THIS IS IMPORTANT
+ * LOOK AT ME
+ * THIS IS NOT TO BE USED
+ * THIS IS THE TIMED ONE
+ * THIS IS NOT GOOD FOR A FEW REASONS
+ * A. DOESN'T ALLOW FOR ANY TYPE OF CONTROL
+ * B. CAN GO SPINNY ROUND ROUND
+ * C. MAKES A BIG BOY MESS THAT I DAN WILL HAVE TO CLEAN UP
+ * D. can possibly stop the robot in its tracks
+ * DON'T USE THIS
+ */
 public class HatchTabDown extends Command 
 {
   public HatchTabDown() 

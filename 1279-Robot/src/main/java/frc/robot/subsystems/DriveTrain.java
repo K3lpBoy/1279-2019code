@@ -7,16 +7,20 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.*;
+//import edu.wpi.first.wpilibj.drive.*;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 /**
- * Add your docs here.
+ * TODO: IMPORTANT: THIS IS TO BE COPIED AND PASTED FOR NEXT YEAR
+ * THIS SHOULD BE COPIED UNLESS OTHERWISE MENTIONED
+ * This is the drive train class subsystem
+ * This is an extremely important class
+ * Without this, we would not be able to drive
  */
 public class DriveTrain extends Subsystem 
 {
@@ -38,12 +42,16 @@ public class DriveTrain extends Subsystem
     
   }
 
-  /*public DriveTrain(DifferentialDrive diffDrive, Joystick stick){
+  /*public DriveTrain(DifferentialDrive diffDrive, Joystick stick)
+  {
     // drive = new DriveTrain(frontLeft, rearLeft, frontRight, rearRight));
     drive = diffDrive;
     driverStick = stick;
   }*/
 
+  /**
+   * This command drives the robot
+   */
   public void robotDrive()
   {
     double xSpeed = driverStick.getRawAxis(RobotMap.DRIVER_LEFT_X_AXIS) * -1 * inverse * modifier; // makes forward stick positive
@@ -61,17 +69,41 @@ public class DriveTrain extends Subsystem
   {
     inverse = inverse * -1; // just flips the value between 1 and negative 1
   }
-  public void setDirectionForward(){ // hatch side
+
+  /**
+   * Sets the direction forward
+   * Forward is the formalerly hatch side
+   */
+  public void setDirectionForward()
+  { // hatch side
     inverse = 1;
   }
-  public void setDirectionBack(){ // cargo side
+
+  /**
+   * Sets the direction backwards
+   * Backwards is the formaleryly cargo side
+   */
+  public void setDirectionBack()
+  { // cargo side
     inverse = -1;
   }
 
-  public void slowSpeed(){
+  /**
+   * This slows down the drive train
+   * Slows it to 60%
+   * Multiplies the drive train by 0.6
+   */
+  public void slowSpeed()
+  {
     modifier = 0.6; // 60%
   }
-  public void normalSpeed(){
+
+  /**
+   * This is the normal speed
+   * This will allow for the values to be times 1
+   */
+  public void normalSpeed()
+  {
     modifier = 1; // 100%
   }
 
@@ -79,12 +111,15 @@ public class DriveTrain extends Subsystem
    * Returns the direction of the drivetrain
    * @return false when not inverted (cargo side), true when inverted (hatch side)
    */
-  public static boolean getDirection(){
-    if(inverse == 1){
+  public static boolean getDirection()
+  {
+    if(inverse == 1)
+    {
       return false; // cargo side
     }
 
-    if(inverse == -1){
+    if(inverse == -1)
+    {
       return true; // hatch side
     }
 

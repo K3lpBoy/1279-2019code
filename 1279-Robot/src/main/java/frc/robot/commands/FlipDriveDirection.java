@@ -9,7 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.DriveTrain;
+//import frc.robot.subsystems.DriveTrain;
 
 /**
  * This flips the direction of the drivetrain with a press of a button.
@@ -25,6 +25,9 @@ public class FlipDriveDirection extends Command
   }
 
   // Called just before this Command runs the first time
+  /**
+   * Flips the direction of the drive train to the other way
+   */
   @Override
   protected void initialize()
   {

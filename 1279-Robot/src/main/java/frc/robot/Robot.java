@@ -8,19 +8,20 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
+//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.DrivetrainCommand;
+//import frc.robot.commands.DrivetrainCommand;
 //import frc.robot.commands.DrivingTheRobot;
 import frc.robot.commands.ExampleCommand;
 //import frc.robot.subsystems.AutonomousSubsystem;
 import frc.robot.subsystems.CargoArms;
 import frc.robot.subsystems.CargoIntake;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FourBarLinkageForHatch;
 import frc.robot.subsystems.HatchSubsystem;
@@ -28,16 +29,16 @@ import frc.robot.subsystems.HatchSubsystem;
 //import java.sql.Driver;
 
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.can.*;
+//import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+//import com.ctre.phoenix.motorcontrol.can.*;
 
-import org.opencv.core.Mat;
+//import org.opencv.core.Mat;
 
-import edu.wpi.first.wpilibj.drive.*; // these are necessary for the drivetrain builder
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.MjpegServer;
+//import edu.wpi.first.wpilibj.drive.*; // these are necessary for the drivetrain builder
+//import edu.wpi.cscore.CvSink;
+//import edu.wpi.cscore.CvSource;
+//import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSink; 
 import edu.wpi.cscore.VideoSource;
@@ -47,7 +48,7 @@ import edu.wpi.first.wpilibj.Joystick;
 // import edu.wpi.first.wpilibj.Talon; this isn't the right one
 
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.IterativeRobot; // these allow the camera to work
+//import edu.wpi.first.wpilibj.IterativeRobot; // these allow the camera to work
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -63,7 +64,7 @@ import edu.wpi.first.wpilibj.IterativeRobot; // these allow the camera to work
   */
 public class Robot extends TimedRobot 
 {
-  // TODO: Try out the cargo arms
+  //Try out the cargo arms
   //talon IDs (NOT FINAL)
   //note: TALONS ARE INCREDIBLY DUMB AND ARE ONE INDEXED
   /* private final int FRONT_LEFT_ID = 1;
@@ -83,6 +84,7 @@ public class Robot extends TimedRobot
   public static DriveTrain robotDriveTrain = new DriveTrain(); // constructing our drivetrain SUBSYSTEM
   public static HatchSubsystem hatch = new HatchSubsystem();
   public static FourBarLinkageForHatch fourBarLinkage = new FourBarLinkageForHatch();
+  public static Elevator elevator = new Elevator();
   public static CargoArms cargoArms = new CargoArms();
   public static CargoIntake intake = new CargoIntake();
   public static AnalogInput distanceSensor = new AnalogInput(0);
@@ -200,7 +202,6 @@ public class Robot extends TimedRobot
   {
     //MAJOR NEWS: SANDSTORM IS IN AUTONOMOUS AND NOT IN TELEOP. TO DRIVE NORMALLY, MUST USE SAME TECHNIQUES AS IN TELEOP
 
-
     System.out.println("autonomous init is being run");
 
     m_autonomousCommand = m_chooser.getSelected(); 
@@ -272,17 +273,21 @@ public class Robot extends TimedRobot
     SmartDashboard.putNumber("Distance", distanceSensor.getValue());
 
     SmartDashboard.putNumber("Distance", distanceSensor.getValue());
-    if(distanceSensor.getValue() > 690 && distanceSensor.getValue() < 760){
+    if(distanceSensor.getValue() > 690 && distanceSensor.getValue() < 760)
+    {
       SmartDashboard.putString("u good:", "OH? ON JAH?");
     }
-    else{
+    else
+    {
       SmartDashboard.putString("u good:", "nah");
     }
 
-    if(distanceSensor.getValue() > 68.5 && distanceSensor.getValue() < 70.5){
+    if(distanceSensor.getValue() > 68.5 && distanceSensor.getValue() < 70.5)
+    {
       SmartDashboard.putString("", "nice");
     }
-    else{
+    else
+    {
       SmartDashboard.putString("", "");
     }
   }
@@ -349,27 +354,33 @@ public class Robot extends TimedRobot
 
     robotDriveTrain.robotDrive();
 
-    if(!DriveTrain.getDirection()){
+    if(!DriveTrain.getDirection())
+    {
       //System.out.println("setting camera 2");
       server.setSource(camera2);
     }
-    if(DriveTrain.getDirection()){
+    if(DriveTrain.getDirection())
+    {
       //System.out.println("setting camera 1");
       server.setSource(camera1);
     } 
 
     SmartDashboard.putNumber("Distance", distanceSensor.getValue());
-    if(distanceSensor.getValue() > 690 && distanceSensor.getValue() < 760){
+    if(distanceSensor.getValue() > 690 && distanceSensor.getValue() < 760)
+    {
       SmartDashboard.putString("u good:", "OH? ON JAH?");
     }
-    else{
+    else
+    {
       SmartDashboard.putString("u good:", "nah");
     }
 
-    if(distanceSensor.getValue() > 68.5 && distanceSensor.getValue() < 70.5){
+    if(distanceSensor.getValue() > 68.5 && distanceSensor.getValue() < 70.5)
+    {
       SmartDashboard.putString("", "nice");
     }
-    else{
+    else
+    {
       SmartDashboard.putString("", "");
     }
   }
@@ -378,7 +389,8 @@ public class Robot extends TimedRobot
    * This function is called periodically during test mode.
    */
   @Override
-  public void testPeriodic() {
+  public void testPeriodic() 
+  {
     /*driveTrain.drive();
 
     if(driverStick.getRawButton(HATCH_SPINNER_BUTTON))
@@ -388,12 +400,14 @@ public class Robot extends TimedRobot
     //4itsAProgrammingProblem.setExpiration(2);
 
     //WPI_TalonSRX itsAProgrammingProblem = new WPI_TalonSRX(4);
-    /*if(driverStick.getRawButton(1)){
+    /*if(driverStick.getRawButton(1))
+    {
       itsAProgrammingProblem.set(ControlMode.PercentOutput, 0.8);
       itsAProgrammingProblem.feed();
     } 
     System.out.println(itsAProgrammingProblem.isSafetyEnabled()); */
-    /* else{
+    /* else
+    {
       itsAProgrammingProblem.set(ControlMode.PercentOutput, 0);
     } */
 

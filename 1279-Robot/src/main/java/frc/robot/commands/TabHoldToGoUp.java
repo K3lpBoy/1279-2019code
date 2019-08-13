@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-
+//This stuff be imported automatically
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
@@ -27,6 +27,9 @@ public class TabHoldToGoUp extends Command
   }
 
   // Called repeatedly when this Command is scheduled to run
+  /**
+   * This will spin the hatch tab
+   */
   @Override
   protected void execute() 
   {

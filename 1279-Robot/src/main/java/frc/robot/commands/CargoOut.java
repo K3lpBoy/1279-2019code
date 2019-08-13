@@ -28,6 +28,9 @@ public class CargoOut extends Command
   }
 
   // Called repeatedly when this Command is scheduled to run
+  /**
+   * Shoots out the ball
+   */
   @Override
   protected void execute() 
   {
@@ -42,6 +45,9 @@ public class CargoOut extends Command
   }
 
   // Called once after isFinished returns true
+  /**
+   * Stops the mechanism
+   */
   @Override
   protected void end() 
   {

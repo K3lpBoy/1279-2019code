@@ -10,12 +10,14 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 // I don't think we're gonna use this
-public class MainRobotGroup extends CommandGroup {
+public class MainRobotGroup extends CommandGroup
+{
   /**
    * Add your docs here.
    */
-  public MainRobotGroup() {
-    boolean UpDown = true;
+  public MainRobotGroup()
+  {
+    //boolean UpDown = true;
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

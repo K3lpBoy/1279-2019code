@@ -10,14 +10,14 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
+//import edu.wpi.first.wpilibj.DigitalInput;
+//import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 /**
- * Add your docs here.
+ * 
  */
 public class HatchSubsystem extends Subsystem 
 {
@@ -27,12 +27,26 @@ public class HatchSubsystem extends Subsystem
   //static final double waitTime = 0.8;
   //Timer hatchTimer = new Timer();
 
+  /**
+   * 
+   */
   public HatchSubsystem()
   {
     /*this.hatchTalonID = talonIDForHatch;
     this.hatchTalon = talonForHatch;*/
   }
-
+//This is a comment. Remember to Test
+/*
+*This does this
+*It also does that
+*/
+  //Comment
+ /*Remember to put in Five tests
+ *Finish later
+ */ 
+/**
+ * 
+ */
   @Override
   public void initDefaultCommand()
   {
@@ -40,13 +54,19 @@ public class HatchSubsystem extends Subsystem
     // setDefaultCommand(new MySpecialCommand());
   }
 
+  /**
+   * This method spins the hatch tab to get the hatch. Also, hi Joe.
+   */
   public void spinToGetHatch()
   {
     hatchTalon.set(ControlMode.PercentOutput, 0.8);//changed from 0.8
     //Timer.delay(waitTime); // seconds
     //hatchTalon.set(ControlMode.PercentOutput, 0);
   }
-
+  
+  /**
+   * This method spins the hatch tab to release the hatch.
+   */
   public void spinToReleaseHatch()
   {
     hatchTalon.set(ControlMode.PercentOutput, -0.8);//changed from 1.8
@@ -54,6 +74,9 @@ public class HatchSubsystem extends Subsystem
     //hatchTalon.set(ControlMode.PercentOutput, 0);
   }
 
+  /**
+   * This method stops the hatch tab for spinning
+   */
   public void stopSpin()
   {
     hatchTalon.set(ControlMode.PercentOutput, 0);

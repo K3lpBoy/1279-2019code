@@ -10,8 +10,14 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LinkageIn extends Command {
-  public LinkageIn() {
+/**
+ * This is the command for bringing the four bar linkage in, back into the motherbase
+ * Gets stopped by the limit switch
+ */
+public class LinkageIn extends Command
+{
+  public LinkageIn()
+  {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.fourBarLinkage);
@@ -19,39 +25,46 @@ public class LinkageIn extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
+  protected void initialize()
+  {
     Robot.fourBarLinkage.initializeCounter();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
-    if(!Robot.fourBarLinkage.getRawRear()){ // returns true when open
+  protected void execute()
+  {
+    if(!Robot.fourBarLinkage.getRawRear())
+    { // returns true when open
       System.out.println("linkage blocked by rear switch");
       end();
     } 
-    else{
-    Robot.fourBarLinkage.hatchBack();
+    else
+    {
+      Robot.fourBarLinkage.hatchBack();
     }
     //System.out.println("linkage in; getRawRear: " + Robot.fourBarLinkage.getRawRear());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() {
+  protected boolean isFinished()
+  {
     return Robot.fourBarLinkage.getRear();
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
+  protected void end()
+  {
     Robot.fourBarLinkage.stopLinkage();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
+  protected void interrupted()
+  {
     end();
   }
 }
