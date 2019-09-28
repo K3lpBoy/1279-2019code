@@ -26,7 +26,7 @@ public class CargoIntake extends Subsystem
   // here. Call these from Commands.
 
   private WPI_TalonSRX leftTalon = new WPI_TalonSRX(RobotMap.CARGO_INTAKE_LEFT);
-  private WPI_TalonSRX rightTalon = new WPI_TalonSRX(RobotMap.CARGO_INTAKE_RIGHT);
+  //private WPI_TalonSRX rightTalon = new WPI_TalonSRX(RobotMap.CARGO_INTAKE_RIGHT);
 
   @Override
   public void initDefaultCommand()
@@ -43,8 +43,8 @@ public class CargoIntake extends Subsystem
   public void outtake()
   {
     //cargoTalon.set(ControlMode.PercentOutput, -0.5);
-    leftTalon.set(ControlMode.PercentOutput, 0.7);
-    rightTalon.set(ControlMode.PercentOutput, -0.7);
+    leftTalon.set(ControlMode.PercentOutput, 0.9);
+    //rightTalon.set(ControlMode.PercentOutput, -0.7);
   }
 
   /**
@@ -56,11 +56,11 @@ public class CargoIntake extends Subsystem
   { // this goes slow now
     //cargoTalon.set(ControlMode.PercentOutput, -0.35);
     leftTalon.set(ControlMode.PercentOutput, 0.55);
-    rightTalon.set(ControlMode.PercentOutput, -0.55);
+    //rightTalon.set(ControlMode.PercentOutput, -0.55);
   }
 
   /**
-   * This is the intake method
+   * This is the intake method\
    * Spins the Cargo in at 50%
    * Spins the right clockwise
    * Spins the left counterclock wise
@@ -68,8 +68,8 @@ public class CargoIntake extends Subsystem
   public void intake()
   {
     //cargoTalon.set(ControlMode.PercentOutput, 0.5);
-    leftTalon.set(ControlMode.PercentOutput, -0.4);
-    rightTalon.set(ControlMode.PercentOutput, 0.4);
+    leftTalon.set(ControlMode.PercentOutput, -0.7);
+    //rightTalon.set(ControlMode.PercentOutput, 0.4);
   }
 
   /**
@@ -80,6 +80,6 @@ public class CargoIntake extends Subsystem
   {
     //cargoTalon.stopMotor();
     leftTalon.stopMotor();
-    rightTalon.stopMotor();
+    //rightTalon.stopMotor();
   }
 }

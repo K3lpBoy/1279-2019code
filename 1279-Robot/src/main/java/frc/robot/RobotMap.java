@@ -51,7 +51,7 @@ public class RobotMap
   public static final int OTHER_ELEVATOR_TALON = 4; // was originally the other cargo arm talon THIS ONE AS WELL
 
   public static final int CARGO_INTAKE_LEFT = 10;
-  public static final int CARGO_INTAKE_RIGHT = 3;
+  // //public static final int CARGO_INTAKE_RIGHT = 3;
 
   // drivetrain stuff
   //TODO: IMPORTANT: THIS IS TO BE COPIED AND PASTED INTO THE NEW CODE FOR NEXT YEAR. WHILE THE IDs MAY BE DIFFERENT, THIS SHOULD REMAIN THE SAME

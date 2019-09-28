@@ -53,12 +53,12 @@ public class Elevator extends Subsystem
 
   public void raiseElevator()
   {
-    elevatorGroup.set(.25); //This value is there just for testing. Can raise or lower the value later on
+    elevatorGroup.set(.35); //This value is there just for testing. Can raise or lower the value later on
   }
 
   public void lowerElevator()
   {
-    elevatorGroup.set(-.25); //This value is there just for testing. Can raise or lower the value later on
+    elevatorGroup.set(-.35); //This value is there just for testing. Can raise or lower the value later on
   }
 
   public void climb()

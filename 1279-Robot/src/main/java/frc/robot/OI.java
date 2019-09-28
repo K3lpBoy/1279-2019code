@@ -131,8 +131,8 @@ public class OI
       //bButton.whenPressed(new FourBarLinkageCommand()); // runs the hatch extender thing
       //dpadRight.whileHeld(new CargoArmUp()); // this actually goes UP AGAIN 
       //dpadLeft.whileHeld(new CargoArmDown()); // this actually goes DOWN AGAIN AAAAAA
-      r2.whileHeld(new ElevatorUp());
-      l2.whileHeld(new ElevatorDown());
+      r2.whileHeld(new ElevatorUp()); //go down
+      l2.whileHeld(new ElevatorDown()); //go up
       triangle.whileHeld(new CargoIn());
       circle.whileHeld(new CargoOut());
       square.whileHeld(new CargoOutFast()); // actually goes slow now
@@ -143,6 +143,8 @@ public class OI
       //options.whileHeld(new Climb());
       //l2.whenPressed(new HatchTabUp());
       //r2.whenPressed(new HatchTabDown());
+
+      //button.action(new Command());
       
       yButton.whenPressed(new SetDrivetrainForward());
       bButton.whenPressed(new SetDrivetrainReverse());
