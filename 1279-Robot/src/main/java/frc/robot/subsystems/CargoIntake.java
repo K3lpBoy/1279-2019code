@@ -13,20 +13,15 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
-/**
- * Add your docs here.
- */
-
  /**
   * This subsystem is for taking in the cargo AND pushing it out
   */
 public class CargoIntake extends Subsystem 
 {
   // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-
+  // here. Call these subsystems from inside the Commands
   private WPI_TalonSRX leftTalon = new WPI_TalonSRX(RobotMap.CARGO_INTAKE_LEFT);
-  //private WPI_TalonSRX rightTalon = new WPI_TalonSRX(RobotMap.CARGO_INTAKE_RIGHT);
+  private WPI_TalonSRX rightTalon = new WPI_TalonSRX(RobotMap.CARGO_INTAKE_RIGHT);
 
   @Override
   public void initDefaultCommand()
@@ -43,8 +38,8 @@ public class CargoIntake extends Subsystem
   public void outtake()
   {
     //cargoTalon.set(ControlMode.PercentOutput, -0.5);
-    leftTalon.set(ControlMode.PercentOutput, 0.9);
-    //rightTalon.set(ControlMode.PercentOutput, -0.7);
+    leftTalon.set(ControlMode.PercentOutput, 0.3);
+    rightTalon.set(ControlMode.PercentOutput, -0.3);
   }
 
   /**
@@ -53,14 +48,15 @@ public class CargoIntake extends Subsystem
    * Spins the right counterclock wise
    */
   public void outtakeFast()
-  { // this goes slow now
+  {
+    // this goes slow now
     //cargoTalon.set(ControlMode.PercentOutput, -0.35);
     leftTalon.set(ControlMode.PercentOutput, 0.55);
-    //rightTalon.set(ControlMode.PercentOutput, -0.55);
+    rightTalon.set(ControlMode.PercentOutput, -0.55);
   }
 
   /**
-   * This is the intake method\
+   * This is the intake method
    * Spins the Cargo in at 50%
    * Spins the right clockwise
    * Spins the left counterclock wise
@@ -68,8 +64,9 @@ public class CargoIntake extends Subsystem
   public void intake()
   {
     //cargoTalon.set(ControlMode.PercentOutput, 0.5);
-    leftTalon.set(ControlMode.PercentOutput, -0.7);
-    //rightTalon.set(ControlMode.PercentOutput, 0.4);
+    leftTalon.set(ControlMode.PercentOutput, -0.5);
+    rightTalon.set(ControlMode.PercentOutput, 0.5);
+    //left and right Talon values are alternated to make sure that the wheels turn clockwise and counter-clockwise
   }
 
   /**
@@ -80,6 +77,6 @@ public class CargoIntake extends Subsystem
   {
     //cargoTalon.stopMotor();
     leftTalon.stopMotor();
-    //rightTalon.stopMotor();
+    rightTalon.stopMotor();
   }
 }

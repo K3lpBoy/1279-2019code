@@ -12,6 +12,7 @@ import frc.robot.*;
 //import frc.robot.subsystems.DriveTrain;
 
 /**
+ * TODO: COPY INTO NEXT YEAR'S CODE
  * This is the command that we use to drive the robot, using the DriveTrain SUBSYSTEM to get the method to drive
  */
 public class DrivetrainCommand extends Command 
